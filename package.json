@@ -1,0 +1,49 @@
+{
+	"name": "smart-shopping-list-next",
+	"type": "module",
+	"private": false,
+	"engines": {
+		"node": ">=18.12.0",
+		"npm": ">=8.19.0"
+	},
+	"dependencies": {
+		"firebase": "^10.12.5",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"react-router-dom": "^6.26.0"
+	},
+	"devDependencies": {
+		"@nabla/vite-plugin-eslint": "^2.0.4",
+		"@testing-library/dom": "^10.4.0",
+		"@testing-library/jest-dom": "^6.4.8",
+		"@testing-library/react": "^16.0.0",
+		"@testing-library/user-event": "^14.5.2",
+		"@vitejs/plugin-react": "^4.3.1",
+		"eslint": "^8.57.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-jsx-a11y": "^6.9.0",
+		"eslint-plugin-react": "^7.35.0",
+		"husky": "^9.1.4",
+		"jsdom": "^24.1.1",
+		"lint-staged": "^15.2.8",
+		"prettier": "^3.3.3",
+		"vite": "^5.3.5",
+		"vite-plugin-pwa": "^0.20.1",
+		"vite-plugin-svgr": "^4.2.0",
+		"vitest": "^2.0.5"
+	},
+	"scripts": {
+		"start": "vite",
+		"build": "vite build",
+		"test": "vitest",
+		"preview": "vite preview",
+		"prepare": "husky"
+	},
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx}": [
+			"eslint --cache --fix",
+			"prettier --cache --write"
+		],
+		"*.{html,json,css,scss,md}": "prettier --cache --write"
+	}
+}

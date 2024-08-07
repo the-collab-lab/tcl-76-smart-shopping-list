@@ -1,0 +1,10 @@
+.SingleList {
+	align-items: baseline;
+	display: flex;
+	flex-direction: row;
+	font-size: 1.2em;
+}
+
+.SingleList-label {
+	margin-left: 0.2em;
+}

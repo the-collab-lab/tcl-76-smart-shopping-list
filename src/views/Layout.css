@@ -1,0 +1,73 @@
+/**
+ * The `env()` function used in this block of code
+ * allows us to reference special variables that might be defined
+ * by certain browsers. In this case, we are making sure that
+ * the app stays within the 'safe' viewable area of a mobile phone,
+ * and isn't covered up by the phone's UI.
+ *
+ * @see: https://developer.mozilla.org/en-US/docs/Web/CSS/env
+ */
+.Layout {
+	display: flex;
+	flex-direction: column;
+	height: 100dvh;
+}
+
+.Layout > * {
+	padding-inline: min(5dvw, 3.2rem);
+}
+
+.Layout-header {
+	background-color: var(--color-bg);
+	padding-bottom: 0.5rem;
+	padding-top: max(env(safe-area-inset-top), 1rem);
+	text-align: center;
+}
+
+.Layout-header > h1 {
+	margin: 0;
+}
+
+.Layout-main {
+	margin: 0 auto;
+	padding-block: 0;
+	padding-block-end: 6.26rem;
+	width: min(72ch, 100%);
+}
+
+.Nav {
+	background-color: var(--color-bg);
+	border-top: 1px solid var(--color-border);
+	bottom: 0;
+	display: flex;
+	flex-direction: row;
+	padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+	padding-top: 1rem;
+	place-content: center;
+	position: fixed;
+	width: 100%;
+}
+
+.Nav-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	width: min(72ch, 100%);
+}
+
+.Nav-link {
+	--color-text: var(--color-accent);
+
+	color: var(--color-text);
+	font-size: 1.4em;
+	flex: 0 1 auto;
+	line-height: 1;
+	padding: 0.8rem;
+	text-align: center;
+	text-underline-offset: 0.1em;
+}
+
+.Nav-link.active {
+	text-decoration-thickness: 0.22em;
+	text-underline-offset: 0.1em;
+}
