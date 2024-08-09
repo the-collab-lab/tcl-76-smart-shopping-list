@@ -5,7 +5,8 @@ Add yourself as a contributor to this project as a Markdown link that links your
     - [Dione Developer](https://github.com/DioneDeveloper) 💅
 
 ## Cohort Participants
-
+- [Devin Jaggernauth](https://github.com/mentalcaries) 👻
 ## Mentors
+- 
 
 ## Code of Conduct Contacts
