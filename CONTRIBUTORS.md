@@ -7,6 +7,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
 ## Cohort Participants
 
 - [Sarah Meko](https://github.com/sar-mko) 🤭
+- [Marcos Perez](https://github.com/MarcosPerez16) 🫡
 
 ## Mentors
 
