@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './Layout.css';
 import { useAuth, SignInButton, SignOutButton } from '../api';
@@ -11,8 +12,16 @@ import { useAuth, SignInButton, SignOutButton } from '../api';
  * defined in `App.jsx`.
  */
 
+const handleActive = ({ isActive, isPending }) => {
+	return {
+		fontWeight: isActive ? 'bold' : '',
+		color: isPending ? 'red' : 'black',
+	};
+};
+
 export function Layout() {
 	const { user } = useAuth();
+
 	return (
 		<>
 			<div className="Layout">
@@ -21,20 +30,21 @@ export function Layout() {
 				</header>
 				<main className="Layout-main">
 					{user ? <SignOutButton /> : <SignInButton />}
-
 					<Outlet />
 				</main>
 				<nav className="Nav">
 					<div className="Nav-container">
-						<a href="#" className="Nav-link">
+						<NavLink to="/" style={handleActive}>
 							Home
-						</a>
-						<a href="#" className="Nav-link">
+						</NavLink>
+
+						<NavLink to="/list" style={handleActive}>
 							List
-						</a>
-						<a href="#" className="Nav-link">
+						</NavLink>
+
+						<NavLink to="/manage-list" style={handleActive}>
 							Manage List
-						</a>
+						</NavLink>
 					</div>
 				</nav>
 			</div>
