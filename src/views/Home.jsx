@@ -1,5 +1,5 @@
 import './Home.css';
-
+import { SingleList } from '../components';
 export function Home({ data, setListPath }) {
 	return (
 		<div className="Home">
@@ -7,10 +7,17 @@ export function Home({ data, setListPath }) {
 				Hello from the home (<code>/</code>) page!
 			</p>
 			<ul>
-				{/**
-				 * TODO: write some JavaScript that renders the `lists` array
-				 * so we can see which lists the user has access to.
-				 */}
+				{data &&
+					data.map((list) => {
+						return (
+							<SingleList
+								key={crypto.randomUUID()}
+								name={list.name}
+								setListPath={setListPath}
+								path={list.path}
+							/>
+						);
+					})}
 			</ul>
 		</div>
 	);

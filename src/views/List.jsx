@@ -7,11 +7,10 @@ export function List({ data }) {
 				Hello from the <code>/list</code> page!
 			</p>
 			<ul>
-				{/**
-				 * TODO: write some JavaScript that renders the `data` array
-				 * using the `ListItem` component that's imported at the top
-				 * of this file.
-				 */}
+				{data &&
+					data.map((list) => {
+						return <ListItem key={list.id} name={list.name} />;
+					})}
 			</ul>
 		</>
 	);
