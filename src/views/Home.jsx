@@ -1,6 +1,6 @@
 import './Home.css';
 import { SingleList } from '../components';
-export function Home({ data, setListPath, path }) {
+export function Home({ data, setListPath }) {
 	return (
 		<div className="Home">
 			<p>
@@ -14,7 +14,7 @@ export function Home({ data, setListPath, path }) {
 								key={crypto.randomUUID()}
 								name={list.name}
 								setListPath={setListPath}
-								path={path}
+								path={list.path}
 							/>
 						);
 					})}
