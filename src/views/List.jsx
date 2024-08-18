@@ -11,11 +11,6 @@ export function List({ data }) {
 					data.map((list) => {
 						return <ListItem key={list.id} name={list.name} />;
 					})}
-				{/**
-				 * TODO: write some JavaScript that renders the `data` array
-				 * using the `ListItem` component that's imported at the top
-				 * of this file.
-				 */}
 			</ul>
 		</>
 	);
