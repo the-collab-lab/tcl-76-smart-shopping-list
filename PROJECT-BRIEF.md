@@ -13,16 +13,16 @@ This document serves as your comprehensive guide to all available resources nece
 
 ### Week 1, August 11 - 17
 
-| 👋 Sync meetings | Agenda                                                                                                                                                                                                                                                                                                                                                                      |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Weekly Sync      | - Mentors pair live through issue #1 so Collabies can get a demostration of the full development cycle at Collab Lab and we can ensure everyone has Firebase auth for their app <br> - Collabies will be presented with issues #2 and #3                                                                                                                                    |
-| Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue.                                                                                                                                                                                                           |
-| Optional         | Office Hours: Attend this week's Open Office Hours and learn how to complete an effective code review on a teammate's pull request though our [Code Review Presentation](https://docs.google.com/presentation/d/1GP_X91rd3W50GN6FjcLfAge8SD0O45qe7qdtHPO_D2I/edit?pli=1#slide=id.p). If you are unable to attend, watch [this recording](https://youtu.be/QcItLjFJ_Us). |
+| 👋 Sync meetings | Agenda                                                                                                                                                                                                                                   |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Weekly Sync      | - Mentors pair live through issue #1 so Collabies can get a demostration of the full development cycle at Collab Lab and we can ensure everyone has Firebase auth for their app <br> - Collabies will be presented with issues #2 and #3 |
+| Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue.                                                                        |
+| Optional         | -- Office Hours skipped --                                                                                                                                                                                                               |
 
-| 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                    |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| Bin & Sarah     | [2. As a user, I want to read all of my shopping lists and the items in them](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/2)                                          |
-| Marcos & Allison     | [3. As a user, I want to be able to navigate to all the pages in the application by clicking the links in the nav bar](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/3) |
+| 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                                                                      |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Bin & Sarah           | [2. As a user, I want to read all of my shopping lists and the items in them](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/2)                                          |
+| Marcos & Allison      | [3. As a user, I want to be able to navigate to all the pages in the application by clicking the links in the nav bar](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/3) |
 
 | 📖 Self-study learning modules                                                               |
 | -------------------------------------------------------------------------------------------- |
@@ -30,16 +30,17 @@ This document serves as your comprehensive guide to all available resources nece
 
 ### Week 2, August 18 - 24
 
-| 👋 Sync meetings | Agenda                                                                                                                                                                                                                                                                                                                                                                            |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Weekly Sync      | - Demo issues #2 & #3 <br> - Retro <br> - Collabies will be presented with issue #4 and issue #5                                                                                                                                                                                                                                                                                  |
-| Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue.                                                                                                                                                                                                                 |
-| Optional         | Office Hours: Discover the value of effective communication for developers and gain valuable insights to enhance collaboration through our module on [Communication for Devs](https://docs.google.com/presentation/d/1ux4HXGj3XAGZRD7qvOpjl36FYbTcUYGaaBHywc95taY/edit#slide=id.p). If you are unable to attend, please watch [this recording](https://youtu.be/LVjG3qxtQX0). |
+| 👋 Sync meetings | Agenda                                                                                                                                                                                                                                                                                                                                                                  |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Weekly Sync      | - Demo issues #2 & #3 <br> - Retro <br> - Collabies will be presented with issue #4 and issue #5                                                                                                                                                                                                                                                                        |
+| Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue.                                                                                                                                                                                                       |
+| Optional         | Office Hours: Attend this week's Open Office Hours and learn how to complete an effective code review on a teammate's pull request though our [Code Review Presentation](https://docs.google.com/presentation/d/1GP_X91rd3W50GN6FjcLfAge8SD0O45qe7qdtHPO_D2I/edit?pli=1#slide=id.p). If you are unable to attend, watch [this recording](https://youtu.be/QcItLjFJ_Us). |
+|  |
 
-| 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                              |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Sarah & Marcos     | [4. As a user, I want to set up a new shopping list so I can start tracking purchased items.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/4)    |
-| Bin & Allison     | [5. As a user, I want to add a new item to my shopping list so I can start recording purchases.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/5) |
+| 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                                                |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sarah & Marcos        | [4. As a user, I want to set up a new shopping list so I can start tracking purchased items.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/4)    |
+| Bin & Allison         | [5. As a user, I want to add a new item to my shopping list so I can start recording purchases.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/5) |
 
 | 📖 Self-study learning modules                                                                                                                                                | Description                                                                                                                |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
@@ -47,16 +48,16 @@ This document serves as your comprehensive guide to all available resources nece
 
 ### Week 3, August 25 - 31
 
-| 👋 Sync meetings | Agenda                                                                                                                                                                                                                  |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Weekly Sync      | - Demo issues #4 & #5 <br> - [Accessibility Presentation](https://docs.google.com/presentation/d/1ux4HXGj3XAGZRD7qvOpjl36FYbTcUYGaaBHywc95taY/edit#slide=id.p) <br> - Collabies will be presented with issues #6 and #7 |
-| Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue.                                                       |
-| Optional         | Office Hours: Free-form office hours with a mentor                                                                                                                                                                                                            |
+| 👋 Sync meetings | Agenda                                                                                                                                                                                                                                                                                                                                                                        |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Weekly Sync      | - Demo issues #4 & #5 <br> - [Accessibility Presentation](https://docs.google.com/presentation/d/1ux4HXGj3XAGZRD7qvOpjl36FYbTcUYGaaBHywc95taY/edit#slide=id.p) <br> - Collabies will be presented with issues #6 and #7                                                                                                                                                       |
+| Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue.                                                                                                                                                                                                             |
+| Optional         | Office Hours: Discover the value of effective communication for developers and gain valuable insights to enhance collaboration through our module on [Communication for Devs](https://docs.google.com/presentation/d/1tD8BH7WmY-ZPUPG1ZYjCmnLLsigMWjxt4xXVyeXrI_c/edit#slide=id.p). If you are unable to attend, please watch [this recording](https://youtu.be/LVjG3qxtQX0). |
 
-| 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| Marcos & Bin     | [6. As a user, I want to be able to invite others to an existing shopping list.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/6)                   |
-| Allison & Sarah     | [7. As a user, I want to filter my shopping list to make it easier to locate an item in the list.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/7) |
+| 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                                                  |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Marcos & Bin          | [6. As a user, I want to be able to invite others to an existing shopping list.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/6)                   |
+| Allison & Sarah       | [7. As a user, I want to filter my shopping list to make it easier to locate an item in the list.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/7) |
 
 | 📖 Self-study learning modules                                                               |
 | -------------------------------------------------------------------------------------------- |
@@ -68,12 +69,12 @@ This document serves as your comprehensive guide to all available resources nece
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Weekly Sync      | - Demo issues #6 & #7 <br> - Retro <br> - Collabies will be presented with issue #8 and issue #9                                                                  |
 | Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
-| Optional         | Office Hours: Free-form office hours with a mentor                                                                                                                                                      |
+| Optional         | Office Hours: Free-form office hours with a mentor                                                                                                                |
 
-| 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                                      |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Bin & Sarah     | [8. As a user, I want to see a welcoming prompt to add my first item if my list is empty to help me get oriented to how the app works. ](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/8) |
-| Marcos & Allison     | [9. As a user, I want to mark an item on my shopping list as purchased so the app can learn how often I buy different items.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/9)            |
+| 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                                                                                        |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Bin & Sarah           | [8. As a user, I want to see a welcoming prompt to add my first item if my list is empty to help me get oriented to how the app works. ](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/8) |
+| Marcos & Allison      | [9. As a user, I want to mark an item on my shopping list as purchased so the app can learn how often I buy different items.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/9)            |
 
 | 📖 Self-study learning modules                                                                | Description                                                                                                                                                                     |
 | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -85,12 +86,12 @@ This document serves as your comprehensive guide to all available resources nece
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Weekly Sync      | - Demo issues #8 & #9 <br> - [Agile Presentation](https://docs.google.com/presentation/d/1nQcgNFffFpyhjUMIjfRSdeSDsrWLYd8dqk-Z0FCkeBU/edit#slide=id.p) <br> - Collabies will be presented with issue #10 and issue #11 |
 | Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue.                                                      |
-| Optional         | Office Hours: Free-form office hours with a mentor                                                                                                                                                                                                           |
+| Optional         | Office Hours: Free-form office hours with a mentor                                                                                                                                                                     |
 
-| 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                                                                                |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sarah & Marcos     | [10. As a user, I want to be alerted when I’m entering an empty item or an item that's already on my list.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/10)                                                                       |
-| Bin & Allison     | [11. As an item, I want my estimated next purchase date to be computed at the time my purchase is recorded in the database so the app can learn how often I buy different items.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/11) |
+| 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                                                                                                                                  |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sarah & Marcos        | [10. As a user, I want to be alerted when I’m entering an empty item or an item that's already on my list.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/10)                                                                       |
+| Bin & Allison         | [11. As an item, I want my estimated next purchase date to be computed at the time my purchase is recorded in the database so the app can learn how often I buy different items.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/11) |
 
 | 📖 Self-study learning modules                                                               |
 | -------------------------------------------------------------------------------------------- |
@@ -102,12 +103,12 @@ This document serves as your comprehensive guide to all available resources nece
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Weekly Sync      | - Demo issues #10 & #11 <br> - Retro <br> - Collabies will be presented with issue #12 and issue #13                                                              |
 | Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
-| Optional         | Office Hours: Free-form office hours with a mentor                                                                                                                                                      |
+| Optional         | Office Hours: Free-form office hours with a mentor                                                                                                                |
 
-| 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                                                                              |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Marcos & Bin     | [12. As a user, I want to be able to delete items from my shopping list so that my list isn’t cluttered with items I don’t want to buy in the future.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/12)                          |
-| Allison & Sarah     | [13. As a user, I want to view a list of my shopping list items in order of how soon I am likely to need to buy each of them again so that it’s clear what I need to buy soon.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/13) |
+| 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                                                                                                                                |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Marcos & Bin          | [12. As a user, I want to be able to delete items from my shopping list so that my list isn’t cluttered with items I don’t want to buy in the future.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/12)                          |
+| Allison & Sarah       | [13. As a user, I want to view a list of my shopping list items in order of how soon I am likely to need to buy each of them again so that it’s clear what I need to buy soon.](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/13) |
 
 | 📖 Self-study learning modules                                                       | Description                                                                                                                       |
 | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
@@ -119,10 +120,10 @@ This document serves as your comprehensive guide to all available resources nece
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Weekly Sync      | - Demo issues #12 & #13 <br> - Collabies will be presented with issue #14                                                                                         |
 | Pair Programming | Schedule a pairing session(s) with your partner early in the week to complete the development work required to meet the acceptance criteria of your Github issue. |
-| Optional         | Office Hours: Free-form office hours with a mentor                                                                                                                                                      |
+| Optional         | Office Hours: Free-form office hours with a mentor                                                                                                                |
 
-| 🤝 Developer pairings | 🖥 Assigned Github issue                                                                 |
-| --------------------- | ---------------------------------------------------------------------------------------- |
+| 🤝 Developer pairings | 🖥 Assigned Github issue                                                                                                                   |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | Full team             | [14. As a user, I want the app to look professional and welcoming](https://github.com/the-collab-lab/tcl-76-smart-shopping-list/issues/14) |
 
 | 📖 Self-study learning modules                                                     | Description                                                                                                 |
@@ -136,7 +137,7 @@ This document serves as your comprehensive guide to all available resources nece
 | Weekly Sync                        | - Demo <br> - Retro <br> - Planning                                                                                               |
 | Pair Programming / Design planning | During this week, you should aim to collaborate as a full team to create a plan for implementing an engaging design for your app. |
 | Pair Interview Practice            | Get together with some fellow Collabies to practice some common interview questions.                                              |
-| Optional                           | Office Hours: Free-form office hours with a mentor                                                                                                                      |
+| Optional                           | Office Hours: Free-form office hours with a mentor                                                                                |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                |
 | --------------------- | --------------------------------------------------------------------------------------- |
@@ -153,7 +154,7 @@ This document serves as your comprehensive guide to all available resources nece
 | Final Weekly Sync                  | - Demo <br> - Planning                                                                                                            |
 | Pair Programming / Design planning | During this week, you should aim to collaborate as a full team to create a plan for implementing an engaging design for your app. |
 | Job Fit Mock Interview             | Work with your team of mentors to schedule an individual job fit mock interview this week.                                        |
-| Optional                           | Office Hours: Free-form office hours with a mentor                                                                                                                      |
+| Optional                           | Office Hours: Free-form office hours with a mentor                                                                                |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                |
 | --------------------- | --------------------------------------------------------------------------------------- |
@@ -166,10 +167,10 @@ This document serves as your comprehensive guide to all available resources nece
 
 ### Week 10, October 13 - 19
 
-| 👋 Sync meetings          | Agenda                                                                                                                                                    |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Technical Mock Interview](./learning-modules/mock-interview-technical.md)   | - Work with your team of mentors to schedule a technical mock interview where you'll cover the take-home assignment you completed last week. |
-| Cohort Demo / Celebration | Join all the teams in your cohort to walk through your app and celebrate all the hard work we've put in over the last 10 weeks!                           |
+| 👋 Sync meetings                                                           | Agenda                                                                                                                                       |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Technical Mock Interview](./learning-modules/mock-interview-technical.md) | - Work with your team of mentors to schedule a technical mock interview where you'll cover the take-home assignment you completed last week. |
+| Cohort Demo / Celebration                                                  | Join all the teams in your cohort to walk through your app and celebrate all the hard work we've put in over the last 10 weeks!              |
 
 | 🤝 Developer pairings | 🖥 Assigned Github issue                                                                |
 | --------------------- | --------------------------------------------------------------------------------------- |
