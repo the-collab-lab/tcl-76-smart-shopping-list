@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { addItem } from '../api';
 
 export function ManageList() {
 	const [formData, setFormData] = useState({
@@ -8,16 +9,19 @@ export function ManageList() {
 
 	function handleChange(e) {
 		e.preventDefault();
-		console.log(e.target.value);
 		setFormData((prev) => ({
 			...prev,
 			[e.target.name]: e.target.value,
 		}));
 	}
 
-	function handleSubmit() {
+	async function handleSubmit(e) {
 		e.preventDefault();
 		console.log('here is form submission', formData);
+		await addItem({
+			itemName: formData.name,
+			daysUntilNextPurchase: parseInt(formData.frequency),
+		});
 	}
 
 	return (
@@ -28,10 +32,6 @@ export function ManageList() {
 
 			<div className="manage-list-form">
 				<form onSubmit={handleSubmit}>
-					{/* // name of item
-						// days until next purchase: soon, kind of soon, not soon
-						// label feature */}
-
 					<label htmlFor="name">Name of item</label>
 					<input
 						type="text"
@@ -56,9 +56,9 @@ export function ManageList() {
 						<option value="" disabled>
 							Select your option
 						</option>
-						<option value="soon">Soon (7 days)</option>
-						<option value="kind-of-soon">Kind of Soon (14 Days)</option>
-						<option value="not-soon">Not Soon (30 Days)</option>
+						<option value="7">Soon (7 days)</option>
+						<option value="14">Kind of Soon (14 Days)</option>
+						<option value="30">Not Soon (30 Days)</option>
 					</select>
 
 					<button type="submit">Submit</button>
