@@ -7,6 +7,8 @@ export function ManageList() {
 		frequency: '',
 	});
 
+	const [formSubmitted, setFormSubmitted] = useState(false);
+
 	function handleChange(e) {
 		e.preventDefault();
 		setFormData((prev) => ({
@@ -15,13 +17,19 @@ export function ManageList() {
 		}));
 	}
 
-	async function handleSubmit(e) {
+	function handleSubmit(e) {
 		e.preventDefault();
-		console.log('here is form submission', formData);
-		await addItem({
-			itemName: formData.name,
-			daysUntilNextPurchase: parseInt(formData.frequency),
-		});
+		console.log(
+			'here is form submission',
+			formData,
+			parseInt(formData.frequency),
+		);
+		setFormSubmitted(true);
+
+		// await addItem({
+		// 	itemName: formData.name,
+		// 	daysUntilNextPurchase: parseInt(formData.frequency),
+		// });
 	}
 
 	return (
@@ -32,7 +40,7 @@ export function ManageList() {
 
 			<div className="manage-list-form">
 				<form onSubmit={handleSubmit}>
-					<label htmlFor="name">Name of item</label>
+					<label htmlFor="name">Name of item:</label>
 					<input
 						type="text"
 						name="name"
@@ -63,6 +71,7 @@ export function ManageList() {
 
 					<button type="submit">Submit</button>
 				</form>
+				{formSubmitted && <div>{formData.name} is added to your list</div>}
 			</div>
 		</>
 	);
