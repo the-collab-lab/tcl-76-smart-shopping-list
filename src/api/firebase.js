@@ -127,6 +127,9 @@ export async function createList(userId, userEmail, listName) {
 	updateDoc(userDocumentRef, {
 		sharedLists: arrayUnion(listDocRef),
 	});
+
+	//added return
+	return listDocRef.path;
 }
 
 /**

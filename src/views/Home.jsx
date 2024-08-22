@@ -2,8 +2,7 @@ import './Home.css';
 import { SingleList } from '../components';
 import { useState } from 'react';
 import { createList, useAuth } from '../api';
-// import { useNavigate } from "react-router-dom";
-// import { useStateWithStorage } from './utils';
+import { useNavigate } from 'react-router-dom';
 
 export function Home({ data, setListPath }) {
 	const [listName, setListName] = useState('');
@@ -11,22 +10,22 @@ export function Home({ data, setListPath }) {
 	const { user } = useAuth();
 	const userId = user?.uid;
 	const userEmail = user?.email;
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	async function handleSubmit(e) {
 		e.preventDefault();
 
 		try {
-			await createList(userId, userEmail, listName);
-			// console.log(createList(userId, userEmail, listName))
-			//setListPath(pathName)
-			/* need to pass in the new list path into setListPath, and then it should save to localStorage */
-			//save to local storage
-			setListName('');
+			//clean up and refactor code before submitting pull request
+			//i noticed we are getting the same ID for everylist I create so that seems like an issue
+			console.log('Before calling createList');
+			const result = await createList(userId, userEmail, listName);
+			console.log('After calling createList, result:', result);
+			setListPath(result);
 			setError('List saved to database');
-			// navigate("/list")
+			navigate('/list');
 		} catch (error) {
-			setListName('')(setError('List Not saved to database'));
+			setError('List Not saved to database');
 			console.log(error);
 		}
 	}
