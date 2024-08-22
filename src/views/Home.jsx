@@ -16,11 +16,7 @@ export function Home({ data, setListPath }) {
 		e.preventDefault();
 
 		try {
-			//clean up and refactor code before submitting pull request
-			//i noticed we are getting the same ID for everylist I create so that seems like an issue
-			console.log('Before calling createList');
 			const result = await createList(userId, userEmail, listName);
-			console.log('After calling createList, result:', result);
 			setListPath(result);
 			setError('List saved to database');
 			navigate('/list');
