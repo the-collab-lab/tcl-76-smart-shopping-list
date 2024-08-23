@@ -7,7 +7,7 @@ export function ManageList() {
 		frequency: '',
 	});
 
-	const [formSubmitted, setFormSubmitted] = useState(false);
+	// const [formSubmitted, setFormSubmitted] = useState(false);
 
 	function handleChange(e) {
 		e.preventDefault();
@@ -24,7 +24,11 @@ export function ManageList() {
 			formData,
 			parseInt(formData.frequency),
 		);
-		setFormSubmitted(true);
+		window.alert(`${formData.name} has been added to your list.`);
+		setFormData({
+			name: '',
+			frequency: '',
+		});
 
 		// await addItem({
 		// 	itemName: formData.name,
@@ -71,8 +75,14 @@ export function ManageList() {
 
 					<button type="submit">Submit</button>
 				</form>
-				{formSubmitted && <div>{formData.name} is added to your list</div>}
 			</div>
 		</>
 	);
 }
+
+//submit form
+//formData send to database
+//formsubmitted to true and display the item name to user as a message
+//clear formdata
+//formsubmitted to false
+//a new form submitted, repeat above cycle
