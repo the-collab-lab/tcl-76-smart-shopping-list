@@ -16,12 +16,15 @@ export function Home({ data, setListPath }) {
 		e.preventDefault();
 
 		try {
+			if (!listName || !listName.trim()) {
+				throw new Error('Empty field, please enter a valid name');
+			}
 			const result = await createList(userId, userEmail, listName);
 			setListPath(result);
 			setError('List saved to database');
 			navigate('/list');
 		} catch (error) {
-			setError('List Not saved to database');
+			setError(error.message);
 			console.log(error);
 		}
 	}
