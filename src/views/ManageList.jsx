@@ -19,21 +19,31 @@ export function ManageList() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		console.log(
-			'here is form submission',
-			formData,
-			parseInt(formData.frequency),
-		);
-		window.alert(`${formData.name} has been added to your list.`);
-		setFormData({
-			name: '',
-			frequency: '',
-		});
 
-		// await addItem({
-		// 	itemName: formData.name,
-		// 	daysUntilNextPurchase: parseInt(formData.frequency),
-		// });
+		console.log('here is form submission', formData);
+
+		const listPath = localStorage.getItem('tcl-shopping-list-path');
+
+		if (!listPath) {
+			window.alert('List is not existed.');
+			return;
+		}
+
+		addItem(listPath, {
+			itemName: formData.name,
+			daysUntilNextPurchase: parseInt(formData.frequency),
+		})
+			.then(() => {
+				window.alert(`${formData.name} has been added to your list.`);
+				setFormData({
+					name: '',
+					frequency: '',
+				});
+			})
+			.catch((error) => {
+				window.alert(`${formData.name} failed to add to your list.`);
+				console.error('Error:', error);
+			});
 	}
 
 	return (
@@ -79,10 +89,3 @@ export function ManageList() {
 		</>
 	);
 }
-
-//submit form
-//formData send to database
-//formsubmitted to true and display the item name to user as a message
-//clear formdata
-//formsubmitted to false
-//a new form submitted, repeat above cycle
