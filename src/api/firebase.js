@@ -128,7 +128,6 @@ export async function createList(userId, userEmail, listName) {
 		sharedLists: arrayUnion(listDocRef),
 	});
 
-	//added return
 	return listDocRef.path;
 }
 
