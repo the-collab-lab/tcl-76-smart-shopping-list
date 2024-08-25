@@ -19,6 +19,10 @@ export function ManageList() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
+		if (formData.name.trim() === '') {
+			window.alert('Item name cannot be empty.');
+			return;
+		}
 
 		console.log('here is form submission', formData);
 
