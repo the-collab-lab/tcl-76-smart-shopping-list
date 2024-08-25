@@ -21,10 +21,13 @@ export function Home({ data, setListPath }) {
 			}
 			const result = await createList(userId, userEmail, listName);
 			setListPath(result);
-			setError('List saved to database');
 			navigate('/list');
-		} catch (error) {
-			setError(error.message);
+
+			setTimeout(() => {
+				alert('List saved to database');
+			}, 100);
+		} catch (err) {
+			setError(err.message);
 			console.log(error);
 		}
 	}
