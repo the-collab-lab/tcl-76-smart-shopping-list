@@ -9,7 +9,6 @@ export function Home({ data, setListPath }) {
 			<ul>
 				{data &&
 					data.map((list) => {
-						console.log('here is list path', list.path);
 						return (
 							<SingleList
 								key={crypto.randomUUID()}

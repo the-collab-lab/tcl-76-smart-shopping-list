@@ -7,8 +7,6 @@ export function ManageList() {
 		frequency: '',
 	});
 
-	// const [formSubmitted, setFormSubmitted] = useState(false);
-
 	function handleChange(e) {
 		e.preventDefault();
 		setFormData((prev) => ({
@@ -23,8 +21,6 @@ export function ManageList() {
 			window.alert('Item name cannot be empty.');
 			return;
 		}
-
-		console.log('here is form submission', formData);
 
 		const listPath = localStorage.getItem('tcl-shopping-list-path');
 
