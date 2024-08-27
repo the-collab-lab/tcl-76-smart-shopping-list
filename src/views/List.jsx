@@ -60,6 +60,8 @@ export function List({ data }) {
 					})}
 			</ul>
 
+			{/* Filtering item search results in progress:  */}
+
 			{/* <ul>
 				{filter &&
 					filter.map((list) => {
