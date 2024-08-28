@@ -3,38 +3,24 @@ import { useState, useEffect } from 'react';
 
 export function List({ data }) {
 	const [filterVal, setFilterVal] = useState('');
-	// let filteredItems = data;
-
-	// const filter = filteredItems.filter((x) => x.name.startsWith(filterVal));
-
-	// function renderList() {
-	// 	for (let item of filteredItems) {
-	// 		return <p>{item.name}</p>;
-	// 	}
-	// }
-
-	// useEffect(() => {
-	// 	//  console.log(data.map((item) => {
-	// 	// 	Object.item.name
-	// 	//  }))
-
-	// 	for (let item of data) {
-	// 		if (item.name.startsWith(filterVal)) {
-	// 			filteredItems.push(item);
-	// 			// console.log(item.name)
-	// 		}
-	// 	}
-
-	// 	// let filteredData = data.filter(item => item.name.includes(filterVal) )
-
-	// 	// console.log(filteredItems)
-	// }, [filterVal]);
+	const [filteredList, setFilteredList] = useState([]);
 
 	const clearInput = (e) => {
 		e.preventDefault();
 		setFilterVal('');
 	};
-	const [filteredList, setFilteredList] = useState();
+
+	useEffect(() => {
+		setFilteredList(data);
+	}, [data]);
+
+	useEffect(() => {
+		setFilteredList(
+			data.filter((item) =>
+				item.name.toLowerCase().includes(filterVal.toLowerCase()),
+			),
+		);
+	}, [filterVal]);
 
 	return (
 		<>
@@ -55,8 +41,8 @@ export function List({ data }) {
 			</form>
 
 			<ul>
-				{data &&
-					data.map((list) => {
+				{filteredList &&
+					filteredList.map((list) => {
 						return <ListItem key={list.id} name={list.name} />;
 					})}
 			</ul>
