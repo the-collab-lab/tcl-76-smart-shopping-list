@@ -3,37 +3,38 @@ import { useState, useEffect } from 'react';
 
 export function List({ data }) {
 	const [filterVal, setFilterVal] = useState('');
-	let filteredItems = data;
+	// let filteredItems = data;
 
-	const filter = filteredItems.filter((x) => x.name.startsWith(filterVal));
+	// const filter = filteredItems.filter((x) => x.name.startsWith(filterVal));
 
-	function renderList() {
-		for (let item of filteredItems) {
-			return <p>{item.name}</p>;
-		}
-	}
+	// function renderList() {
+	// 	for (let item of filteredItems) {
+	// 		return <p>{item.name}</p>;
+	// 	}
+	// }
 
-	useEffect(() => {
-		//  console.log(data.map((item) => {
-		// 	Object.item.name
-		//  }))
+	// useEffect(() => {
+	// 	//  console.log(data.map((item) => {
+	// 	// 	Object.item.name
+	// 	//  }))
 
-		for (let item of data) {
-			if (item.name.startsWith(filterVal)) {
-				filteredItems.push(item);
-				// console.log(item.name)
-			}
-		}
+	// 	for (let item of data) {
+	// 		if (item.name.startsWith(filterVal)) {
+	// 			filteredItems.push(item);
+	// 			// console.log(item.name)
+	// 		}
+	// 	}
 
-		// let filteredData = data.filter(item => item.name.includes(filterVal) )
+	// 	// let filteredData = data.filter(item => item.name.includes(filterVal) )
 
-		// console.log(filteredItems)
-	}, [filterVal]);
+	// 	// console.log(filteredItems)
+	// }, [filterVal]);
 
 	const clearInput = (e) => {
 		e.preventDefault();
 		setFilterVal('');
 	};
+	const [filteredList, setFilteredList] = useState();
 
 	return (
 		<>
@@ -59,15 +60,6 @@ export function List({ data }) {
 						return <ListItem key={list.id} name={list.name} />;
 					})}
 			</ul>
-
-			{/* Filtering item search results in progress:  */}
-
-			{/* <ul>
-				{filter &&
-					filter.map((list) => {
-						return <ListItem key={list.id} name={list.name} />;
-					})}
-			</ul> */}
 		</>
 	);
 }
