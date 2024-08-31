@@ -11,16 +11,12 @@ export function List({ data }) {
 	};
 
 	useEffect(() => {
-		setFilteredList(data);
-	}, [data]);
-
-	useEffect(() => {
 		setFilteredList(
 			data.filter((item) =>
 				item.name.toLowerCase().includes(filterVal.toLowerCase()),
 			),
 		);
-	}, [filterVal]);
+	}, [filterVal, data]);
 
 	return (
 		<>
@@ -37,7 +33,7 @@ export function List({ data }) {
 					value={filterVal}
 					onChange={(e) => setFilterVal(e.target.value)}
 				/>
-				<button>Clear</button>
+				{filterVal && <button>Clear</button>}
 			</form>
 
 			<ul>
