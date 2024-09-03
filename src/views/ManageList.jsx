@@ -1,18 +1,24 @@
 import { useState } from 'react';
-import { addItem } from '../api';
+import { addItem, shareList } from '../api';
 
-export function ManageList() {
+export function ManageList({ userId }) {
 	const [formData, setFormData] = useState({
 		name: '',
 		frequency: '',
 	});
 
+	const [email, setEmail] = useState('');
 	function handleChange(e) {
 		e.preventDefault();
 		setFormData((prev) => ({
 			...prev,
 			[e.target.name]: e.target.value,
 		}));
+	}
+
+	function handleEmailChange(e) {
+		e.preventDefault();
+		setEmail(e.target.value);
 	}
 
 	function handleSubmit(e) {
@@ -44,6 +50,16 @@ export function ManageList() {
 				window.alert(`${formData.name} failed to add to your list.`);
 				console.error('Error:', error);
 			});
+	}
+
+	async function handleEmailSubmit(e) {
+		e.preventDefault();
+		const listPath = localStorage.getItem('tcl-shopping-list-path');
+		try {
+			const result = await shareList(listPath, userId, email);
+			window.alert(result.response);
+			setEmail('');
+		} catch (error) {}
 	}
 
 	return (
@@ -84,6 +100,20 @@ export function ManageList() {
 					</select>
 
 					<button type="submit">Submit</button>
+				</form>
+
+				<form onSubmit={handleEmailSubmit}>
+					<label htmlFor="invite-email">Invite user by email:</label>
+					<input
+						id="invite-email"
+						type="email"
+						name="email"
+						value={email}
+						onChange={handleEmailChange}
+						required
+					></input>
+
+					<button type="submit">Invite my friend</button>
 				</form>
 			</div>
 		</>
