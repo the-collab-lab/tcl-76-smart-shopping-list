@@ -1,5 +1,6 @@
 import { ListItem } from '../components';
 import { useState, useEffect } from 'react';
+import BasicModal from './Modal';
 
 export function List({ data }) {
 	const [filterVal, setFilterVal] = useState('');
@@ -11,6 +12,12 @@ export function List({ data }) {
 	};
 
 	useEffect(() => {
+		console.log(
+			'incoming data',
+			filteredList,
+			Boolean(filteredList),
+			Boolean(filteredList.length),
+		);
 		setFilteredList(
 			data.filter((item) =>
 				item.name.toLowerCase().includes(filterVal.toLowerCase()),
@@ -23,6 +30,8 @@ export function List({ data }) {
 			<p>
 				Hello from the <code>/list</code> page!
 			</p>
+
+			{!data.length && <BasicModal dataEmpty={true} />}
 
 			<form onSubmit={clearInput}>
 				<label htmlFor="item-name"> Item name:</label>
