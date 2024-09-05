@@ -2,7 +2,7 @@ import { ListItem } from '../components';
 import { useState, useEffect } from 'react';
 import BasicModal from './Modal';
 
-export function List({ data }) {
+export function List({ data, userId }) {
 	const [filterVal, setFilterVal] = useState('');
 	const [filteredList, setFilteredList] = useState([]);
 
@@ -31,7 +31,7 @@ export function List({ data }) {
 				Hello from the <code>/list</code> page!
 			</p>
 
-			{!data.length && <BasicModal dataEmpty={true} />}
+			{userId && !data.length && <BasicModal dataEmpty={true} />}
 
 			<form onSubmit={clearInput}>
 				<label htmlFor="item-name"> Item name:</label>
