@@ -183,20 +183,19 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem(
-	listPath,
-	{ itemName, daysUntilNextPurchase },
-) {
+export async function updateItem(listPath, { itemName, isChecked }) {
+	if (!listPath || listPath.trim() === '') {
+		console.error('Error: Invalid listPath');
+		return;
+	}
 	const listCollectionRef = collection(db, listPath, 'items');
-
 	const itemDocRef = doc(listCollectionRef, itemName);
-	return setDoc(itemDocRef, {
-		dateCreated: new Date(),
-		dateLastPurchased: new Date(),
-		dateNextPurchased: getFutureDate(daysUntilNextPurchase),
-		name: itemName,
-		totalPurchases: 0,
-	});
+	const updateData = {};
+
+	if (isChecked) {
+		updateData.dateLastPurchased = new Date();
+	}
+	return updateDoc(itemDocRef, updateData);
 }
 
 export async function deleteItem() {
