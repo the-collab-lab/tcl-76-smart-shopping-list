@@ -20,7 +20,7 @@ export function ListItem({ name, listPath }) {
 		const listPath = localStorage.getItem('tcl-shopping-list-path');
 
 		updateItem(listPath, { itemName: name, isChecked: checked });
-		console.log(name, checked);
+		console.log(name, !checked);
 	};
 
 	return (

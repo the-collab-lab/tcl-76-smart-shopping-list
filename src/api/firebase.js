@@ -6,6 +6,8 @@ import {
 	doc,
 	onSnapshot,
 	updateDoc,
+	FieldValue,
+	increment,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
@@ -195,7 +197,9 @@ export async function updateItem(listPath, { itemName, isChecked }) {
 
 	if (isChecked === false) {
 		updateData.dateLastPurchased = new Date();
+		updateData.totalPurchases = increment(1);
 	}
+
 	return updateDoc(updateItemListDocRef, updateData);
 }
 
