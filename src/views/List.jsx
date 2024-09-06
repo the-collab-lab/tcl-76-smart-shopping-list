@@ -38,8 +38,8 @@ export function List({ data }) {
 
 			<ul>
 				{filteredList &&
-					filteredList.map((list) => {
-						return <ListItem key={list.id} name={list.name} />;
+					filteredList.map((item) => {
+						return <ListItem key={item.id} item={item} />;
 					})}
 			</ul>
 		</>
