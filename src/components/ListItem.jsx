@@ -1,16 +1,26 @@
 import Checkbox from '@mui/material/Checkbox';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './ListItem.css';
 import { updateItem } from '../api';
+import { logDOM } from '@testing-library/dom';
 
 export function ListItem({ name, listPath }) {
-	const [checked, setChecked] = useState(false);
+	const [checked, setChecked] = useState(() => {
+		const storedChecked = localStorage.getItem(`checked-${name}`);
+		return storedChecked ? JSON.parse(storedChecked) : false;
+	});
 
-	// console.log("name:", name, "update item:", updateItem);
+	useEffect(() => {
+		localStorage.setItem(`checked-${name}`, JSON.stringify(checked));
+	}, [checked]);
 
 	const handleChange = () => {
 		setChecked(!checked);
+
+		const listPath = localStorage.getItem('tcl-shopping-list-path');
+
 		updateItem(listPath, { itemName: name, isChecked: checked });
+		console.log(name, checked);
 	};
 
 	return (

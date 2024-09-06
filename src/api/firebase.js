@@ -188,14 +188,15 @@ export async function updateItem(listPath, { itemName, isChecked }) {
 		console.error('Error: Invalid listPath');
 		return;
 	}
-	const listCollectionRef = collection(db, listPath, 'items');
-	const itemDocRef = doc(listCollectionRef, itemName);
+
+	const updateItemListCollectionRef = collection(db, listPath, 'items');
+	const updateItemListDocRef = doc(updateItemListCollectionRef, itemName);
 	const updateData = {};
 
-	if (isChecked) {
+	if (isChecked === false) {
 		updateData.dateLastPurchased = new Date();
 	}
-	return updateDoc(itemDocRef, updateData);
+	return updateDoc(updateItemListDocRef, updateData);
 }
 
 export async function deleteItem() {
