@@ -6,7 +6,6 @@ import {
 	doc,
 	onSnapshot,
 	updateDoc,
-	FieldValue,
 	increment,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
