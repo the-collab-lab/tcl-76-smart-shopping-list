@@ -26,33 +26,31 @@ export default function BasicModal({ dataEmpty }) {
 	const theme = useTheme();
 
 	return (
-		<div>
-			<Modal
-				open={open}
-				onClose={handleClose}
-				aria-labelledby="modal-modal-title"
-				aria-describedby="modal-modal-description"
-			>
-				<Box sx={style(theme)}>
-					<Typography id="modal-modal-title" variant="h4" component="h2">
-						Tip:
-					</Typography>
-					<Typography id="modal-modal-description" sx={{ mt: 2 }} variant="h5">
-						Your shopping list is empty. Go to Manage List to start!
-					</Typography>
-					<Button
-						sx={{
-							borderRadius: '8px',
-							fontSize: '12px',
-							color: theme.palette.primary.main,
-						}}
-						size="large"
-						onClick={() => navigate('/manage-list')}
-					>
-						Go to Manage List
-					</Button>
-				</Box>
-			</Modal>
-		</div>
+		<Modal
+			open={open}
+			onClose={handleClose}
+			aria-labelledby="modal-modal-title"
+			aria-describedby="modal-modal-description"
+		>
+			<Box sx={style(theme)}>
+				<Typography id="modal-modal-title" variant="h4" component="h2">
+					Tip:
+				</Typography>
+				<Typography id="modal-modal-description" sx={{ mt: 2 }} variant="h5">
+					Your shopping list is empty. Go to Manage List to start!
+				</Typography>
+				<Button
+					sx={{
+						borderRadius: '8px',
+						fontSize: '12px',
+						color: theme.palette.primary.main,
+					}}
+					size="large"
+					onClick={() => navigate('/manage-list')}
+				>
+					Go to Manage List
+				</Button>
+			</Box>
+		</Modal>
 	);
 }

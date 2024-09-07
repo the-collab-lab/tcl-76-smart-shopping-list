@@ -12,12 +12,6 @@ export function List({ data, userId }) {
 	};
 
 	useEffect(() => {
-		console.log(
-			'incoming data',
-			filteredList,
-			Boolean(filteredList),
-			Boolean(filteredList.length),
-		);
 		setFilteredList(
 			data.filter((item) =>
 				item.name.toLowerCase().includes(filterVal.toLowerCase()),
