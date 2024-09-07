@@ -22,15 +22,14 @@ export function ListItem({ item }) {
 	useEffect(() => {
 		if (item.dateLastPurchased) {
 			const purchaseDate = item.dateLastPurchased.toDate(); // Convert Firebase timestamp to Date
-
 			if (checked) {
-				console.log('Checking if 24 hours passed since last purchase');
+				// console.log('Checking if 24 hours passed since last purchase');
 				const is24HoursPassed = has24HoursPassed(purchaseDate);
-				console.log(`Has 24 hours passed: ${is24HoursPassed}`);
+				// console.log(`Has 24 hours passed: ${is24HoursPassed}`);
 
-				// If 24 hours have passed, uncheck the item
+				// If 24 hours have passed, uncheck the checkbox associated with the item.
 				if (is24HoursPassed) {
-					console.log('Unchecking item because 24 hours have passed');
+					// console.log('Unchecking item because 24 hours have passed');
 					setChecked(false);
 					localStorage.setItem(`checked-${item.name}`, JSON.stringify(false));
 				}
@@ -40,14 +39,14 @@ export function ListItem({ item }) {
 
 	// Store the checked state in localStorage whenever it changes
 	useEffect(() => {
-		console.log(`Storing checked state for ${item.name}: ${checked}`);
+		// console.log(`Storing checked state for ${item.name}: ${checked}`);
 		localStorage.setItem(`checked-${item.name}`, JSON.stringify(checked));
 	}, [checked, item.name]);
 
 	// Handle checkbox change (when user clicks on it)
 	const handleChange = () => {
 		const newCheckedState = !checked;
-		console.log(`User toggled checkbox for ${item.name}: ${newCheckedState}`);
+		// console.log(`User toggled checkbox for ${item.name}: ${newCheckedState}`);
 		setChecked(newCheckedState);
 
 		const listPath = localStorage.getItem('tcl-shopping-list-path');
@@ -58,16 +57,6 @@ export function ListItem({ item }) {
 			isChecked: newCheckedState,
 			dateLastPurchased: newCheckedState ? new Date() : null,
 		});
-
-		// If the item is being checked, update the last purchased date
-		// if (newCheckedState) {
-		// 	console.log(`Updating last purchased date for ${item.name}`);
-		// 	updateItem(listPath, {
-		// 		itemName: item.name,
-		// 		isChecked: newCheckedState,
-		// 		dateLastPurchased: new Date(),
-		// 	});
-		// }
 	};
 
 	return (

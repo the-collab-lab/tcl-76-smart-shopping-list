@@ -185,6 +185,8 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
+// User can update items in their list by checking the checkbox associated with an item, and the totalPurchase field increments by 1 in Firebase.
+// The checkbox unchecks 24 hours after the box is checked.
 export async function updateItem(listPath, { itemName, isChecked }) {
 	if (!listPath || listPath.trim() === '') {
 		console.error('Error: Invalid listPath');
@@ -197,6 +199,7 @@ export async function updateItem(listPath, { itemName, isChecked }) {
 
 	updateData.isChecked = isChecked;
 
+	// If the checkbox is checked, the dateLastPurchased field updates to the timestamp when the checkbox was checked.
 	if (isChecked) {
 		updateData.dateLastPurchased = new Date();
 		updateData.totalPurchases = increment(1);
