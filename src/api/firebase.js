@@ -179,6 +179,7 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 		dateCreated: new Date(),
 		dateLastPurchased: null,
 		dateNextPurchased: getFutureDate(daysUntilNextPurchase),
+		isChecked: null,
 		name: itemName,
 		totalPurchases: 0,
 	});
@@ -194,7 +195,9 @@ export async function updateItem(listPath, { itemName, isChecked }) {
 	const updateItemListDocRef = doc(updateItemListCollectionRef, itemName);
 	const updateData = {};
 
-	if (isChecked === false) {
+	updateData.isChecked = isChecked;
+
+	if (isChecked) {
 		updateData.dateLastPurchased = new Date();
 		updateData.totalPurchases = increment(1);
 	}

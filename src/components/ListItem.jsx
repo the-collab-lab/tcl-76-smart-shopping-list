@@ -53,17 +53,21 @@ export function ListItem({ item }) {
 		const listPath = localStorage.getItem('tcl-shopping-list-path');
 
 		// Update the backend with the new checked state
-		updateItem(listPath, { itemName: item.name, isChecked: newCheckedState });
+		updateItem(listPath, {
+			itemName: item.name,
+			isChecked: newCheckedState,
+			dateLastPurchased: newCheckedState ? new Date() : null,
+		});
 
 		// If the item is being checked, update the last purchased date
-		if (newCheckedState) {
-			console.log(`Updating last purchased date for ${item.name}`);
-			updateItem(listPath, {
-				itemName: item.name,
-				isChecked: newCheckedState,
-				dateLastPurchased: new Date(),
-			});
-		}
+		// if (newCheckedState) {
+		// 	console.log(`Updating last purchased date for ${item.name}`);
+		// 	updateItem(listPath, {
+		// 		itemName: item.name,
+		// 		isChecked: newCheckedState,
+		// 		dateLastPurchased: new Date(),
+		// 	});
+		// }
 	};
 
 	return (
