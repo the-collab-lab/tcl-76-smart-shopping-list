@@ -2,6 +2,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { useState, useEffect } from 'react';
 import './ListItem.css';
 import { updateItem } from '../api';
+import { increment } from 'firebase/firestore';
 
 export function ListItem({ item }) {
 	// Destructure item props
@@ -17,8 +18,8 @@ export function ListItem({ item }) {
 	const has24HoursPassed = (dateLastPurchased) => {
 		const purchaseTime = dateLastPurchased.getTime(); // Time in milliseconds
 		const currentTime = new Date().getTime(); // Current time in milliseconds
-		const oneDayInMs = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-		return currentTime - purchaseTime >= oneDayInMs;
+		const ONE_DAY_IN_MILLISECONDS = 86400000; // 24 hours in milliseconds
+		return currentTime - purchaseTime >= ONE_DAY_IN_MILLISECONDS;
 	};
 
 	// Run the effect when the component mounts
@@ -32,6 +33,7 @@ export function ListItem({ item }) {
 				if (is24HoursPassed) {
 					setChecked(false);
 					localStorage.setItem(`checked-${name}`, JSON.stringify(false));
+					// updateData.totalPurchases = increment(1);
 				}
 			}
 		}
@@ -53,6 +55,7 @@ export function ListItem({ item }) {
 			itemName: name,
 			isChecked: newCheckedState,
 			dateLastPurchased: newCheckedState ? new Date() : null,
+			totalPurchases: increment(1),
 		});
 	};
 
