@@ -4,9 +4,12 @@ import './ListItem.css';
 import { updateItem } from '../api';
 
 export function ListItem({ item }) {
+	// Destructure item props
+	const { name, dateLastPurchased } = item;
+
 	// Get the initial checked state from localStorage or default to false
 	const [checked, setChecked] = useState(() => {
-		const storedChecked = localStorage.getItem(`checked-${item.name}`);
+		const storedChecked = localStorage.getItem(`checked-${name}`);
 		return storedChecked ? JSON.parse(storedChecked) : false;
 	});
 
@@ -20,40 +23,34 @@ export function ListItem({ item }) {
 
 	// Run the effect when the component mounts
 	useEffect(() => {
-		if (item.dateLastPurchased) {
-			const purchaseDate = item.dateLastPurchased.toDate(); // Convert Firebase timestamp to Date
+		if (dateLastPurchased) {
+			const purchaseDate = dateLastPurchased.toDate(); // Convert Firebase timestamp to Date
 			if (checked) {
-				// console.log('Checking if 24 hours passed since last purchase');
 				const is24HoursPassed = has24HoursPassed(purchaseDate);
-				// console.log(`Has 24 hours passed: ${is24HoursPassed}`);
 
 				// If 24 hours have passed, uncheck the checkbox associated with the item.
 				if (is24HoursPassed) {
-					// console.log('Unchecking item because 24 hours have passed');
 					setChecked(false);
-					localStorage.setItem(`checked-${item.name}`, JSON.stringify(false));
+					localStorage.setItem(`checked-${name}`, JSON.stringify(false));
 				}
 			}
 		}
-	}, [item.dateLastPurchased, item.name, checked]);
+	}, [dateLastPurchased, name, checked]);
 
 	// Store the checked state in localStorage whenever it changes
 	useEffect(() => {
-		// console.log(`Storing checked state for ${item.name}: ${checked}`);
-		localStorage.setItem(`checked-${item.name}`, JSON.stringify(checked));
-	}, [checked, item.name]);
+		localStorage.setItem(`checked-${name}`, JSON.stringify(checked));
+	}, [checked, name]);
 
 	// Handle checkbox change (when user clicks on it)
 	const handleChange = () => {
 		const newCheckedState = !checked;
-		// console.log(`User toggled checkbox for ${item.name}: ${newCheckedState}`);
 		setChecked(newCheckedState);
-
 		const listPath = localStorage.getItem('tcl-shopping-list-path');
 
 		// Update the backend with the new checked state
 		updateItem(listPath, {
-			itemName: item.name,
+			itemName: name,
 			isChecked: newCheckedState,
 			dateLastPurchased: newCheckedState ? new Date() : null,
 		});
@@ -66,7 +63,7 @@ export function ListItem({ item }) {
 				onChange={handleChange}
 				inputProps={{ 'aria-label': 'controlled' }}
 			/>
-			{item.name}
+			{name}
 		</li>
 	);
 }
