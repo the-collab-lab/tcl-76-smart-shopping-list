@@ -8,6 +8,11 @@ export function List({ data, userId }) {
 	const [showModal, setShowModal] = useState(false);
 
 	const dataEmpty = userId && !data.length;
+	const message = {
+		header: 'Tip:',
+		promptMSG: 'Your shopping list is empty. Go to Manage List to start!',
+		btnText: 'Go to Manage List',
+	};
 
 	useEffect(() => {
 		if (dataEmpty) {
@@ -35,7 +40,9 @@ export function List({ data, userId }) {
 			<p>
 				Hello from the <code>/list</code> page!
 			</p>
-			{showModal && dataEmpty && <BasicModal dataEmpty={dataEmpty} />}
+			{showModal && dataEmpty && (
+				<BasicModal dataEmpty={dataEmpty} message={message} />
+			)}
 
 			<form onSubmit={clearInput}>
 				<label htmlFor="item-name"> Item name:</label>

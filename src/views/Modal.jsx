@@ -19,7 +19,7 @@ const style = (theme) => ({
 	fontSize: 20,
 });
 
-export default function BasicModal({ dataEmpty }) {
+export default function BasicModal({ dataEmpty, message }) {
 	const [open, setOpen] = React.useState(dataEmpty);
 	const handleClose = () => setOpen(false);
 	const navigate = useNavigate();
@@ -34,10 +34,10 @@ export default function BasicModal({ dataEmpty }) {
 		>
 			<Box sx={style(theme)}>
 				<Typography id="modal-modal-title" variant="h4" component="h2">
-					Tip:
+					{message.header}
 				</Typography>
 				<Typography id="modal-modal-description" sx={{ mt: 2 }} variant="h5">
-					Your shopping list is empty. Go to Manage List to start!
+					{message.promptMSG}
 				</Typography>
 				<Button
 					sx={{
@@ -48,7 +48,7 @@ export default function BasicModal({ dataEmpty }) {
 					size="large"
 					onClick={() => navigate('/manage-list')}
 				>
-					Go to Manage List
+					{message.btnText}
 				</Button>
 			</Box>
 		</Modal>
