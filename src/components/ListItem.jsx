@@ -7,6 +7,7 @@ import { increment } from 'firebase/firestore';
 export function ListItem({ item }) {
 	// Destructure item props
 	const { name, dateLastPurchased } = item;
+	const listPath = localStorage.getItem('tcl-shopping-list-path');
 
 	// Get the initial checked state from localStorage or default to false
 	const [checked, setChecked] = useState(() => {
@@ -14,12 +15,12 @@ export function ListItem({ item }) {
 		return storedChecked ? JSON.parse(storedChecked) : false;
 	});
 
-	// Function to check if 24 hours have passed
+	// Function to check if 24 hours have passed: Changed variable tagging.
 	const has24HoursPassed = (dateLastPurchased) => {
-		const purchaseTime = dateLastPurchased.getTime(); // Time in milliseconds
+		const userChecksCheckbox = dateLastPurchased.getTime(); // Time in milliseconds
 		const currentTime = new Date().getTime(); // Current time in milliseconds
 		const ONE_DAY_IN_MILLISECONDS = 86400000; // 24 hours in milliseconds
-		return currentTime - purchaseTime >= ONE_DAY_IN_MILLISECONDS;
+		return currentTime - userChecksCheckbox >= ONE_DAY_IN_MILLISECONDS;
 	};
 
 	// Run the effect when the component mounts
@@ -33,6 +34,12 @@ export function ListItem({ item }) {
 				if (is24HoursPassed) {
 					setChecked(false);
 					localStorage.setItem(`checked-${name}`, JSON.stringify(false));
+					updateItem(listPath, {
+						itemName: name,
+						isChecked: false, // Set isChecked to false explicitly
+						dateLastPurchased: new Date(),
+						totalPurchases: increment(1),
+					});
 					// updateData.totalPurchases = increment(1);
 				}
 			}
@@ -44,7 +51,6 @@ export function ListItem({ item }) {
 		localStorage.setItem(`checked-${name}`, JSON.stringify(checked));
 	}, [checked, name]);
 
-	// Handle checkbox change (when user clicks on it)
 	const handleChange = () => {
 		const newCheckedState = !checked;
 		setChecked(newCheckedState);
@@ -54,7 +60,7 @@ export function ListItem({ item }) {
 		updateItem(listPath, {
 			itemName: name,
 			isChecked: newCheckedState,
-			dateLastPurchased: newCheckedState ? new Date() : null,
+			dateLastPurchased: newCheckedState && new Date(),
 			totalPurchases: increment(1),
 		});
 	};

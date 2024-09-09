@@ -195,13 +195,16 @@ export async function updateItem(listPath, { itemName, isChecked }) {
 
 	const updateItemListCollectionRef = collection(db, listPath, 'items');
 	const updateItemListDocRef = doc(updateItemListCollectionRef, itemName);
-	const updateData = {};
+	const updateData = {
+		isChecked,
+		dateLastPurchased: isChecked ? new Date() : null,
+	};
 
 	updateData.isChecked = isChecked;
 
 	// If the checkbox is checked, the dateLastPurchased field updates to the timestamp when the checkbox was checked.
 	if (isChecked) {
-		updateData.dateLastPurchased = new Date();
+		// updateData.dateLastPurchased = new Date();
 		updateData.totalPurchases = increment(1);
 	}
 
