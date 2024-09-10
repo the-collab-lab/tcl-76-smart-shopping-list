@@ -13,7 +13,6 @@ export function ListItem({ item }) {
 	// Function to check if 24 hours have passed: Changed variable tagging.
 	const has24HoursPassed = (dateLastPurchased) => {
 		const purchaseDate = dateLastPurchased.toDate();
-		// console.log('purchaseDate: ', purchaseDate);
 		const currentTime = new Date().getTime(); // Current time in milliseconds
 		const ONE_DAY_IN_MILLISECONDS = 86400000; // 24 hours in milliseconds
 		return currentTime - purchaseDate >= ONE_DAY_IN_MILLISECONDS;
@@ -23,11 +22,6 @@ export function ListItem({ item }) {
 	useEffect(() => {
 		if (dateLastPurchased) {
 			const is24HoursPassed = has24HoursPassed(dateLastPurchased);
-			// console.log(`${name} is 24 hours passed?`, is24HoursPassed);
-			if (is24HoursPassed) {
-				setChecked(false);
-				localStorage.setItem(`checked-${name}`, JSON.stringify(false));
-			}
 			// If 24 hours have passed, uncheck the checkbox associated with the item.
 			if (is24HoursPassed) {
 				setChecked(false);
@@ -60,7 +54,13 @@ export function ListItem({ item }) {
 
 	return (
 		<li className="ListItem">
-			<input type="checkbox" checked={checked} onChange={handleChange} />
+			<input
+				type="checkbox"
+				checked={checked}
+				onChange={handleChange}
+				disabled={checked}
+			/>
+
 			{name}
 		</li>
 	);
