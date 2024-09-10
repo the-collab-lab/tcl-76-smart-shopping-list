@@ -10,3 +10,8 @@ const ONE_DAY_IN_MILLISECONDS = 86400000;
 export function getFutureDate(offset) {
 	return new Date(Date.now() + offset * ONE_DAY_IN_MILLISECONDS);
 }
+
+// getDaysBetweenDates: We need to write a function that calculates current day - dateLastPurchased to calculate the number of days between the current day and the date last purchased
+
+//  if dateLastPurchased = null, then dateNextPurchased = null
+// dateNextPurchased = days until you need this item again + dateLastPurchased

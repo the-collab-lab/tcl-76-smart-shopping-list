@@ -60,7 +60,6 @@ export function ListItem({ item }) {
 				onChange={handleChange}
 				disabled={checked}
 			/>
-
 			{name}
 		</li>
 	);
