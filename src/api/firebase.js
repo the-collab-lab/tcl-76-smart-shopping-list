@@ -10,7 +10,7 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
-import { getFutureDate } from '../utils';
+import { getFutureDate, getDaysBetweenDates } from '../utils/dates';
 import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 /**
@@ -187,36 +187,44 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 
 export async function updateItem(
 	listPath,
-	{
-		itemName,
-		totalPurchases,
-		getDaysBetweenDates,
-		getFutureDate,
-		daysUntilNextPurchase,
-	},
+	{ item, totalPurchases, dateCreated, dateLastPurchased, dateNextPurchased },
 ) {
 	if (!listPath || listPath.trim() === '') {
 		console.error('Error: Invalid listPath');
 		return;
 	}
 
-	const calculatedNextPurchasedDate = typeof calculateEstimate(
-		daysUntilNextPurchase,
-		getFutureDate,
+	const currentDate = new Date();
+
+	const dateCreatedOrDateLastPurchased = (
+		dateLastPurchased || dateCreated
+	).toDate();
+
+	console.log(dateCreatedOrDateLastPurchased);
+
+	const previousEstimate = getDaysBetweenDates(
+		dateCreatedOrDateLastPurchased,
+		dateNextPurchased.toDate(),
+	);
+
+	const daysSinceLastPurchased = getDaysBetweenDates(
+		currentDate,
+		dateCreatedOrDateLastPurchased,
+	);
+
+	const daysUntilNextPurchase = calculateEstimate(
+		previousEstimate,
+		daysSinceLastPurchased,
 		totalPurchases,
 	);
 
-	console.log(calculatedNextPurchasedDate);
+	console.log(daysUntilNextPurchase);
 
 	const updateItemListCollectionRef = collection(db, listPath, 'items');
-	const updateItemListDocRef = doc(updateItemListCollectionRef, itemName);
+	const updateItemListDocRef = doc(updateItemListCollectionRef, item);
 	const updateData = {
-		dateLastPurchased: new Date(),
-		dateNextPurchased: calculateEstimate(
-			daysUntilNextPurchase,
-			getFutureDate,
-			totalPurchases,
-		),
+		dateLastPurchased: dateLastPurchased,
+		dateNextPurchased: daysUntilNextPurchase,
 		totalPurchases: increment(1),
 	};
 

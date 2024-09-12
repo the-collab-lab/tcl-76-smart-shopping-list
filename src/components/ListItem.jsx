@@ -6,7 +6,7 @@ import { increment } from 'firebase/firestore';
 // import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 export function ListItem({ item }) {
-	const { name, dateLastPurchased } = item;
+	const { name, dateLastPurchased, dateCreated } = item;
 	const [checked, setChecked] = useState(false);
 	const has24HoursPassed = (dateLastPurchased) => {
 		const purchaseDate = dateLastPurchased.toDate();
@@ -31,18 +31,12 @@ export function ListItem({ item }) {
 		if (!checked) {
 			setChecked(!checked);
 			const listPath = localStorage.getItem('tcl-shopping-list-path');
-			updateItem(listPath, {
-				itemName: name,
-				dateLastPurchased: checked ? new Date() : null,
-				// dateNextPurchased: new Date(),
-				totalPurchases: increment(1),
-			})
+			updateItem(listPath, item)
 				.then(() => {
 					console.log('Item updated successfully.');
 				})
-				.catch(() => {
+				.catch((error) => {
 					console.error('Error updating item: ', error);
-					console.log(error);
 				});
 		}
 	};

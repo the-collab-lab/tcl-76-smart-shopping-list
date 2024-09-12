@@ -10,15 +10,18 @@ const ONE_DAY_IN_MILLISECONDS = 86400000;
  * @param {number} offset
  */
 export function getFutureDate(offset) {
-	console.log(new Date(Date.now() + offset * 86400000));
+	console.log(new Date(Date.now() + offset * ONE_DAY_IN_MILLISECONDS));
 
-	return new Date(Date.now() + offset * 86400000);
+	return new Date(Date.now() + offset * ONE_DAY_IN_MILLISECONDS);
 }
 
-export function getDaysBetweenDates(dateLastPurchased) {
-	const dateLastPurchasedNumber = dateLastPurchased.getTime();
-	const currentDay = Date.now();
-	return Math.ceil((currentDay - dateLastPurchasedNumber) / 86400000);
+export function getDaysBetweenDates(startDate, endDate) {
+	const startDateInNumber = startDate.getTime();
+	const endDateInNumber = endDate.getTime();
+
+	return Math.ceil(
+		(startDateInNumber - endDateInNumber) / ONE_DAY_IN_MILLISECONDS,
+	);
 }
 
 // getDaysBetweenDates: We need to write a function that calculates current day - dateLastPurchased to calculate the number of days between the current day and the date last purchased
