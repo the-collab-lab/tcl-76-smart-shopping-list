@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import './ListItem.css';
 import { updateItem } from '../api';
 import { increment } from 'firebase/firestore';
+// import { getDaysBetweenDates } from '../utils/dates';
+// import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 export function ListItem({ item }) {
 	const { name, dateLastPurchased } = item;
@@ -12,6 +14,7 @@ export function ListItem({ item }) {
 		const ONE_DAY_IN_MILLISECONDS = 86400000; // 24 hours in milliseconds
 		return currentTime - purchaseDate >= ONE_DAY_IN_MILLISECONDS;
 	};
+	// console.log(calculateEstimate);
 
 	useEffect(() => {
 		if (dateLastPurchased) {
@@ -31,6 +34,7 @@ export function ListItem({ item }) {
 			updateItem(listPath, {
 				itemName: name,
 				dateLastPurchased: checked ? new Date() : null,
+				// dateNextPurchased: new Date(),
 				totalPurchases: increment(1),
 			})
 				.then(() => {
@@ -38,6 +42,7 @@ export function ListItem({ item }) {
 				})
 				.catch(() => {
 					console.error('Error updating item: ', error);
+					console.log(error);
 				});
 		}
 	};

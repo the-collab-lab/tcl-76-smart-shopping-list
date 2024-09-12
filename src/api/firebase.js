@@ -10,7 +10,8 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
-import { getFutureDate, getDaysBetweenDates } from '../utils';
+import { getFutureDate } from '../utils';
+import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 /**
  * A custom hook that subscribes to the user's shopping lists in our Firestore
@@ -184,18 +185,41 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem(listPath, { itemName }) {
+export async function updateItem(
+	listPath,
+	{
+		itemName,
+		totalPurchases,
+		getDaysBetweenDates,
+		getFutureDate,
+		daysUntilNextPurchase,
+	},
+) {
 	if (!listPath || listPath.trim() === '') {
 		console.error('Error: Invalid listPath');
 		return;
 	}
+
+	const calculatedNextPurchasedDate = typeof calculateEstimate(
+		daysUntilNextPurchase,
+		getFutureDate,
+		totalPurchases,
+	);
+
+	console.log(calculatedNextPurchasedDate);
+
 	const updateItemListCollectionRef = collection(db, listPath, 'items');
 	const updateItemListDocRef = doc(updateItemListCollectionRef, itemName);
 	const updateData = {
 		dateLastPurchased: new Date(),
-		dateNextPurchased: calculateEstimate(),
+		dateNextPurchased: calculateEstimate(
+			daysUntilNextPurchase,
+			getFutureDate,
+			totalPurchases,
+		),
 		totalPurchases: increment(1),
 	};
+
 	return updateDoc(updateItemListDocRef, updateData);
 }
 

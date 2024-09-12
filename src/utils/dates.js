@@ -1,3 +1,5 @@
+// import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
+
 const ONE_DAY_IN_MILLISECONDS = 86400000;
 
 /**
@@ -8,21 +10,15 @@ const ONE_DAY_IN_MILLISECONDS = 86400000;
  * @param {number} offset
  */
 export function getFutureDate(offset) {
-	if (dateLastPurchased === null) {
-		getFutureDate + createdDate;
-	} else {
-		getFutureDate + dateLastPurchased;
-	}
+	console.log(new Date(Date.now() + offset * 86400000));
 
-	return new Date(Date.now() + offset * ONE_DAY_IN_MILLISECONDS);
+	return new Date(Date.now() + offset * 86400000);
 }
 
-export function getDaysBetweenDates(dateNextPurchased) {
-	const dateNextPurchasedNumber = dateNextPurchased.getTime();
+export function getDaysBetweenDates(dateLastPurchased) {
+	const dateLastPurchasedNumber = dateLastPurchased.getTime();
 	const currentDay = Date.now();
-	return Math.ceil(
-		(dateNextPurchasedNumber - currentDay) / ONE_DAY_IN_MILLISECONDS,
-	);
+	return Math.ceil((currentDay - dateLastPurchasedNumber) / 86400000);
 }
 
 // getDaysBetweenDates: We need to write a function that calculates current day - dateLastPurchased to calculate the number of days between the current day and the date last purchased
@@ -33,8 +29,8 @@ export function getDaysBetweenDates(dateNextPurchased) {
 // How do we access that? Import from firebase.js?
 // getDaysBetweenDates should be return integer
 
-if (dateLastPurchased === null) {
-	getFutureDate + createdDate;
-} else {
-	getFutureDate + dateLastPurchased;
-}
+// if (dateLastPurchased === null) {
+// 	getFutureDate + createdDate;
+// } else {
+// 	getFutureDate + dateLastPurchased;
+// }
