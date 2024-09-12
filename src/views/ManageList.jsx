@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { addItem, shareList } from '../api';
 
-export function ManageList({ userId }) {
+export function ManageList({ userId, data }) {
 	const [formData, setFormData] = useState({
 		name: '',
 		frequency: '',
@@ -32,6 +32,20 @@ export function ManageList({ userId }) {
 
 		if (!listPath) {
 			window.alert('List is not existed.');
+			return;
+		}
+
+		const formDataCheck = formData.name
+
+			.replace(/[^A-Z0-9]/gi, '')
+			.toLowerCase();
+		if (
+			data.filter(
+				(item) =>
+					item.name.replace(/[^A-Z0-9]/gi, '').toLowerCase() === formDataCheck,
+			).length > 0
+		) {
+			window.alert(`A similar item ${formDataCheck} already exists`);
 			return;
 		}
 
