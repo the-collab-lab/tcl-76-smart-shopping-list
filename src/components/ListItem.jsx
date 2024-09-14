@@ -6,7 +6,7 @@ import { increment } from 'firebase/firestore';
 // import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 export function ListItem({ item }) {
-	const { name, dateLastPurchased, dateCreated } = item;
+	const { name, dateLastPurchased, dateCreated, id } = item;
 	const [checked, setChecked] = useState(false);
 	const has24HoursPassed = (dateLastPurchased) => {
 		const purchaseDate = dateLastPurchased.toDate();
@@ -31,7 +31,16 @@ export function ListItem({ item }) {
 		if (!checked) {
 			setChecked(!checked);
 			const listPath = localStorage.getItem('tcl-shopping-list-path');
-			updateItem(listPath, item)
+
+			//to delete
+			if (!listPath) {
+				console.error('Error: List path is not set in localStorage.');
+				return; // Exit if listPath is invalid
+			}
+
+			console.log('listPath:', listPath, 'item:', item);
+
+			updateItem(listPath, id, item)
 				.then(() => {
 					console.log('Item updated successfully.');
 				})

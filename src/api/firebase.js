@@ -100,7 +100,7 @@ export async function addUserToDatabase(user) {
 		return;
 	} else {
 		// If the user doesn't exist, add them to the database.
-		// We'll use the user's email as the document id
+		// We'll use the user's emailƒ as the document id
 		// because it's more likely that the user will know their email
 		// than their uid.
 		await setDoc(doc(db, 'users', user.email), {
@@ -185,10 +185,9 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem(
-	listPath,
-	{ item, totalPurchases, dateCreated, dateLastPurchased, dateNextPurchased },
-) {
+export async function updateItem(listPath, itemId, item) {
+	const { totalPurchases, dateCreated, dateLastPurchased, dateNextPurchased } =
+		item;
 	if (!listPath || listPath.trim() === '') {
 		console.error('Error: Invalid listPath');
 		return;
@@ -200,7 +199,10 @@ export async function updateItem(
 		dateLastPurchased || dateCreated
 	).toDate();
 
-	console.log(dateCreatedOrDateLastPurchased);
+	console.log(
+		'dateCreatedOrDateLastPurchased:',
+		dateCreatedOrDateLastPurchased,
+	);
 
 	const previousEstimate = getDaysBetweenDates(
 		dateCreatedOrDateLastPurchased,
@@ -218,12 +220,12 @@ export async function updateItem(
 		totalPurchases,
 	);
 
-	console.log(daysUntilNextPurchase);
+	console.log('daysUntilNextPurchase:', daysUntilNextPurchase);
 
 	const updateItemListCollectionRef = collection(db, listPath, 'items');
-	const updateItemListDocRef = doc(updateItemListCollectionRef, item);
+	const updateItemListDocRef = doc(updateItemListCollectionRef, itemId);
 	const updateData = {
-		dateLastPurchased: dateLastPurchased,
+		dateLastPurchased: dateLastPurchased || new Date(),
 		dateNextPurchased: daysUntilNextPurchase,
 		totalPurchases: increment(1),
 	};
