@@ -8,16 +8,20 @@ import { increment } from 'firebase/firestore';
 export function ListItem({ item }) {
 	const { name, dateLastPurchased, dateCreated, id } = item;
 	const [checked, setChecked] = useState(false);
+
 	const has24HoursPassed = (dateLastPurchased) => {
-		const purchaseDate = dateLastPurchased.toDate();
+		const purchaseDate = new Date(dateLastPurchased);
 		const currentTime = new Date().getTime(); // Current time in milliseconds
 		const ONE_DAY_IN_MILLISECONDS = 86400000; // 24 hours in milliseconds
 		return currentTime - purchaseDate >= ONE_DAY_IN_MILLISECONDS;
 	};
 	// console.log(calculateEstimate);
 
+	console.log('dateCreated: ', item.dateCreated.toDate());
+
 	useEffect(() => {
 		if (dateLastPurchased) {
+			setChecked(has24HoursPassed(dateLastPurchased));
 			const is24HoursPassed = has24HoursPassed(dateLastPurchased);
 			if (is24HoursPassed) {
 				setChecked(false);
@@ -37,8 +41,6 @@ export function ListItem({ item }) {
 				console.error('Error: List path is not set in localStorage.');
 				return; // Exit if listPath is invalid
 			}
-
-			console.log('listPath:', listPath, 'item:', item);
 
 			updateItem(listPath, id, item)
 				.then(() => {

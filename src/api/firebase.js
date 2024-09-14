@@ -194,15 +194,9 @@ export async function updateItem(listPath, itemId, item) {
 	}
 
 	const currentDate = new Date();
-
 	const dateCreatedOrDateLastPurchased = (
 		dateLastPurchased || dateCreated
 	).toDate();
-
-	console.log(
-		'dateCreatedOrDateLastPurchased:',
-		dateCreatedOrDateLastPurchased,
-	);
 
 	const previousEstimate = getDaysBetweenDates(
 		dateCreatedOrDateLastPurchased,
@@ -214,19 +208,27 @@ export async function updateItem(listPath, itemId, item) {
 		dateCreatedOrDateLastPurchased,
 	);
 
+	function addDays(date, days) {
+		const dateToStart = new Date(date);
+		dateToStart.setDate(dateToStart.getDate() + days);
+		return dateToStart.toISOString();
+	}
+
 	const daysUntilNextPurchase = calculateEstimate(
 		previousEstimate,
 		daysSinceLastPurchased,
 		totalPurchases,
 	);
 
-	console.log('daysUntilNextPurchase:', daysUntilNextPurchase);
+	const dateNextPurchasedCalculation = new Date(
+		addDays(dateCreatedOrDateLastPurchased, daysUntilNextPurchase),
+	);
 
 	const updateItemListCollectionRef = collection(db, listPath, 'items');
 	const updateItemListDocRef = doc(updateItemListCollectionRef, itemId);
 	const updateData = {
 		dateLastPurchased: dateLastPurchased || new Date(),
-		dateNextPurchased: daysUntilNextPurchase,
+		dateNextPurchased: dateNextPurchasedCalculation,
 		totalPurchases: increment(1),
 	};
 
