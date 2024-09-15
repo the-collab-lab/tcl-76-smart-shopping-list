@@ -188,15 +188,21 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 export async function updateItem(listPath, itemId, item) {
 	const { totalPurchases, dateCreated, dateLastPurchased, dateNextPurchased } =
 		item;
+
 	if (!listPath || listPath.trim() === '') {
 		console.error('Error: Invalid listPath');
 		return;
 	}
 
 	const currentDate = new Date();
-	const dateCreatedOrDateLastPurchased = (
-		dateLastPurchased || dateCreated
-	).toDate();
+
+	const toDate = (date) => {
+		if (date instanceof Date) return date;
+		if (date instanceof Timestamp) return date.toDate();
+		return null;
+	};
+	const dateCreatedOrDateLastPurchased =
+		toDate(dateLastPurchased) || toDate(dateCreated);
 
 	const previousEstimate = getDaysBetweenDates(
 		dateCreatedOrDateLastPurchased,
@@ -208,30 +214,20 @@ export async function updateItem(listPath, itemId, item) {
 		dateCreatedOrDateLastPurchased,
 	);
 
-	function addDays(date, days) {
-		const dateToStart = new Date(date);
-		dateToStart.setDate(dateToStart.getDate() + days);
-		return dateToStart.toISOString();
-	}
-
 	const daysUntilNextPurchase = calculateEstimate(
 		previousEstimate,
 		daysSinceLastPurchased,
 		totalPurchases,
 	);
 
-	const dateNextPurchasedCalculation = new Date(
-		addDays(dateCreatedOrDateLastPurchased, daysUntilNextPurchase),
-	);
-
-	const updateItemListCollectionRef = collection(db, listPath, 'items');
-	const updateItemListDocRef = doc(updateItemListCollectionRef, itemId);
 	const updateData = {
-		dateLastPurchased: dateLastPurchased || new Date(),
-		dateNextPurchased: dateNextPurchasedCalculation,
+		dateLastPurchased: new Date(),
+		dateNextPurchased: getFutureDate(daysUntilNextPurchase),
 		totalPurchases: increment(1),
 	};
 
+	const updateItemListCollectionRef = collection(db, listPath, 'items');
+	const updateItemListDocRef = doc(updateItemListCollectionRef, itemId);
 	return updateDoc(updateItemListDocRef, updateData);
 }
 
