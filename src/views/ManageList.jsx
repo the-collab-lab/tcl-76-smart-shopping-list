@@ -36,17 +36,22 @@ export function ManageList({ userId, data }) {
 		}
 
 		const formDataCheck = formData.name
-
 			.replace(/[^A-Z0-9]/gi, '')
 			.toLowerCase();
 		if (
 			data.filter(
 				(item) =>
-					item.name.replace(/[^A-Z0-9]/gi, '').toLowerCase() === formDataCheck,
+					item.name.replace(/[^A-Z0-9]/gi, '').toLowerCase() ===
+						formDataCheck || formDataCheck.includes(item.name),
 			).length > 0
 		) {
-			window.alert(`A similar item ${formDataCheck} already exists`);
-			return;
+			if (
+				!window.confirm(
+					`A similar item is already on your list. Do you still want to add ${formData.name}?`,
+				)
+			) {
+				return;
+			}
 		}
 
 		addItem(listPath, {
