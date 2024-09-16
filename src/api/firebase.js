@@ -193,37 +193,14 @@ export async function updateItem(listPath, itemId, item) {
 		console.error('Error: Invalid listPath');
 		return;
 	}
-
 	const currentDate = new Date();
-
-	const toDate = (date) => {
-		if (date instanceof Date) return date;
-		if (date instanceof Timestamp) return date.toDate();
-		return null;
-	};
-
-	// const dateCreatedOrDateLastPurchased =
-	// 	toDate(dateLastPurchased) || toDate(dateCreated);
 	const dateCreatedAsDate = dateCreated.toDate();
 	const dateLastPurchasedAsDate = dateLastPurchased?.toDate();
 
 	const dateCreatedOrDateLastPurchased =
 		dateLastPurchasedAsDate || dateCreatedAsDate;
 
-	console.log(
-		'dateLastPurchased: ',
-		dateLastPurchased,
-		'dateCreated: ',
-		dateCreated,
-	);
-
 	const dateNextPurchasedAsDate = dateNextPurchased.toDate();
-	console.log(
-		dateNextPurchased,
-		'dateNextPurchasedAsDate: ',
-		dateNextPurchasedAsDate,
-	);
-
 	const previousEstimate = getDaysBetweenDates(
 		dateCreatedOrDateLastPurchased,
 		dateNextPurchasedAsDate,
@@ -238,15 +215,6 @@ export async function updateItem(listPath, itemId, item) {
 		previousEstimate,
 		daysSinceLastPurchased,
 		totalPurchases,
-	);
-
-	console.log(
-		'previousEstimate: ',
-		previousEstimate,
-		'daysSinceLastPurchased: ',
-		daysSinceLastPurchased,
-		'daysUntilNextPurchase: ',
-		daysUntilNextPurchase,
 	);
 
 	const updateData = {
