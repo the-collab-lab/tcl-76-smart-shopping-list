@@ -19,8 +19,19 @@ export function getDaysBetweenDates(startDate, endDate) {
 	const startDateInNumber = startDate.getTime();
 	const endDateInNumber = endDate.getTime();
 
+	console.log(
+		'startDateInNumber: ',
+		startDateInNumber,
+		'endDateInNumber: ',
+		endDateInNumber,
+		'startDate: ',
+		startDate,
+		'endDate: ',
+		endDate,
+	);
+
 	return Math.ceil(
-		(startDateInNumber - endDateInNumber) / ONE_DAY_IN_MILLISECONDS,
+		(endDateInNumber - startDateInNumber) / ONE_DAY_IN_MILLISECONDS,
 	);
 }
 

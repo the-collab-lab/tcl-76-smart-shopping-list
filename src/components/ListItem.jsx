@@ -30,7 +30,6 @@ export function ListItem({ item }) {
 
 			updateItem(listPath, id, {
 				...item,
-				dateLastPurchased: new Date(),
 			})
 				.then(() => {
 					console.log('Item updated successfully.');

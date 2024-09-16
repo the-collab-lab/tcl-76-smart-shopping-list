@@ -201,23 +201,52 @@ export async function updateItem(listPath, itemId, item) {
 		if (date instanceof Timestamp) return date.toDate();
 		return null;
 	};
+
+	// const dateCreatedOrDateLastPurchased =
+	// 	toDate(dateLastPurchased) || toDate(dateCreated);
+	const dateCreatedAsDate = dateCreated.toDate();
+	const dateLastPurchasedAsDate = dateLastPurchased?.toDate();
+
 	const dateCreatedOrDateLastPurchased =
-		toDate(dateLastPurchased) || toDate(dateCreated);
+		dateLastPurchasedAsDate || dateCreatedAsDate;
+
+	console.log(
+		'dateLastPurchased: ',
+		dateLastPurchased,
+		'dateCreated: ',
+		dateCreated,
+	);
+
+	const dateNextPurchasedAsDate = dateNextPurchased.toDate();
+	console.log(
+		dateNextPurchased,
+		'dateNextPurchasedAsDate: ',
+		dateNextPurchasedAsDate,
+	);
 
 	const previousEstimate = getDaysBetweenDates(
 		dateCreatedOrDateLastPurchased,
-		dateNextPurchased.toDate(),
+		dateNextPurchasedAsDate,
 	);
 
 	const daysSinceLastPurchased = getDaysBetweenDates(
-		currentDate,
 		dateCreatedOrDateLastPurchased,
+		currentDate,
 	);
 
 	const daysUntilNextPurchase = calculateEstimate(
 		previousEstimate,
 		daysSinceLastPurchased,
 		totalPurchases,
+	);
+
+	console.log(
+		'previousEstimate: ',
+		previousEstimate,
+		'daysSinceLastPurchased: ',
+		daysSinceLastPurchased,
+		'daysUntilNextPurchase: ',
+		daysUntilNextPurchase,
 	);
 
 	const updateData = {
