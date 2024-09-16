@@ -28,16 +28,13 @@ export function ListItem({ item }) {
 			setChecked(!checked);
 			const listPath = localStorage.getItem('tcl-shopping-list-path');
 
-			updateItem(listPath, id, {
-				...item,
-			})
+			updateItem(listPath, id, item)
 				.then(() => {
 					console.log('Item updated successfully.');
 				})
 				.catch((error) => {
 					console.error('Error updating item: ', error);
 				});
-			console;
 		}
 	};
 

@@ -1,5 +1,3 @@
-// import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
-
 const ONE_DAY_IN_MILLISECONDS = 86400000;
 
 /**

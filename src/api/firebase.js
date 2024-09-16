@@ -100,7 +100,7 @@ export async function addUserToDatabase(user) {
 		return;
 	} else {
 		// If the user doesn't exist, add them to the database.
-		// We'll use the user's emailƒ as the document id
+		// We'll use the user's email as the document id
 		// because it's more likely that the user will know their email
 		// than their uid.
 		await setDoc(doc(db, 'users', user.email), {
