@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { addItem, shareList } from '../api';
 
-export function ManageList({ userId, data }) {
+export function ManageList({ userId, list }) {
 	const [formData, setFormData] = useState({
 		name: '',
 		frequency: '',
@@ -39,7 +39,7 @@ export function ManageList({ userId, data }) {
 			.toLowerCase();
 
 		if (
-			data.find(
+			list.find(
 				(item) =>
 					item.name.trim().toLowerCase() === formData.name.trim().toLowerCase(),
 			)
@@ -48,18 +48,18 @@ export function ManageList({ userId, data }) {
 			return;
 		}
 
-		for (const item of data) {
-			const itemCheck = item.name.replace(/[^A-Z0-9]/gi, '').toLowerCase();
-			if (itemCheck === formDataCheck || formDataCheck.includes(itemCheck)) {
-				if (
-					!window.confirm(
-						`A similar item is already on your list. Do you still want to add ${formData.name}?`,
-					)
-				) {
-					return;
-				} else {
-					break;
-				}
+		if (
+			list.some((item) => {
+				const itemCheck = item.name.replace(/[^A-Z0-9]/gi, '').toLowerCase();
+				return itemCheck === formDataCheck || formDataCheck.includes(itemCheck);
+			})
+		) {
+			if (
+				!window.confirm(
+					`A similar item is already on your list. Do you still want to add ${formData.name}?`,
+				)
+			) {
+				return;
 			}
 		}
 
