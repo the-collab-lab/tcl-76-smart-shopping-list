@@ -15,7 +15,6 @@ export function ManageList({ userId, data }) {
 			[e.target.name]: e.target.value,
 		}));
 	}
-
 	function handleEmailChange(e) {
 		e.preventDefault();
 		setEmail(e.target.value);
@@ -38,19 +37,40 @@ export function ManageList({ userId, data }) {
 		const formDataCheck = formData.name
 			.replace(/[^A-Z0-9]/gi, '')
 			.toLowerCase();
+
+		// if "exact" match found, alert user exit handleSubmit early, don't add to database/ dont edit similar item and its timestamp
+		// checks if form data is a match without whitespace and regardless of case
 		if (
-			data.filter(
+			data.find(
 				(item) =>
-					item.name.replace(/[^A-Z0-9]/gi, '').toLowerCase() ===
-						formDataCheck || formDataCheck.includes(item.name),
-			).length > 0
+					item.name.trim().toLowerCase() === formData.name.trim().toLowerCase(),
+			)
 		) {
+			window.alert(`${formData.name} already exists in your list`);
+			return;
+		}
+
+		// check for not-so-exact matches - gives users a choice
+		for (const item of data) {
+			// use regex to find mutliple edge cases for characters and spaces throughout string
+			const itemCheck = item.name.replace(/[^A-Z0-9]/gi, '').toLowerCase();
 			if (
-				!window.confirm(
-					`A similar item is already on your list. Do you still want to add ${formData.name}?`,
-				)
+				itemCheck === formDataCheck ||
+				formDataCheck.includes(itemCheck) ||
+				itemCheck.includes(formDataCheck)
 			) {
-				return;
+				// if detected give user option to add if theyd like
+				if (
+					!window.confirm(
+						`A similar item is already on your list. Do you still want to add ${formData.name}?`,
+					)
+				) {
+					// if they don't confirm exit out of handlesubmit - item not saved
+					return;
+				} else {
+					// leave loop and add item
+					break;
+				}
 			}
 		}
 
