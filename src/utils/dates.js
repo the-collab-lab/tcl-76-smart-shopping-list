@@ -10,3 +10,12 @@ const ONE_DAY_IN_MILLISECONDS = 86400000;
 export function getFutureDate(offset) {
 	return new Date(Date.now() + offset * ONE_DAY_IN_MILLISECONDS);
 }
+
+export function getDaysBetweenDates(startDate, endDate) {
+	const startDateInNumber = startDate.getTime();
+	const endDateInNumber = endDate.getTime();
+
+	return Math.ceil(
+		(endDateInNumber - startDateInNumber) / ONE_DAY_IN_MILLISECONDS,
+	);
+}
