@@ -256,6 +256,34 @@ export async function comparePurchaseUrgency(list) {
 	const notSoon = [];
 	const inactive = [];
 
+	// console.log('sorting', list.sort((a,b) => {
+	// 	const dateNextPurchasedAsDateA = a.dateNextPurchased?.toDate();
+	// 	const dateNextPurchasedAsDateB = b.dateNextPurchased?.toDate();
+
+	// 	const daysUntilNextPurchase = getDaysBetweenDates(
+	// 		currentDate,
+	// 		dateNextPurchasedAsDateA,
+	// 	);
+	// 	daysUntilNextPurchase(a) - daysUntilNextPurchase(b)
+	// }))
+
+	const sortedList = list.sort((a, b) => {
+		const dateNextPurchasedAsDateA = a.dateNextPurchased?.toDate();
+		const dateNextPurchasedAsDateB = b.dateNextPurchased?.toDate();
+
+		const daysUntilNextPurchaseA = getDaysBetweenDates(
+			currentDate,
+			dateNextPurchasedAsDateA,
+		);
+		const daysUntilNextPurchaseB = getDaysBetweenDates(
+			currentDate,
+			dateNextPurchasedAsDateB,
+		);
+
+		return daysUntilNextPurchaseA > daysUntilNextPurchaseB ? 1 : -1;
+	});
+	console.log('ALERT!! its sorted', sortedList);
+
 	list.forEach((x) => {
 		const dateNextPurchasedAsDate = x.dateNextPurchased?.toDate();
 
@@ -264,17 +292,9 @@ export async function comparePurchaseUrgency(list) {
 			dateNextPurchasedAsDate,
 		);
 
-		// console.log(x);
-		console.log(
-			'currentDate: ',
-			currentDate,
-			'x.dateNextPurchased: ',
-			x.dateNextPurchased,
-		);
-		console.log('daysUntilNextPurchase: ', daysUntilNextPurchase);
-
 		if (daysUntilNextPurchase <= 7) {
 			soon.push(x);
+			// soon.sort((x,b) => x.dateNextPurchased - b.dateNextPurchased)
 			console.log('SOON - it pushed!');
 		} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
 			kindOfSoon.push(x);
@@ -288,13 +308,15 @@ export async function comparePurchaseUrgency(list) {
 		}
 	});
 
+	// soon.sort((a,b) => a.daysUntilNextPurchase - b.daysUntilNextPurchase);
+	// kindOfSoon.sort((a,b) => a.daysUntilNextPurchase - b.daysUntilNextPurchase);
+	// notSoon.sort((a,b) => a.daysUntilNextPurchase - b.daysUntilNextPurchase);
+	// inactive.sort((a,b) => a.daysUntilNextPurchase - b.daysUntilNextPurchase);
+
 	console.log('soon: ', soon);
 	console.log('kinda: ', kindOfSoon);
 	console.log('not: ', notSoon);
 	console.log('inactive: ', inactive);
 
-	// return soon , kindoFs
-	// const kindOfSoon = items.filter(x => daysUntilNextPurchase < 7 && <= 14)
-	// const notSoon = items.filter(x => daysUntilNextPurchase < 14 && <= 21)
-	// const inactive = items.filter(x => daysUntilNextPurchase < 14 && <= 21)
+	return;
 }
