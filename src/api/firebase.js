@@ -251,6 +251,10 @@ export async function comparePurchaseUrgency(list) {
 	// 	dateNextPurchased,
 	// 	currentDate
 	// );
+	const soon = [];
+	const kindOfSoon = [];
+	const notSoon = [];
+	const inactive = [];
 
 	list.forEach((x) => {
 		const dateNextPurchasedAsDate = x.dateNextPurchased?.toDate();
@@ -260,7 +264,7 @@ export async function comparePurchaseUrgency(list) {
 			dateNextPurchasedAsDate,
 		);
 
-		console.log(x);
+		// console.log(x);
 		console.log(
 			'currentDate: ',
 			currentDate,
@@ -268,10 +272,29 @@ export async function comparePurchaseUrgency(list) {
 			x.dateNextPurchased,
 		);
 		console.log('daysUntilNextPurchase: ', daysUntilNextPurchase);
+
+		if (daysUntilNextPurchase <= 7) {
+			soon.push(x);
+			console.log('SOON - it pushed!');
+		} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
+			kindOfSoon.push(x);
+			console.log('KINDOFSOON - it pushed!');
+		} else if (daysUntilNextPurchase >= 30 && daysUntilNextPurchase < 60) {
+			notSoon.push(x);
+			console.log('NOT SOON - it pushed!');
+		} else if (daysUntilNextPurchase >= 30 && daysUntilNextPurchase < 60) {
+			inactive.push(x);
+			console.log('INACTIVE - it pushed!');
+		}
 	});
 
-	// const urgent = items.filter(x => daysUntilNextPurchase < 7)
-	// const soon = items.filter(x => daysUntilNextPurchase >= 7)
+	console.log('soon: ', soon);
+	console.log('kinda: ', kindOfSoon);
+	console.log('not: ', notSoon);
+	console.log('inactive: ', inactive);
+
+	// return soon , kindoFs
 	// const kindOfSoon = items.filter(x => daysUntilNextPurchase < 7 && <= 14)
 	// const notSoon = items.filter(x => daysUntilNextPurchase < 14 && <= 21)
+	// const inactive = items.filter(x => daysUntilNextPurchase < 14 && <= 21)
 }
