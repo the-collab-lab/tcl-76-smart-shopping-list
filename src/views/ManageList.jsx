@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { addItem, shareList } from '../api';
 
-export function ManageList({ userId }) {
+export function ManageList({ userId, list }) {
 	const [formData, setFormData] = useState({
 		name: '',
 		frequency: '',
@@ -15,7 +15,6 @@ export function ManageList({ userId }) {
 			[e.target.name]: e.target.value,
 		}));
 	}
-
 	function handleEmailChange(e) {
 		e.preventDefault();
 		setEmail(e.target.value);
@@ -31,8 +30,37 @@ export function ManageList({ userId }) {
 		const listPath = localStorage.getItem('tcl-shopping-list-path');
 
 		if (!listPath) {
-			window.alert('List is not existed.');
+			window.alert('List does not exist.');
 			return;
+		}
+
+		const formDataCheck = formData.name
+			.replace(/[^A-Z0-9]/gi, '')
+			.toLowerCase();
+
+		if (
+			list.find(
+				(item) =>
+					item.name.trim().toLowerCase() === formData.name.trim().toLowerCase(),
+			)
+		) {
+			window.alert(`${formData.name} already exists in your list.`);
+			return;
+		}
+
+		if (
+			list.some((item) => {
+				const itemCheck = item.name.replace(/[^A-Z0-9]/gi, '').toLowerCase();
+				return itemCheck === formDataCheck || formDataCheck.includes(itemCheck);
+			})
+		) {
+			if (
+				!window.confirm(
+					`A similar item is already on your list. Do you still want to add ${formData.name}?`,
+				)
+			) {
+				return;
+			}
 		}
 
 		addItem(listPath, {
