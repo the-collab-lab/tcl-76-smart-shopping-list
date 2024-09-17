@@ -236,36 +236,12 @@ export async function deleteItem() {
 	 */
 }
 
-// api/firestore.js exports a new comparePurchaseUrgency function with the following behaviors
-//  sorts inactive items last, then
-//  sorts items in ascending order of days until purchase, and
-//  sorts items with the same days until purchase alphabetically
-
-// if daysBetweenNextPurchase >= 60, then the item is inactive. Else, the item is active.
-
 export async function comparePurchaseUrgency(list) {
-	//calculate date
 	const currentDate = new Date();
-
-	// const daysUntilNextPurchase = getDaysBetweenDates(
-	// 	dateNextPurchased,
-	// 	currentDate
-	// );
 	const soon = [];
 	const kindOfSoon = [];
 	const notSoon = [];
 	const inactive = [];
-
-	// console.log('sorting', list.sort((a,b) => {
-	// 	const dateNextPurchasedAsDateA = a.dateNextPurchased?.toDate();
-	// 	const dateNextPurchasedAsDateB = b.dateNextPurchased?.toDate();
-
-	// 	const daysUntilNextPurchase = getDaysBetweenDates(
-	// 		currentDate,
-	// 		dateNextPurchasedAsDateA,
-	// 	);
-	// 	daysUntilNextPurchase(a) - daysUntilNextPurchase(b)
-	// }))
 
 	const sortedList = list.sort((a, b) => {
 		const dateNextPurchasedAsDateA = a.dateNextPurchased?.toDate();
@@ -280,11 +256,11 @@ export async function comparePurchaseUrgency(list) {
 			dateNextPurchasedAsDateB,
 		);
 
-		return daysUntilNextPurchaseA > daysUntilNextPurchaseB ? 1 : -1;
+		return daysUntilNextPurchaseB > daysUntilNextPurchaseA ? -1 : 1;
 	});
 	console.log('ALERT!! its sorted', sortedList);
 
-	list.forEach((x) => {
+	sortedList.forEach((x) => {
 		const dateNextPurchasedAsDate = x.dateNextPurchased?.toDate();
 
 		const daysUntilNextPurchase = getDaysBetweenDates(
@@ -294,29 +270,20 @@ export async function comparePurchaseUrgency(list) {
 
 		if (daysUntilNextPurchase <= 7) {
 			soon.push(x);
-			// soon.sort((x,b) => x.dateNextPurchased - b.dateNextPurchased)
-			console.log('SOON - it pushed!');
 		} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
 			kindOfSoon.push(x);
-			console.log('KINDOFSOON - it pushed!');
 		} else if (daysUntilNextPurchase >= 30 && daysUntilNextPurchase < 60) {
 			notSoon.push(x);
-			console.log('NOT SOON - it pushed!');
 		} else if (daysUntilNextPurchase >= 30 && daysUntilNextPurchase < 60) {
 			inactive.push(x);
-			console.log('INACTIVE - it pushed!');
 		}
 	});
 
-	// soon.sort((a,b) => a.daysUntilNextPurchase - b.daysUntilNextPurchase);
-	// kindOfSoon.sort((a,b) => a.daysUntilNextPurchase - b.daysUntilNextPurchase);
-	// notSoon.sort((a,b) => a.daysUntilNextPurchase - b.daysUntilNextPurchase);
-	// inactive.sort((a,b) => a.daysUntilNextPurchase - b.daysUntilNextPurchase);
+	// console.log('soon: ', soon);
+	// console.log('kinda: ', kindOfSoon);
+	// console.log('not: ', notSoon);
+	// console.log('inactive: ', inactive);
 
-	console.log('soon: ', soon);
-	console.log('kinda: ', kindOfSoon);
-	console.log('not: ', notSoon);
-	console.log('inactive: ', inactive);
-
-	return;
+	console.log([...soon, ...kindOfSoon, ...notSoon, ...inactive]);
+	return [...soon, ...kindOfSoon, ...notSoon, ...inactive];
 }
