@@ -235,3 +235,43 @@ export async function deleteItem() {
 	 * this function must accept!
 	 */
 }
+
+// api/firestore.js exports a new comparePurchaseUrgency function with the following behaviors
+//  sorts inactive items last, then
+//  sorts items in ascending order of days until purchase, and
+//  sorts items with the same days until purchase alphabetically
+
+// if daysBetweenNextPurchase >= 60, then the item is inactive. Else, the item is active.
+
+export async function comparePurchaseUrgency(list) {
+	//calculate date
+	const currentDate = new Date();
+
+	// const daysUntilNextPurchase = getDaysBetweenDates(
+	// 	dateNextPurchased,
+	// 	currentDate
+	// );
+
+	list.forEach((x) => {
+		const dateNextPurchasedAsDate = x.dateNextPurchased?.toDate();
+
+		const daysUntilNextPurchase = getDaysBetweenDates(
+			currentDate,
+			dateNextPurchasedAsDate,
+		);
+
+		console.log(x);
+		console.log(
+			'currentDate: ',
+			currentDate,
+			'x.dateNextPurchased: ',
+			x.dateNextPurchased,
+		);
+		console.log('daysUntilNextPurchase: ', daysUntilNextPurchase);
+	});
+
+	// const urgent = items.filter(x => daysUntilNextPurchase < 7)
+	// const soon = items.filter(x => daysUntilNextPurchase >= 7)
+	// const kindOfSoon = items.filter(x => daysUntilNextPurchase < 7 && <= 14)
+	// const notSoon = items.filter(x => daysUntilNextPurchase < 14 && <= 21)
+}

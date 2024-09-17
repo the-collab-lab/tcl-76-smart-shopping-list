@@ -1,6 +1,7 @@
 import { ListItem } from '../components';
 import { useState, useEffect } from 'react';
 import BasicModal from './Modal';
+import { comparePurchaseUrgency } from '../api';
 
 export function List({ data, userId }) {
 	const [filterVal, setFilterVal] = useState('');
@@ -43,6 +44,8 @@ export function List({ data, userId }) {
 			{showModal && dataEmpty && (
 				<BasicModal dataEmpty={dataEmpty} message={message} />
 			)}
+
+			<button onClick={() => comparePurchaseUrgency(data)}>CHECK FN</button>
 
 			<form onSubmit={clearInput}>
 				<label htmlFor="item-name"> Item name:</label>
