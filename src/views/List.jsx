@@ -29,12 +29,20 @@ export function List({ data, userId }) {
 	};
 
 	useEffect(() => {
+		comparePurchaseUrgency(data);
+
 		setFilteredList(
 			data.filter((item) =>
 				item.name.toLowerCase().includes(filterVal.toLowerCase()),
 			),
 		);
 	}, [filterVal, data]);
+
+	// useEffect(() => {
+	// 	setFilteredList(comparePurchaseUrgency(data))
+	// }, [data]);
+
+	// console.log(filteredList)
 
 	return (
 		<>

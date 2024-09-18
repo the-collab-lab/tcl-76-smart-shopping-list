@@ -258,7 +258,7 @@ export async function comparePurchaseUrgency(list) {
 
 		return daysUntilNextPurchaseB > daysUntilNextPurchaseA ? -1 : 1;
 	});
-	console.log('ALERT!! its sorted', sortedList);
+	// console.log('ALERT!! its sorted', sortedList);
 
 	sortedList.forEach((x) => {
 		const dateNextPurchasedAsDate = x.dateNextPurchased?.toDate();
@@ -284,6 +284,10 @@ export async function comparePurchaseUrgency(list) {
 	// console.log('not: ', notSoon);
 	// console.log('inactive: ', inactive);
 
-	console.log([...soon, ...kindOfSoon, ...notSoon, ...inactive]);
-	return [...soon, ...kindOfSoon, ...notSoon, ...inactive];
+	// console.log([...soon, ...kindOfSoon, ...notSoon, ...inactive]);
+	// console.log('soon', soon)
+	// console.log( 'kinda' , kindOfSoon)
+	// console.log( 'notsoon', notSoon)
+	// console.log('inactive', inactive)
+	return soon;
 }
