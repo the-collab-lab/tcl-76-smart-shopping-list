@@ -236,7 +236,7 @@ export async function deleteItem() {
 	 */
 }
 
-export async function comparePurchaseUrgency(list) {
+export function comparePurchaseUrgency(list) {
 	const currentDate = new Date();
 	const soon = [];
 	const kindOfSoon = [];
@@ -289,5 +289,10 @@ export async function comparePurchaseUrgency(list) {
 	// console.log( 'kinda' , kindOfSoon)
 	// console.log( 'notsoon', notSoon)
 	// console.log('inactive', inactive)
-	return soon;
+	return {
+		soon,
+		kindOfSoon,
+		notSoon,
+		inactive,
+	};
 }
