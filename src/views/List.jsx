@@ -5,7 +5,7 @@ import { comparePurchaseUrgency } from '../api';
 
 export function List({ data, userId }) {
 	const [filterVal, setFilterVal] = useState('');
-	const [filteredList, setFilteredList] = useState([]);
+	// const [filteredList, setFilteredList] = useState([]);
 	const [sortedList, setSortedList] = useState([]);
 	const [showModal, setShowModal] = useState(false);
 
@@ -30,35 +30,13 @@ export function List({ data, userId }) {
 	};
 
 	useEffect(() => {
-		// const { soon, kindOfSoon, notSoon, inactive } = comparePurchaseUrgency(data)
 		setSortedList(comparePurchaseUrgency(data));
 	}, [data]);
 
-	// useEffect(() => {
-	// 	comparePurchaseUrgency(data);
-	// 	// setFilteredList(
-	// 	// 	data.filter((item) =>
-	// 	// 		item.name.toLowerCase().includes(filterVal.toLowerCase()),
-	// 	// 	),
-	// 	// );
-
-	// 	// {
-	// 	// 	'soon', [....],
-	// 	// 	'kindOfSoon', [...]
-	// 	// }
-	// 	// const filteredObject = {}
-
-	// // 	Object.entries(sortedList).forEach([timeBucket, list]) => {
-	// // 		filteredObject[timeBucket] = list.filter()
-	// // 	}
-	// // 	setFilteredObject(filteredObject)
-	// }, [filterVal, data]);
-
-	// useEffect(() => {
-	// 	setFilteredList(comparePurchaseUrgency(data))
-	// }, [data]);
-
-	// console.log(filteredList)
+	const labels = {
+		soon: 'Soon',
+		kindOfSoon: 'Kind of soon',
+	};
 
 	return (
 		<>
@@ -91,10 +69,14 @@ export function List({ data, userId }) {
 			</ul> */}
 			{/* {console.log(sortedList.forEach(x => x))} */}
 			<ul>
-				{sortedList &&
-					sortedList.map((item) => {
-						return <ListItem key={item.id} item={item} />;
-					})}
+				{Object.entries(sortedList).map(([timeBucket, list]) => (
+					<>
+						<div>{labels[timeBucket]}</div>
+						{list.map((item) => (
+							<ListItem key={item.id} item={item} />
+						))}
+					</>
+				))}
 			</ul>
 		</>
 	);
