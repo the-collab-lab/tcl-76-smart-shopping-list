@@ -34,10 +34,10 @@ export function List({ data, userId }) {
 	}, [data]);
 
 	const labels = {
-		overdue: 'Overdue',
-		soon: 'Soon',
-		kindOfSoon: 'Kind of soon',
-		notSoon: 'Not soon',
+		overdue: 'Overdue (!!!!)',
+		soon: 'Soon (!!!)',
+		kindOfSoon: 'Kind of soon (!!)',
+		notSoon: 'Not soon (!)',
 		inactive: 'Inactive Items',
 	};
 
