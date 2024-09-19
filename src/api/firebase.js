@@ -274,7 +274,7 @@ export function comparePurchaseUrgency(list) {
 			kindOfSoon.push(x);
 		} else if (daysUntilNextPurchase >= 30 && daysUntilNextPurchase < 60) {
 			notSoon.push(x);
-		} else if (daysUntilNextPurchase >= 30 && daysUntilNextPurchase < 60) {
+		} else if (daysUntilNextPurchase >= 60) {
 			inactive.push(x);
 		}
 	});

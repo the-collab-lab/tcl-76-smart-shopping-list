@@ -5,7 +5,7 @@ import { comparePurchaseUrgency } from '../api';
 
 export function List({ data, userId }) {
 	const [filterVal, setFilterVal] = useState('');
-	// const [filteredList, setFilteredList] = useState([]);
+	const [filteredObject, setFilteredObject] = useState({});
 	const [sortedList, setSortedList] = useState([]);
 	const [showModal, setShowModal] = useState(false);
 
@@ -36,7 +36,32 @@ export function List({ data, userId }) {
 	const labels = {
 		soon: 'Soon',
 		kindOfSoon: 'Kind of soon',
+		notSoon: 'Not soon',
+		inactive: 'Inactive Items',
 	};
+
+	useEffect(() => {
+		// setFilteredObject(
+		// 	data.filter((item) =>
+		// 		item.name.toLowerCase().includes(filterVal.toLowerCase()),
+		// 	),
+		// );
+
+		const filteredObject = {};
+
+		Object.entries(sortedList).forEach(([timeBucket, list]) => {
+			filteredObject[timeBucket] = list.filter((item) =>
+				item.name.toLowerCase().includes(filterVal.toLowerCase()),
+			);
+		});
+		setFilteredObject(filteredObject);
+	}, [filterVal, sortedList]);
+
+	// useEffect(() => {
+	// 	setFilteredList(comparePurchaseUrgency(data))
+	// }, [data]);
+
+	// console.log(filteredList)
 
 	return (
 		<>
@@ -50,7 +75,7 @@ export function List({ data, userId }) {
 			<button onClick={() => comparePurchaseUrgency(data)}>CHECK FN</button>
 
 			<form onSubmit={clearInput}>
-				<label htmlFor="item-name"> Item name:</label>
+				<label htmlFor="item-name">Item name:</label>
 				<input
 					id="item-name"
 					name="item-name"
@@ -69,14 +94,17 @@ export function List({ data, userId }) {
 			</ul> */}
 			{/* {console.log(sortedList.forEach(x => x))} */}
 			<ul>
-				{Object.entries(sortedList).map(([timeBucket, list]) => (
-					<>
-						<div>{labels[timeBucket]}</div>
-						{list.map((item) => (
-							<ListItem key={item.id} item={item} />
-						))}
-					</>
-				))}
+				{filteredObject &&
+					Object.entries(filteredObject).map(([timeBucket, list]) => (
+						<>
+							<div>
+								<h3>{labels[timeBucket]}</h3>
+							</div>
+							{list.map((item) => (
+								<ListItem key={item.id} item={item} />
+							))}
+						</>
+					))}
 			</ul>
 		</>
 	);
