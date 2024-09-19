@@ -242,6 +242,7 @@ export function comparePurchaseUrgency(list) {
 	const kindOfSoon = [];
 	const notSoon = [];
 	const inactive = [];
+	const overdue = [];
 
 	const sortedList = list.sort((a, b) => {
 		const dateNextPurchasedAsDateA = a.dateNextPurchased?.toDate();
@@ -258,7 +259,6 @@ export function comparePurchaseUrgency(list) {
 
 		return daysUntilNextPurchaseB > daysUntilNextPurchaseA ? -1 : 1;
 	});
-	// console.log('ALERT!! its sorted', sortedList);
 
 	sortedList.forEach((x) => {
 		const dateNextPurchasedAsDate = x.dateNextPurchased?.toDate();
@@ -267,8 +267,9 @@ export function comparePurchaseUrgency(list) {
 			currentDate,
 			dateNextPurchasedAsDate,
 		);
-
-		if (daysUntilNextPurchase <= 7) {
+		if (daysUntilNextPurchase < 0) {
+			overdue.push(x);
+		} else if (daysUntilNextPurchase >= 0 && daysUntilNextPurchase <= 7) {
 			soon.push(x);
 		} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
 			kindOfSoon.push(x);
@@ -279,17 +280,8 @@ export function comparePurchaseUrgency(list) {
 		}
 	});
 
-	// console.log('soon: ', soon);
-	// console.log('kinda: ', kindOfSoon);
-	// console.log('not: ', notSoon);
-	// console.log('inactive: ', inactive);
-
-	// console.log([...soon, ...kindOfSoon, ...notSoon, ...inactive]);
-	// console.log('soon', soon)
-	// console.log( 'kinda' , kindOfSoon)
-	// console.log( 'notsoon', notSoon)
-	// console.log('inactive', inactive)
 	return {
+		overdue,
 		soon,
 		kindOfSoon,
 		notSoon,

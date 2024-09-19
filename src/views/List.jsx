@@ -34,6 +34,7 @@ export function List({ data, userId }) {
 	}, [data]);
 
 	const labels = {
+		overdue: 'Overdue',
 		soon: 'Soon',
 		kindOfSoon: 'Kind of soon',
 		notSoon: 'Not soon',
@@ -41,14 +42,7 @@ export function List({ data, userId }) {
 	};
 
 	useEffect(() => {
-		// setFilteredObject(
-		// 	data.filter((item) =>
-		// 		item.name.toLowerCase().includes(filterVal.toLowerCase()),
-		// 	),
-		// );
-
 		const filteredObject = {};
-
 		Object.entries(sortedList).forEach(([timeBucket, list]) => {
 			filteredObject[timeBucket] = list.filter((item) =>
 				item.name.toLowerCase().includes(filterVal.toLowerCase()),
@@ -56,12 +50,6 @@ export function List({ data, userId }) {
 		});
 		setFilteredObject(filteredObject);
 	}, [filterVal, sortedList]);
-
-	// useEffect(() => {
-	// 	setFilteredList(comparePurchaseUrgency(data))
-	// }, [data]);
-
-	// console.log(filteredList)
 
 	return (
 		<>
@@ -71,8 +59,6 @@ export function List({ data, userId }) {
 			{showModal && dataEmpty && (
 				<BasicModal dataEmpty={dataEmpty} message={message} />
 			)}
-
-			<button onClick={() => comparePurchaseUrgency(data)}>CHECK FN</button>
 
 			<form onSubmit={clearInput}>
 				<label htmlFor="item-name">Item name:</label>
@@ -86,13 +72,6 @@ export function List({ data, userId }) {
 				{filterVal && <button>Clear</button>}
 			</form>
 
-			{/* <ul>
-				{filteredList &&
-					filteredList.map((item) => {
-						return <ListItem key={item.id} item={item} />;
-					})}
-			</ul> */}
-			{/* {console.log(sortedList.forEach(x => x))} */}
 			<ul>
 				{filteredObject &&
 					Object.entries(filteredObject).map(([timeBucket, list]) => (
