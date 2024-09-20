@@ -1,10 +1,21 @@
 import { useState, useEffect } from 'react';
 import './ListItem.css';
-import { updateItem } from '../api';
+import { updateItem, deleteItem } from '../api';
 
 export function ListItem({ item }) {
-	const { name, dateLastPurchased, dateCreated, id } = item;
+	const { name, dateLastPurchased, id } = item;
 	const [checked, setChecked] = useState(false);
+
+	const handleDelete = async () => {
+		try {
+			if (window.confirm(`Are you sure you want to delete ${name}?`)) {
+				const listPath = localStorage.getItem('tcl-shopping-list-path');
+				await deleteItem(listPath, item);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	const has24HoursPassed = (dateLastPurchased) => {
 		const millisecondsFromTimestamp =
@@ -47,6 +58,7 @@ export function ListItem({ item }) {
 				disabled={checked}
 			/>
 			{name}
+			<button onClick={handleDelete}>Delete</button>
 		</li>
 	);
 }
