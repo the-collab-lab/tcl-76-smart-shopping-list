@@ -260,23 +260,23 @@ export function comparePurchaseUrgency(list) {
 		return daysUntilNextPurchaseB > daysUntilNextPurchaseA ? -1 : 1;
 	});
 
-	sortedList.forEach((x) => {
-		const dateNextPurchasedAsDate = x.dateNextPurchased?.toDate();
+	sortedList.forEach((item) => {
+		const dateNextPurchasedAsDate = item.dateNextPurchased?.toDate();
 
 		const daysUntilNextPurchase = getDaysBetweenDates(
 			currentDate,
 			dateNextPurchasedAsDate,
 		);
 		if (daysUntilNextPurchase < 0) {
-			overdue.push(x);
+			overdue.push(item);
 		} else if (daysUntilNextPurchase >= 0 && daysUntilNextPurchase <= 7) {
-			soon.push(x);
+			soon.push(item);
 		} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
-			kindOfSoon.push(x);
+			kindOfSoon.push(item);
 		} else if (daysUntilNextPurchase >= 30 && daysUntilNextPurchase < 60) {
-			notSoon.push(x);
+			notSoon.push(item);
 		} else if (daysUntilNextPurchase >= 60) {
-			inactive.push(x);
+			inactive.push(item);
 		}
 	});
 
