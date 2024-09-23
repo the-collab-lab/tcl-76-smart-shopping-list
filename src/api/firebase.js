@@ -236,3 +236,56 @@ export async function deleteItem(listPath, item) {
 		console.log(error);
 	}
 }
+
+export function comparePurchaseUrgency(list) {
+	const currentDate = new Date();
+	const soon = [];
+	const kindOfSoon = [];
+	const notSoon = [];
+	const inactive = [];
+	const overdue = [];
+
+	const sortedList = list.sort((a, b) => {
+		const dateNextPurchasedAsDateA = a.dateNextPurchased?.toDate();
+		const dateNextPurchasedAsDateB = b.dateNextPurchased?.toDate();
+
+		const daysUntilNextPurchaseA = getDaysBetweenDates(
+			currentDate,
+			dateNextPurchasedAsDateA,
+		);
+		const daysUntilNextPurchaseB = getDaysBetweenDates(
+			currentDate,
+			dateNextPurchasedAsDateB,
+		);
+
+		return daysUntilNextPurchaseB > daysUntilNextPurchaseA ? -1 : 1;
+	});
+
+	sortedList.forEach((item) => {
+		const dateNextPurchasedAsDate = item.dateNextPurchased?.toDate();
+
+		const daysUntilNextPurchase = getDaysBetweenDates(
+			currentDate,
+			dateNextPurchasedAsDate,
+		);
+		if (daysUntilNextPurchase < 0) {
+			overdue.push(item);
+		} else if (daysUntilNextPurchase >= 0 && daysUntilNextPurchase <= 7) {
+			soon.push(item);
+		} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
+			kindOfSoon.push(item);
+		} else if (daysUntilNextPurchase >= 30 && daysUntilNextPurchase < 60) {
+			notSoon.push(item);
+		} else if (daysUntilNextPurchase >= 60) {
+			inactive.push(item);
+		}
+	});
+
+	return {
+		overdue,
+		soon,
+		kindOfSoon,
+		notSoon,
+		inactive,
+	};
+}

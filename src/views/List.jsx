@@ -1,10 +1,12 @@
 import { ListItem } from '../components';
 import { useState, useEffect } from 'react';
 import BasicModal from './Modal';
+import { comparePurchaseUrgency } from '../api';
 
 export function List({ data, userId }) {
 	const [filterVal, setFilterVal] = useState('');
-	const [filteredList, setFilteredList] = useState([]);
+	const [filteredObject, setFilteredObject] = useState({});
+	const [sortedList, setSortedList] = useState([]);
 	const [showModal, setShowModal] = useState(false);
 
 	const dataEmpty = userId && !data.length;
@@ -28,12 +30,26 @@ export function List({ data, userId }) {
 	};
 
 	useEffect(() => {
-		setFilteredList(
-			data.filter((item) =>
+		setSortedList(comparePurchaseUrgency(data));
+	}, [data]);
+
+	const labels = {
+		overdue: 'Overdue (!!!!)',
+		soon: 'Soon (!!!)',
+		kindOfSoon: 'Kind of soon (!!)',
+		notSoon: 'Not soon (!)',
+		inactive: 'Inactive Items',
+	};
+
+	useEffect(() => {
+		const filteredObject = {};
+		Object.entries(sortedList).forEach(([timeBucket, list]) => {
+			filteredObject[timeBucket] = list.filter((item) =>
 				item.name.toLowerCase().includes(filterVal.toLowerCase()),
-			),
-		);
-	}, [filterVal, data]);
+			);
+		});
+		setFilteredObject(filteredObject);
+	}, [filterVal, sortedList]);
 
 	return (
 		<>
@@ -45,7 +61,7 @@ export function List({ data, userId }) {
 			)}
 
 			<form onSubmit={clearInput}>
-				<label htmlFor="item-name"> Item name:</label>
+				<label htmlFor="item-name">Item name:</label>
 				<input
 					id="item-name"
 					name="item-name"
@@ -57,10 +73,17 @@ export function List({ data, userId }) {
 			</form>
 
 			<ul>
-				{filteredList &&
-					filteredList.map((item) => {
-						return <ListItem key={item.id} item={item} />;
-					})}
+				{filteredObject &&
+					Object.entries(filteredObject).map(([timeBucket, list]) => (
+						<>
+							<div>
+								<h3>{labels[timeBucket]}</h3>
+							</div>
+							{list.map((item) => (
+								<ListItem key={item.id} item={item} />
+							))}
+						</>
+					))}
 			</ul>
 		</>
 	);
