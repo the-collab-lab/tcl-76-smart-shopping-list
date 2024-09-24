@@ -6,9 +6,8 @@ export function ListItem({ item }) {
 	const { name, dateLastPurchased, dateNextPurchased, totalPurchases, id } =
 		item;
 	const [checked, setChecked] = useState(false);
+	const [isActive, setIsActive] = useState(false);
 
-	const dateNext = new Date(dateNextPurchased?.toDate());
-	const dateLast = dateLastPurchased?.toDate();
 	const handleDelete = async () => {
 		try {
 			if (window.confirm(`Are you sure you want to delete ${name}?`)) {
@@ -63,14 +62,22 @@ export function ListItem({ item }) {
 			<h2>{name}</h2>
 
 			<button onClick={handleDelete}>Delete</button>
-			<div>
+			<button onClick={() => setIsActive(!isActive)}>
+				View Purchase Details
+			</button>
+
+			<div style={{ display: isActive ? 'block' : 'none' }}>
 				<ul>
 					<li>
 						Last Purchased:
 						{dateLastPurchased?.toDate().toDateString()}
 					</li>
-					<li> Next Purchased:{dateNextPurchased?.toDate().toDateString()}</li>
-					<li>Total Purchases:{totalPurchases}</li>
+					<li>
+						{' '}
+						Next Purchased:
+						{dateNextPurchased?.toDate().toDateString()}
+					</li>
+					<li>Total Purchases: {totalPurchases}</li>
 				</ul>
 			</div>
 		</li>
