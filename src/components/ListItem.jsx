@@ -69,12 +69,11 @@ export function ListItem({ item }) {
 			<div style={{ display: isActive ? 'block' : 'none' }}>
 				<ul>
 					<li>
-						Last Purchased:
+						Last Purchase:
 						{dateLastPurchased?.toDate().toDateString()}
 					</li>
 					<li>
-						{' '}
-						Next Purchased:
+						Next Purchase:
 						{dateNextPurchased?.toDate().toDateString()}
 					</li>
 					<li>Total Purchases: {totalPurchases}</li>
