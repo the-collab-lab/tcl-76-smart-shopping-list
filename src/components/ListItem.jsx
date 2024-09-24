@@ -3,9 +3,12 @@ import './ListItem.css';
 import { updateItem, deleteItem } from '../api';
 
 export function ListItem({ item }) {
-	const { name, dateLastPurchased, id } = item;
+	const { name, dateLastPurchased, dateNextPurchased, totalPurchases, id } =
+		item;
 	const [checked, setChecked] = useState(false);
 
+	const dateNext = new Date(dateNextPurchased?.toDate());
+	const dateLast = dateLastPurchased?.toDate();
 	const handleDelete = async () => {
 		try {
 			if (window.confirm(`Are you sure you want to delete ${name}?`)) {
@@ -57,8 +60,19 @@ export function ListItem({ item }) {
 				onChange={handleChange}
 				disabled={checked}
 			/>
-			{name}
+			<h2>{name}</h2>
+
 			<button onClick={handleDelete}>Delete</button>
+			<div>
+				<ul>
+					<li>
+						Last Purchased:
+						{dateLastPurchased?.toDate().toDateString()}
+					</li>
+					<li> Next Purchased:{dateNextPurchased?.toDate().toDateString()}</li>
+					<li>Total Purchases:{totalPurchases}</li>
+				</ul>
+			</div>
 		</li>
 	);
 }
