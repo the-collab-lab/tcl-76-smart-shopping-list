@@ -70,7 +70,9 @@ export function ListItem({ item }) {
 				<ul>
 					<li>
 						Last Purchase:
-						{dateLastPurchased?.toDate().toDateString()}
+						{dateLastPurchased
+							? dateLastPurchased.toDate().toDateString()
+							: 'N/A'}
 					</li>
 					<li>
 						Next Purchase:
