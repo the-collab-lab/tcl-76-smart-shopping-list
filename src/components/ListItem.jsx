@@ -59,7 +59,7 @@ export function ListItem({ item }) {
 				onChange={handleChange}
 				disabled={checked}
 			/>
-			<h2>{name}</h2>
+			<h2 style={{ fontSize: '20px' }}>{name}</h2>
 
 			<button onClick={handleDelete}>Delete</button>
 			<button onClick={() => setIsActive(!isActive)}>
@@ -67,16 +67,19 @@ export function ListItem({ item }) {
 			</button>
 
 			<div style={{ display: isActive ? 'block' : 'none' }}>
-				<ul>
+				<ul style={{ fontSize: '15px' }}>
 					<li>
 						Last Purchase:
-						{dateLastPurchased
-							? dateLastPurchased.toDate().toDateString()
-							: 'N/A'}
+						<span>
+							{' '}
+							{dateLastPurchased
+								? dateLastPurchased.toDate().toDateString()
+								: 'N/A'}
+						</span>
 					</li>
 					<li>
 						Next Purchase:
-						{dateNextPurchased?.toDate().toDateString()}
+						<span> {dateNextPurchased?.toDate().toDateString()}</span>
 					</li>
 					<li>Total Purchases: {totalPurchases}</li>
 				</ul>
