@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { addItem, shareList } from '../api';
+import VoiceToText from '../components/VoiceToText';
 
 export function ManageList({ userId, list }) {
 	const [formData, setFormData] = useState({
@@ -90,6 +91,25 @@ export function ManageList({ userId, list }) {
 		} catch (error) {}
 	}
 
+	function handleVoiceTransform() {
+		const recognition = new (window.SpeechRecognition ||
+			window.webkitSpeechRecognition ||
+			window.mozSpeechRecognition ||
+			window.msSpeechRecognition)();
+		recognition.lang = 'en-US';
+		recognition.interimResults = false;
+		recognition.maxAlternatives = 1;
+		recognition.start();
+		recognition.onresult = (event) => {
+			const transcript = event.results[0][0].transcript;
+			setFormData((prev) => ({ ...prev, name: transcript }));
+
+			recognition.onend = () => {
+				console.log('Speech recognition ended.');
+			};
+		};
+	}
+	//需要audioend吗？
 	return (
 		<>
 			<p>
@@ -107,6 +127,10 @@ export function ManageList({ userId, list }) {
 						onChange={handleChange}
 						required
 					></input>
+
+					<button onClick={handleVoiceTransform}>Start Voice Input</button>
+
+					<br></br>
 
 					<label htmlFor="frequency">
 						When will you need this item again?:
