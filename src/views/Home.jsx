@@ -1,8 +1,9 @@
 import './Home.css';
 import { SingleList } from '../components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createList, useAuth } from '../api';
 import { useNavigate } from 'react-router-dom';
+import { useVoiceToText } from '../utils';
 
 export function Home({ data, setListPath }) {
 	const [listName, setListName] = useState('');
@@ -11,6 +12,13 @@ export function Home({ data, setListPath }) {
 	const userId = user?.uid;
 	const userEmail = user?.email;
 	const navigate = useNavigate();
+	const { text, isListening, startListening } = useVoiceToText();
+
+	useEffect(() => {
+		if (text) {
+			setListName(text);
+		}
+	}, [text]);
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -60,6 +68,9 @@ export function Home({ data, setListPath }) {
 					value={listName}
 					onChange={(e) => setListName(e.target.value)}
 				/>
+				<button type="button" onClick={startListening}>
+					{isListening ? 'Listening...' : 'Start Voice Input'}
+				</button>
 				<button>Submit</button>
 				<p>{error}</p>
 			</form>
