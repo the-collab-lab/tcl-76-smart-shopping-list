@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { addItem, shareList } from '../api';
-import VoiceToText from '../components/VoiceToText';
+import { useVoiceToText } from '../utils';
 
 export function ManageList({ userId, list }) {
 	const [formData, setFormData] = useState({
@@ -9,6 +9,15 @@ export function ManageList({ userId, list }) {
 	});
 
 	const [email, setEmail] = useState('');
+
+	const { text, isListening, startListening } = useVoiceToText();
+
+	useEffect(() => {
+		if (text) {
+			setFormData((prev) => ({ ...prev, name: text }));
+		}
+	}, [text]);
+
 	function handleChange(e) {
 		e.preventDefault();
 		setFormData((prev) => ({
@@ -92,24 +101,11 @@ export function ManageList({ userId, list }) {
 	}
 
 	function handleVoiceTransform() {
-		const recognition = new (window.SpeechRecognition ||
-			window.webkitSpeechRecognition ||
-			window.mozSpeechRecognition ||
-			window.msSpeechRecognition)();
-		recognition.lang = 'en-US';
-		recognition.interimResults = false;
-		recognition.maxAlternatives = 1;
-		recognition.start();
-		recognition.onresult = (event) => {
-			const transcript = event.results[0][0].transcript;
-			setFormData((prev) => ({ ...prev, name: transcript }));
-
-			recognition.onend = () => {
-				console.log('Speech recognition ended.');
-			};
-		};
+		if (!isListening) {
+			startListening();
+		}
 	}
-	//需要audioend吗？
+
 	return (
 		<>
 			<p>
@@ -128,7 +124,9 @@ export function ManageList({ userId, list }) {
 						required
 					></input>
 
-					<button onClick={handleVoiceTransform}>Start Voice Input</button>
+					<button type="button" onClick={handleVoiceTransform}>
+						{isListening ? 'Listening...' : 'Start Voice Input'}
+					</button>
 
 					<br></br>
 
