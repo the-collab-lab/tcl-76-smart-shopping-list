@@ -51,6 +51,11 @@ export function List({ data, userId }) {
 		setFilteredObject(filteredObject);
 	}, [filterVal, sortedList]);
 
+	const addItemNavigate = (e) => {
+		e.preventDefault();
+		window.location.href = '/manage-list';
+	};
+
 	return (
 		<>
 			<p>
@@ -60,8 +65,10 @@ export function List({ data, userId }) {
 				<BasicModal dataEmpty={dataEmpty} message={message} />
 			)}
 
+			<button onClick={addItemNavigate}> Add item</button>
+
 			<form onSubmit={clearInput}>
-				<label htmlFor="item-name">Item name:</label>
+				<label htmlFor="item-name">Search item: </label>
 				<input
 					id="item-name"
 					name="item-name"
