@@ -237,6 +237,16 @@ export async function deleteItem(listPath, item) {
 	}
 }
 
+export async function deleteList(listPath, singlePath) {
+	try {
+		const docRef = doc(db, listPath, singlePath);
+		await deleteDoc(docRef);
+		console.log(`Document ${singlePath} deleted successfully from ${listPath}`);
+	} catch (error) {
+		console.log(error);
+	}
+}
+
 export function comparePurchaseUrgency(list) {
 	const currentDate = new Date();
 	const soon = [];
