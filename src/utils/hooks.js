@@ -61,10 +61,19 @@ export function useVoiceToText() {
 		};
 	}, []);
 
-	const startListening = () => {
-		if (!isListening && recognitionRef.current) {
-			recognitionRef.current.start();
-			setIsListening(true);
+	const startListening = async () => {
+		try {
+			// Request microphone access
+			await navigator.mediaDevices.getUserMedia({ audio: true });
+			console.log('Microphone access granted. Starting speech recognition...');
+
+			if (!isListening && recognitionRef.current) {
+				recognitionRef.current.start();
+				setIsListening(true);
+			}
+		} catch (err) {
+			console.error('Error accessing microphone:', err);
+			setError('Failed to access microphone. Please enable mic permissions.');
 		}
 	};
 
