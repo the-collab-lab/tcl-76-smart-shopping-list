@@ -1,5 +1,5 @@
 import { ListItem } from '../components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import BasicModal from './Modal';
 import { comparePurchaseUrgency } from '../api';
 
@@ -51,6 +51,11 @@ export function List({ data, userId }) {
 		setFilteredObject(filteredObject);
 	}, [filterVal, sortedList]);
 
+	const addItemNavigate = (e) => {
+		e.preventDefault();
+		window.location.href = '/manage-list';
+	};
+
 	return (
 		<>
 			<p>
@@ -60,8 +65,10 @@ export function List({ data, userId }) {
 				<BasicModal dataEmpty={dataEmpty} message={message} />
 			)}
 
+			<button onClick={addItemNavigate}> Add item</button>
+
 			<form onSubmit={clearInput}>
-				<label htmlFor="item-name">Item name:</label>
+				<label htmlFor="item-name">Search item: </label>
 				<input
 					id="item-name"
 					name="item-name"
@@ -75,14 +82,14 @@ export function List({ data, userId }) {
 			<ul>
 				{filteredObject &&
 					Object.entries(filteredObject).map(([timeBucket, list]) => (
-						<>
+						<Fragment key={crypto.randomUUID()}>
 							<div>
 								<h3>{labels[timeBucket]}</h3>
 							</div>
 							{list.map((item) => (
-								<ListItem key={item.id} item={item} />
+								<ListItem item={item} key={crypto.randomUUID()} />
 							))}
-						</>
+						</Fragment>
 					))}
 			</ul>
 		</>

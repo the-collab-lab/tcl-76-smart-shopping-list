@@ -1,6 +1,6 @@
 import './Home.css';
 import { SingleList } from '../components';
-import { useState, useEffect } from 'react';
+import { Fragment, useState } from 'react';
 import { createList, useAuth } from '../api';
 import { useNavigate } from 'react-router-dom';
 import { useVoiceToText } from '../utils';
@@ -48,15 +48,15 @@ export function Home({ data, setListPath }) {
 			<ul>
 				{data &&
 					data.map((list) => {
+						const uniqueId = crypto.randomUUID();
 						return (
-							<>
+							<Fragment key={uniqueId}>
 								<SingleList
-									key={crypto.randomUUID()}
 									name={list.name}
 									setListPath={setListPath}
 									path={list.path}
 								/>
-							</>
+							</Fragment>
 						);
 					})}
 			</ul>

@@ -3,8 +3,10 @@ import './ListItem.css';
 import { updateItem, deleteItem } from '../api';
 
 export function ListItem({ item }) {
-	const { name, dateLastPurchased, id } = item;
+	const { name, dateLastPurchased, dateNextPurchased, totalPurchases, id } =
+		item;
 	const [checked, setChecked] = useState(false);
+	const [isActive, setIsActive] = useState(false);
 
 	const handleDelete = async () => {
 		try {
@@ -57,8 +59,31 @@ export function ListItem({ item }) {
 				onChange={handleChange}
 				disabled={checked}
 			/>
-			{name}
+			<h2 style={{ fontSize: '20px' }}>{name}</h2>
+
 			<button onClick={handleDelete}>Delete</button>
+			<button onClick={() => setIsActive(!isActive)}>
+				View Purchase Details
+			</button>
+
+			<div style={{ display: isActive ? 'block' : 'none' }}>
+				<ul style={{ fontSize: '15px' }}>
+					<li>
+						Last Purchase:
+						<span>
+							{' '}
+							{dateLastPurchased
+								? dateLastPurchased.toDate().toDateString()
+								: 'N/A'}
+						</span>
+					</li>
+					<li>
+						Next Purchase:
+						<span> {dateNextPurchased?.toDate().toDateString()}</span>
+					</li>
+					<li>Total Purchases: {totalPurchases}</li>
+				</ul>
+			</div>
 		</li>
 	);
 }

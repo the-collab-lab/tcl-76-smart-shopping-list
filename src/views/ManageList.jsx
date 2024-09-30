@@ -83,6 +83,7 @@ export function ManageList({ userId, list }) {
 					name: '',
 					frequency: '',
 				});
+				window.location.href = '/list';
 			})
 			.catch((error) => {
 				window.alert(`${formData.name} failed to add to your list.`);
