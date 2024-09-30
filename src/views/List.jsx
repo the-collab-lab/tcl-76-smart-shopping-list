@@ -1,7 +1,8 @@
 import { ListItem } from '../components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import BasicModal from './Modal';
 import { comparePurchaseUrgency } from '../api';
+import { v4 as uuidv4 } from 'uuid';
 
 export function List({ data, userId }) {
 	const [filterVal, setFilterVal] = useState('');
@@ -82,14 +83,14 @@ export function List({ data, userId }) {
 			<ul>
 				{filteredObject &&
 					Object.entries(filteredObject).map(([timeBucket, list]) => (
-						<>
+						<Fragment key={uuidv4()}>
 							<div>
 								<h3>{labels[timeBucket]}</h3>
 							</div>
 							{list.map((item) => (
-								<ListItem key={item.id} item={item} />
+								<ListItem item={item} key={uuidv4()} />
 							))}
-						</>
+						</Fragment>
 					))}
 			</ul>
 		</>
