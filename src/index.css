@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+	@font-face {
+		font-family: 'Archivo Narrow';
+		font-style: normal;
+		font-weight: 100 900;
+		font-display: swap;
+		src: url('/fonts/Archivo_Narrow/ArchivoNarrow-VariableFont_wght.ttf')
+			format('truetype'); /* Fallback */
+	}
+}
 :root {
 	--color-black: hsla(220, 13%, 18%, 1);
 	--color-gray-dark: hsla(220, 13%, 25%, 1);
