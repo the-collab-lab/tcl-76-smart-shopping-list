@@ -4,8 +4,8 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['Graphik', 'sans-serif'],
-				serif: ['Merriweather', 'serif'],
+				sans: ['sans-serif'],
+				serif: ['serif'],
 				archivo: ['Archivo Narrow', 'sans-serif'],
 			},
 		},
