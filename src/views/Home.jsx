@@ -37,7 +37,7 @@ export function Home({ data, setListPath }) {
 			<p>
 				Hello from the home (<code>/</code>) page!
 			</p>
-			<ul>
+			<ul className="font-archivo">
 				{data &&
 					data.map((list) => {
 						const uniqueId = crypto.randomUUID();
