@@ -27,10 +27,6 @@ export function Layout() {
 				<header className="Layout-header">
 					<h1>Smart shopping list</h1>
 				</header>
-				<main className="Layout-main">
-					{user ? <SignOutButton /> : <SignInButton />}
-					<Outlet />
-				</main>
 				<nav className="Nav">
 					<div className="Nav-container">
 						<NavLink to="/" style={handleActive}>
@@ -46,6 +42,10 @@ export function Layout() {
 						</NavLink>
 					</div>
 				</nav>
+				<main className="Layout-main">
+					{user ? <SignOutButton /> : <SignInButton />}
+					<Outlet />
+				</main>
 			</div>
 		</>
 	);

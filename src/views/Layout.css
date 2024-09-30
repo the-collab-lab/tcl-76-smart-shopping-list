@@ -44,7 +44,7 @@
 	padding-bottom: max(env(safe-area-inset-bottom), 1rem);
 	padding-top: 1rem;
 	place-content: center;
-	position: fixed;
+	/* position: fixed; */
 	width: 100%;
 }
 
@@ -53,6 +53,8 @@
 	flex-direction: row;
 	justify-content: space-evenly;
 	width: min(72ch, 100%);
+	/* position: fixed;
+	top: 0; */
 }
 
 .Nav-link {
