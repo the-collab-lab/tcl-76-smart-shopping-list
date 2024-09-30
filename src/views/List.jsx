@@ -83,12 +83,12 @@ export function List({ data, userId }) {
 			<ul>
 				{filteredObject &&
 					Object.entries(filteredObject).map(([timeBucket, list]) => (
-						<Fragment key={uuidv4()}>
+						<Fragment key={crypto.randomUUID()}>
 							<div>
 								<h3>{labels[timeBucket]}</h3>
 							</div>
 							{list.map((item) => (
-								<ListItem item={item} key={uuidv4()} />
+								<ListItem item={item} key={crypto.randomUUID()} />
 							))}
 						</Fragment>
 					))}
