@@ -32,25 +32,16 @@ export function Home({ data, setListPath }) {
 		}
 	}
 
-	// const handleDelete = async (list) => {
-	// 	try {
-	// 		if (window.confirm(`Are you sure you want to delete ${list.name}?`)) {
-	// 			const listPath = localStorage.getItem('tcl-shopping-list-path');
-	// 			console.log('value of each list', listPath, list.path)
-	// 			await deleteList(listPath, list.path)
-
-	// 		}
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	// };
-
-	const testDelete = async () => {
-		const testListPath = 'MdmOHvzonYWycqW8dwjr4RVJPOq2';
-		const testSinglePath = 'to_test_invite_friend';
-		console.log('testing');
-
-		await deleteList(testListPath, testSinglePath);
+	const handleDelete = async (list) => {
+		try {
+			console.log('Here is list info', list);
+			if (window.confirm(`Are you sure you want to delete ${list.name}?`)) {
+				console.log('value of list path', list.path);
+				await deleteList(list.path);
+			}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -69,7 +60,7 @@ export function Home({ data, setListPath }) {
 									setListPath={setListPath}
 									path={list.path}
 								/>
-								<button onClick={() => testDelete}>Delete</button>
+								<button onClick={() => handleDelete(list)}>Delete</button>
 								<br></br>
 								<br></br>
 							</Fragment>

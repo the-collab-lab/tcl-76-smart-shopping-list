@@ -237,11 +237,10 @@ export async function deleteItem(listPath, item) {
 	}
 }
 
-export async function deleteList(listPath, singlePath) {
+export async function deleteList(singlePath) {
 	try {
-		const docRef = doc(db, listPath, singlePath);
+		const docRef = doc(db, singlePath);
 		await deleteDoc(docRef);
-		console.log(`Document ${singlePath} deleted successfully from ${listPath}`);
 	} catch (error) {
 		console.log(error);
 	}
