@@ -48,10 +48,7 @@ export function App() {
 						index
 						element={<Home data={lists} setListPath={setListPath} />}
 					/>
-					<Route
-						path="/list/:listId/:listName"
-						element={<List data={data} userId={userId} />}
-					/>
+					<Route path="/list" element={<List data={data} userId={userId} />} />
 					<Route
 						path="/manage-list"
 						element={<ManageList userId={userId} list={data} />}

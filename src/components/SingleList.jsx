@@ -6,7 +6,7 @@ export function SingleList({ name, path, setListPath }) {
 
 	function handleClick() {
 		setListPath(path);
-		navigate(`/list/${path}`);
+		navigate('/list');
 	}
 
 	return (
