@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react';
 import { createList, useAuth, deleteList } from '../api';
 import { useNavigate } from 'react-router-dom';
 
-export function Home({ data, setListPath }) {
+export function Home({ data, setListPath, setAllLists }) {
 	const [listName, setListName] = useState('');
 	const [error, setError] = useState('');
 	const { user } = useAuth();
@@ -38,6 +38,11 @@ export function Home({ data, setListPath }) {
 			if (window.confirm(`Are you sure you want to delete ${list.name}?`)) {
 				console.log('value of list path', list.path);
 				await deleteList(list.path);
+				const updatedData = data.filter(
+					(eachList) => eachList.path !== list.path,
+				);
+				console.log('updated data after single deletion', updatedData);
+				setAllLists(updatedData);
 			}
 		} catch (error) {
 			console.log(error);
