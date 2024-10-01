@@ -8,6 +8,7 @@ import {
 	updateDoc,
 	increment,
 	deleteDoc,
+	arrayRemove,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
@@ -237,12 +238,18 @@ export async function deleteItem(listPath, item) {
 	}
 }
 
-export async function deleteList(singlePath) {
+export async function deleteList(userEmail, listPath) {
 	try {
-		const docRef = doc(db, singlePath);
-		await deleteDoc(docRef);
+		const listDocRef = doc(db, listPath);
+		await deleteDoc(listDocRef);
+		console.log(`Deleted list document at ${listDocRef.path}`);
+
+		const userDocumentRef = doc(db, 'users', userEmail);
+		await updateDoc(userDocumentRef, {
+			sharedLists: arrayRemove(listDocRef),
+		});
 	} catch (error) {
-		console.log(error);
+		console.error('Error deleting the list:', error);
 	}
 }
 

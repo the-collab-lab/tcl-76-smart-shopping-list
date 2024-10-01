@@ -34,14 +34,12 @@ export function Home({ data, setListPath, setAllLists }) {
 
 	const handleDelete = async (list) => {
 		try {
-			console.log('Here is list info', list);
 			if (window.confirm(`Are you sure you want to delete ${list.name}?`)) {
-				console.log('value of list path', list.path);
-				await deleteList(list.path);
+				await deleteList(userEmail, list.path);
 				const updatedData = data.filter(
 					(eachList) => eachList.path !== list.path,
 				);
-				console.log('updated data after single deletion', updatedData);
+
 				setAllLists(updatedData);
 			}
 		} catch (error) {

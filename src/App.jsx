@@ -50,8 +50,6 @@ export function App() {
 		}
 	}, [lists]);
 
-	console.log('all lists from App component', allLists);
-
 	return (
 		<Router>
 			<Routes>
