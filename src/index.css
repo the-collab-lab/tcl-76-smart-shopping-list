@@ -14,8 +14,8 @@
 	h1 {
 		@apply text-5xl font-archivo;
 	}
-	h2 {
-		@apply text-xl font-archivo;
+	h3 {
+		@apply text-4xl font-archivo font-bold;
 	}
 	button {
 		@apply btn 
