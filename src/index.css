@@ -11,7 +11,22 @@
 		src: url('/fonts/Archivo_Narrow/ArchivoNarrow-VariableFont_wght.ttf')
 			format('truetype'); /* Fallback */
 	}
+	h1 {
+		@apply text-5xl font-archivo;
+	}
+	h2 {
+		@apply text-xl font-archivo;
+	}
+	button {
+		@apply btn 
+		text-2xl font-sans font-normal;
+	}
+	/*temporary for the 'Hello from the [/list] Page' titles */
+	p {
+		@apply font-archivo text-4xl;
+	}
 }
+
 :root {
 	--color-black: hsla(220, 13%, 18%, 1);
 	--color-gray-dark: hsla(220, 13%, 25%, 1);
