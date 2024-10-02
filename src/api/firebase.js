@@ -242,7 +242,6 @@ export async function deleteList(userEmail, listPath) {
 	try {
 		const listDocRef = doc(db, listPath);
 		await deleteDoc(listDocRef);
-		console.log(`Deleted list document at ${listDocRef.path}`);
 
 		const userDocumentRef = doc(db, 'users', userEmail);
 		await updateDoc(userDocumentRef, {

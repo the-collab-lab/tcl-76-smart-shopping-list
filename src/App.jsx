@@ -43,7 +43,6 @@ export function App() {
 
 	const [allLists, setAllLists] = useState([]);
 
-	// Update state when `lists` change
 	useEffect(() => {
 		if (lists) {
 			setAllLists(lists);
