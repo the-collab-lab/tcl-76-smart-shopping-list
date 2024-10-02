@@ -7,6 +7,7 @@ export default {
 				sans: ['sans-serif'],
 				serif: ['serif'],
 				archivo: ['Archivo Narrow', 'sans-serif'],
+				bowlby: ['BowlbyOne Regular', 'Archivo Narrow', 'sans-serif'],
 			},
 		},
 	},

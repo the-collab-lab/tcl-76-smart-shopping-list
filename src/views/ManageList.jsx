@@ -135,7 +135,7 @@ export function ManageList({ userId, list }) {
 					<label htmlFor="invite-email">Invite user by email:</label>
 					<input
 						id="invite-email"
-						type="email"
+						type="text"
 						name="email"
 						value={email}
 						onChange={handleEmailChange}
