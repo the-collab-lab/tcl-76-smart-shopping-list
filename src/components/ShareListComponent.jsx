@@ -10,5 +10,11 @@ export function ShareListComponent({ name, path, setListPath }) {
 		navigate('/share-list');
 	}
 
-	return <ShareIcon onClick={handleClick} />;
+	return (
+		<>
+			<button>
+				<ShareIcon onClick={handleClick} />
+			</button>
+		</>
+	);
 }
