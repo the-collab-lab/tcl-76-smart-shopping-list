@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { Home, Layout, List, ManageList } from './views';
+import { Home, Layout, List, ManageList, ShareList } from './views';
 
 import { useAuth, useShoppingListData, useShoppingLists } from './api';
 
@@ -67,6 +67,10 @@ export function App() {
 					<Route
 						path="/manage-list"
 						element={<ManageList userId={userId} list={data} />}
+					/>
+					<Route
+						path="/share-list"
+						element={<ShareList userId={userId} list={data} />}
 					/>
 				</Route>
 			</Routes>

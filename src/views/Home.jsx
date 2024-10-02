@@ -1,5 +1,5 @@
 import './Home.css';
-import { SingleList } from '../components';
+import { SingleList, ShareListComponent } from '../components';
 import { createList, useAuth, deleteList } from '../api';
 import { Fragment, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -58,6 +58,13 @@ export function Home({ data, setListPath, setAllLists }) {
 		}
 	};
 
+	const shareListNavigate = (e) => {
+		e.preventDefault();
+		setListPath(path);
+		window.location.href = '/share-list';
+		// console.log(e)
+	};
+
 	return (
 		<div className="Home">
 			<ul className="font-archivo">
@@ -74,9 +81,12 @@ export function Home({ data, setListPath, setAllLists }) {
 								<button onClick={() => handleDelete(list)}>
 									<DeleteIcon />
 								</button>
-								<button>
-									<ShareIcon />
-								</button>
+
+								<ShareListComponent
+									name={list.name}
+									setListPath={setListPath}
+									path={list.path}
+								/>
 
 								<br></br>
 								<br></br>
