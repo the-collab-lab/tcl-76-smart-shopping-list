@@ -10,21 +10,6 @@ export function ShareList({ userId, list }) {
 
 	const [email, setEmail] = useState('');
 
-	const { text, isListening, startListening } = useVoiceToText();
-
-	useEffect(() => {
-		if (text) {
-			setFormData((prev) => ({ ...prev, name: text }));
-		}
-	}, [text]);
-
-	function handleChange(e) {
-		e.preventDefault();
-		setFormData((prev) => ({
-			...prev,
-			[e.target.name]: e.target.value,
-		}));
-	}
 	function handleEmailChange(e) {
 		e.preventDefault();
 		setEmail(e.target.value);
@@ -48,13 +33,14 @@ export function ShareList({ userId, list }) {
 					<input
 						id="invite-email"
 						type="text"
+						placeholder="Type here"
 						name="email"
 						value={email}
 						onChange={handleEmailChange}
 						required
 					></input>
 
-					<button type="submit">Invite my friend</button>
+					<button type="submit">Share List</button>
 				</form>
 			</div>
 		</>
