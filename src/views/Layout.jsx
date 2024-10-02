@@ -29,8 +29,6 @@ export function Layout() {
 				</header>
 				<nav className="Nav">
 					<div className="Nav-container">
-						{user ? <SignOutButton /> : <SignInButton />}
-
 						<NavLink to="/" style={handleActive}>
 							Home
 						</NavLink>
@@ -42,6 +40,8 @@ export function Layout() {
 						<NavLink to="/manage-list" style={handleActive}>
 							Manage List
 						</NavLink>
+
+						{user ? <SignOutButton /> : <SignInButton />}
 					</div>
 				</nav>
 
