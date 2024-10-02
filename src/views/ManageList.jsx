@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react';
-import { addItem, shareList } from '../api';
+import { addItem } from '../api';
 import { useVoiceToText } from '../utils';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
-export function ManageList({ userId, list }) {
+export function ManageList({ list }) {
 	const [formData, setFormData] = useState({
 		name: '',
 		frequency: '',
 	});
-
-	const [email, setEmail] = useState('');
 
 	const { text, isListening, startListening } = useVoiceToText();
 
@@ -25,10 +23,6 @@ export function ManageList({ userId, list }) {
 			...prev,
 			[e.target.name]: e.target.value,
 		}));
-	}
-	function handleEmailChange(e) {
-		e.preventDefault();
-		setEmail(e.target.value);
 	}
 
 	function handleSubmit(e) {

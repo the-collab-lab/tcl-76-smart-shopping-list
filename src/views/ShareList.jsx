@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react';
-import { addItem, shareList } from '../api';
-import { useVoiceToText } from '../utils';
+import { useState } from 'react';
+import { shareList } from '../api';
 
-export function ShareList({ userId, list }) {
-	const [formData, setFormData] = useState({
-		name: '',
-		frequency: '',
-	});
+export function ShareList({ userId }) {
+	// const [formData, setFormData] = useState({
+	// 	name: '',
+	// 	frequency: '',
+	// });
 
 	const [email, setEmail] = useState('');
 
