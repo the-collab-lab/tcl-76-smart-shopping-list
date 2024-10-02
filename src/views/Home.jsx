@@ -1,11 +1,11 @@
 import './Home.css';
 import { SingleList } from '../components';
+import { createList, useAuth, deleteList } from '../api';
 import { Fragment, useState, useEffect } from 'react';
-import { createList, useAuth } from '../api';
 import { useNavigate } from 'react-router-dom';
 import { useVoiceToText } from '../utils';
 
-export function Home({ data, setListPath }) {
+export function Home({ data, setListPath, setAllLists }) {
 	const [listName, setListName] = useState('');
 	const [error, setError] = useState('');
 	const { user } = useAuth();
@@ -40,6 +40,21 @@ export function Home({ data, setListPath }) {
 		}
 	}
 
+	const handleDelete = async (list) => {
+		try {
+			if (window.confirm(`Are you sure you want to delete ${list.name}?`)) {
+				await deleteList(userEmail, list.path);
+				const updatedData = data.filter(
+					(eachList) => eachList.path !== list.path,
+				);
+
+				setAllLists(updatedData);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<div className="Home">
 			<p>
@@ -56,6 +71,9 @@ export function Home({ data, setListPath }) {
 									setListPath={setListPath}
 									path={list.path}
 								/>
+								<button onClick={() => handleDelete(list)}>Delete</button>
+								<br></br>
+								<br></br>
 							</Fragment>
 						);
 					})}

@@ -6,6 +6,7 @@ import { useAuth, useShoppingListData, useShoppingLists } from './api';
 
 import { useStateWithStorage } from './utils';
 
+import { useState, useEffect } from 'react';
 export function App() {
 	/**
 	 * This custom hook takes the path of a shopping list
@@ -40,13 +41,27 @@ export function App() {
 	 */
 	const data = useShoppingListData(listPath);
 
+	const [allLists, setAllLists] = useState([]);
+
+	useEffect(() => {
+		if (lists) {
+			setAllLists(lists);
+		}
+	}, [lists]);
+
 	return (
 		<Router>
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route
 						index
-						element={<Home data={lists} setListPath={setListPath} />}
+						element={
+							<Home
+								data={allLists}
+								setListPath={setListPath}
+								setAllLists={setAllLists}
+							/>
+						}
 					/>
 					<Route path="/list" element={<List data={data} userId={userId} />} />
 					<Route
