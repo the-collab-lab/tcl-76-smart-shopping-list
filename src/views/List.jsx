@@ -2,6 +2,7 @@ import { ListItem } from '../components';
 import { useState, useEffect, Fragment } from 'react';
 import BasicModal from './Modal';
 import { comparePurchaseUrgency } from '../api';
+import ShareIcon from '@mui/icons-material/Share';
 
 export function List({ data, userId }) {
 	const [filterVal, setFilterVal] = useState('');

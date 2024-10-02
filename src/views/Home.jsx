@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useVoiceToText } from '../utils';
 import DeleteIcon from '@mui/icons-material/Delete';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import ShareIcon from '@mui/icons-material/Share';
 
 export function Home({ data, setListPath, setAllLists }) {
 	const [listName, setListName] = useState('');
@@ -59,9 +60,6 @@ export function Home({ data, setListPath, setAllLists }) {
 
 	return (
 		<div className="Home">
-			<p>
-				Hello from the home (<code>/</code>) page!
-			</p>
 			<ul className="font-archivo">
 				{data &&
 					data.map((list) => {
@@ -76,6 +74,10 @@ export function Home({ data, setListPath, setAllLists }) {
 								<button onClick={() => handleDelete(list)}>
 									<DeleteIcon />
 								</button>
+								<button>
+									<ShareIcon />
+								</button>
+
 								<br></br>
 								<br></br>
 							</Fragment>
@@ -83,7 +85,7 @@ export function Home({ data, setListPath, setAllLists }) {
 					})}
 			</ul>
 			<form action="" onSubmit={handleSubmit}>
-				<label htmlFor="listName">Enter List Name:</label>
+				<label htmlFor="listName">Add a New List:</label>
 				<input
 					type="text"
 					id="listName"

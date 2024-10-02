@@ -151,7 +151,7 @@ export function ManageList({ userId, list }) {
 					<button type="submit">Submit</button>
 				</form>
 
-				<form onSubmit={handleEmailSubmit}>
+				{/* <form onSubmit={handleEmailSubmit}>
 					<label htmlFor="invite-email">Invite user by email:</label>
 					<input
 						id="invite-email"
@@ -163,7 +163,7 @@ export function ManageList({ userId, list }) {
 					></input>
 
 					<button type="submit">Invite my friend</button>
-				</form>
+				</form> */}
 			</div>
 		</>
 	);
