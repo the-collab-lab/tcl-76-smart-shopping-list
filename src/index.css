@@ -1,3 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	@font-face {
+		font-family: 'Archivo Narrow';
+		font-style: normal;
+		font-weight: 100 900;
+		font-display: swap;
+		src: url('/fonts/Archivo_Narrow/ArchivoNarrow-VariableFont_wght.ttf')
+			format('truetype'); /* Fallback */
+	}
+	@font-face {
+		font-family: 'BowlbyOne Regular';
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+		src: url('/fonts/Bowlby_One/BowlbyOne-Regular.ttf') format('truetype'); /* Fallback */
+	}
+	h1 {
+		@apply text-5xl font-bowlby;
+	}
+	h3 {
+		@apply text-4xl font-archivo font-bold;
+	}
+	button {
+		@apply btn 
+		text-2xl font-sans font-normal btn-secondary m-2;
+	}
+	/*temporary for the 'Hello from the [/list] Page' titles */
+	p {
+		@apply font-archivo text-4xl;
+	}
+	input[type='text'],
+	select {
+		@apply input input-bordered mx-3;
+	}
+	/* header {
+		@apply navbar drop-shadow-lg
+		
+	} */
+	/* input[text=text] {
+		@apply mx-4
+	} */
+}
+
 :root {
 	--color-black: hsla(220, 13%, 18%, 1);
 	--color-gray-dark: hsla(220, 13%, 25%, 1);
