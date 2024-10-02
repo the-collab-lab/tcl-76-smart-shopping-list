@@ -4,6 +4,8 @@ import { createList, useAuth, deleteList } from '../api';
 import { Fragment, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useVoiceToText } from '../utils';
+import DeleteIcon from '@mui/icons-material/Delete';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 export function Home({ data, setListPath, setAllLists }) {
 	const [listName, setListName] = useState('');
@@ -71,7 +73,9 @@ export function Home({ data, setListPath, setAllLists }) {
 									setListPath={setListPath}
 									path={list.path}
 								/>
-								<button onClick={() => handleDelete(list)}>Delete</button>
+								<button onClick={() => handleDelete(list)}>
+									<DeleteIcon />
+								</button>
 								<br></br>
 								<br></br>
 							</Fragment>
@@ -87,7 +91,7 @@ export function Home({ data, setListPath, setAllLists }) {
 					onChange={(e) => setListName(e.target.value)}
 				/>
 				<button type="button" onClick={startListening}>
-					{isListening ? 'Listening...' : 'Start Voice Input'}
+					{isListening ? 'Listening...' : <KeyboardVoiceIcon />}
 				</button>
 				<button>Submit</button>
 				<p>{error}</p>
