@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { addItem, shareList } from '../api';
 import { useVoiceToText } from '../utils';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 export function ManageList({ userId, list }) {
 	const [formData, setFormData] = useState({
@@ -109,15 +110,12 @@ export function ManageList({ userId, list }) {
 
 	return (
 		<>
-			<p>
-				Hello from the <code>/manage-list</code> page!
-			</p>
-
 			<div className="manage-list-form">
 				<form onSubmit={handleSubmit}>
 					<label htmlFor="name">Name of item:</label>
 					<input
 						type="text"
+						placeholder="Type here"
 						name="name"
 						id="name-of-item"
 						value={formData.name}
@@ -126,7 +124,7 @@ export function ManageList({ userId, list }) {
 					></input>
 
 					<button type="button" onClick={handleVoiceTransform}>
-						{isListening ? 'Listening...' : 'Start Voice Input'}
+						{isListening ? 'Listening...' : <KeyboardVoiceIcon />}
 					</button>
 
 					<br></br>
