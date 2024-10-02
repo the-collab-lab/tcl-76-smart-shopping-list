@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { addItem, shareList } from '../api';
 import { useVoiceToText } from '../utils';
-import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 export function ShareList({ userId, list }) {
 	const [formData, setFormData] = useState({

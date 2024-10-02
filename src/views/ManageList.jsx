@@ -150,20 +150,6 @@ export function ManageList({ userId, list }) {
 
 					<button type="submit">Submit</button>
 				</form>
-
-				{/* <form onSubmit={handleEmailSubmit}>
-					<label htmlFor="invite-email">Invite user by email:</label>
-					<input
-						id="invite-email"
-						type="text"
-						name="email"
-						value={email}
-						onChange={handleEmailChange}
-						required
-					></input>
-
-					<button type="submit">Invite my friend</button>
-				</form> */}
 			</div>
 		</>
 	);
