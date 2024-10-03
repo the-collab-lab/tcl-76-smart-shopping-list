@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { useVoiceToText } from '../utils';
 import DeleteIcon from '@mui/icons-material/Delete';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
-import ShareIcon from '@mui/icons-material/Share';
 
 export function Home({ data, setListPath, setAllLists }) {
 	const [listName, setListName] = useState('');
@@ -56,13 +55,6 @@ export function Home({ data, setListPath, setAllLists }) {
 		} catch (error) {
 			console.log(error);
 		}
-	};
-
-	const shareListNavigate = (e) => {
-		e.preventDefault();
-		setListPath(path);
-		window.location.href = '/share-list';
-		// console.log(e)
 	};
 
 	return (
