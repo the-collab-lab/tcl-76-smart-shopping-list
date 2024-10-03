@@ -3,7 +3,7 @@ import { useState, useEffect, Fragment } from 'react';
 import BasicModal from './Modal';
 import { comparePurchaseUrgency } from '../api';
 
-export function List({ data, userId }) {
+export function List({ data, userId, path }) {
 	const [filterVal, setFilterVal] = useState('');
 	const [filteredObject, setFilteredObject] = useState({});
 	const [sortedList, setSortedList] = useState([]);
@@ -58,9 +58,12 @@ export function List({ data, userId }) {
 
 	return (
 		<>
-			<p>
-				Hello from the <code>/list</code> page!
-			</p>
+			<h2>
+				{console.log(path)}
+				{console.log(path.slice(path.indexOf('/') + 1))}
+				{/* {data.name} */}
+				{`${path.slice(path.indexOf('/') + 1)} List`}
+			</h2>
 			{showModal && dataEmpty && (
 				<BasicModal dataEmpty={dataEmpty} message={message} />
 			)}
