@@ -33,7 +33,7 @@ export function Layout() {
 							<h1 className="font-extrabold">SnapShop</h1>
 						</div>
 						{/* Navbar on Desktop */}
-						<div className="space-x-8 dropdown navbar-end hidden sm:block ">
+						<div className="space-x-8 navbar-end hidden sm:block ">
 							<NavLink to="/" style={handleActive}>
 								Home
 							</NavLink>
@@ -50,7 +50,7 @@ export function Layout() {
 						</div>
 
 						{/* Mobile Screen Icon Dropdown */}
-						<div className="space-x-8 dropdown sm:hidden ">
+						<div className="space-x-8 dropdown dropdown-bottom dropdown-end sm:hidden ">
 							<button className="btn btn-square btn-ghost">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -66,12 +66,12 @@ export function Layout() {
 									></path>
 								</svg>
 							</button>
-							<div className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-								<NavLink to="/" style={handleActive}>
+							<div className="menu menu-md dropdown-content bg-base-100 rounded-box z-[1]  w-52 p-2 shadow space-y-2">
+								<NavLink to="/" style={handleActive} className="text-3xl">
 									Home
 								</NavLink>
 
-								<NavLink to="/list" style={handleActive}>
+								<NavLink to="/list" style={handleActive} className="text-3xl">
 									List
 								</NavLink>
 
