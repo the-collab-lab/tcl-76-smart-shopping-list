@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './ListItem.css';
 import { updateItem, deleteItem } from '../api';
+import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 
 export function ListItem({ item }) {
 	const { name, dateLastPurchased, dateNextPurchased, totalPurchases, id } =
@@ -52,7 +53,7 @@ export function ListItem({ item }) {
 	};
 
 	return (
-		<li className="ListItem">
+		<li className="ListItem space-x-3">
 			<input
 				type="checkbox"
 				checked={checked}
@@ -62,27 +63,37 @@ export function ListItem({ item }) {
 			<h2 style={{ fontSize: '20px' }}>{name}</h2>
 
 			<button onClick={handleDelete}>Delete</button>
-			<button onClick={() => setIsActive(!isActive)}>
-				View Purchase Details
-			</button>
+			<div className="dropdown">
+				<button className="" onClick={() => setIsActive(!isActive)}>
+					<ExpandMoreOutlinedIcon />
+				</button>
 
-			<div style={{ display: isActive ? 'block' : 'none' }}>
-				<ul style={{ fontSize: '15px' }}>
-					<li>
-						Last Purchase:
-						<span>
-							{' '}
-							{dateLastPurchased
-								? dateLastPurchased.toDate().toDateString()
-								: 'N/A'}
-						</span>
-					</li>
-					<li>
-						Next Purchase:
-						<span> {dateNextPurchased?.toDate().toDateString()}</span>
-					</li>
-					<li>Total Purchases: {totalPurchases}</li>
-				</ul>
+				<div
+					style={{ display: isActive ? 'block' : 'none' }}
+					className="bg-base-100 bg-secondary rounded-box z-[1] w-52 p-2 shadow"
+				>
+					<ul style={{ fontSize: '15px' }}>
+						<li>
+							<h4 className="font-bold">Last Purchase:</h4>
+
+							<span>
+								{' '}
+								{dateLastPurchased
+									? dateLastPurchased.toDate().toDateString()
+									: 'N/A'}
+							</span>
+						</li>
+						<li>
+							<h4 className="font-bold">Next Purchase:</h4>
+
+							<span> {dateNextPurchased?.toDate().toDateString()}</span>
+						</li>
+						<li>
+							<h4 className="font-bold">Total Purchases: </h4>
+							<span>{totalPurchases}</span>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</li>
 	);
