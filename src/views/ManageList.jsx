@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
-import { addItem, shareList } from '../api';
+import { addItem } from '../api';
 import { useVoiceToText } from '../utils';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
-export function ManageList({ userId, list }) {
+export function ManageList({ list }) {
 	const [formData, setFormData] = useState({
 		name: '',
 		frequency: '',
 	});
-
-	const [email, setEmail] = useState('');
 
 	const { text, isListening, startListening } = useVoiceToText();
 
@@ -24,10 +23,6 @@ export function ManageList({ userId, list }) {
 			...prev,
 			[e.target.name]: e.target.value,
 		}));
-	}
-	function handleEmailChange(e) {
-		e.preventDefault();
-		setEmail(e.target.value);
 	}
 
 	function handleSubmit(e) {
@@ -91,15 +86,15 @@ export function ManageList({ userId, list }) {
 			});
 	}
 
-	async function handleEmailSubmit(e) {
-		e.preventDefault();
-		const listPath = localStorage.getItem('tcl-shopping-list-path');
-		try {
-			const result = await shareList(listPath, userId, email);
-			window.alert(result.response);
-			setEmail('');
-		} catch (error) {}
-	}
+	// async function handleEmailSubmit(e) {
+	// 	e.preventDefault();
+	// 	const listPath = localStorage.getItem('tcl-shopping-list-path');
+	// 	try {
+	// 		const result = await shareList(listPath, userId, email);
+	// 		window.alert(result.response);
+	// 		setEmail('');
+	// 	} catch (error) {}
+	// }
 
 	function handleVoiceTransform() {
 		if (!isListening) {
@@ -109,15 +104,12 @@ export function ManageList({ userId, list }) {
 
 	return (
 		<>
-			<p>
-				Hello from the <code>/manage-list</code> page!
-			</p>
-
 			<div className="manage-list-form">
 				<form onSubmit={handleSubmit}>
 					<label htmlFor="name">Name of item:</label>
 					<input
 						type="text"
+						placeholder="Type here"
 						name="name"
 						id="name-of-item"
 						value={formData.name}
@@ -126,7 +118,7 @@ export function ManageList({ userId, list }) {
 					></input>
 
 					<button type="button" onClick={handleVoiceTransform}>
-						{isListening ? 'Listening...' : 'Start Voice Input'}
+						{isListening ? 'Listening...' : <KeyboardVoiceIcon />}
 					</button>
 
 					<br></br>
@@ -151,20 +143,6 @@ export function ManageList({ userId, list }) {
 					</select>
 
 					<button type="submit">Submit</button>
-				</form>
-
-				<form onSubmit={handleEmailSubmit}>
-					<label htmlFor="invite-email">Invite user by email:</label>
-					<input
-						id="invite-email"
-						type="text"
-						name="email"
-						value={email}
-						onChange={handleEmailChange}
-						required
-					></input>
-
-					<button type="submit">Invite my friend</button>
 				</form>
 			</div>
 		</>

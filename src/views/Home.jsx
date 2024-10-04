@@ -1,9 +1,11 @@
 import './Home.css';
-import { SingleList } from '../components';
+import { SingleList, ShareListComponent } from '../components';
 import { createList, useAuth, deleteList } from '../api';
 import { Fragment, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useVoiceToText } from '../utils';
+import DeleteIcon from '@mui/icons-material/Delete';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 export function Home({ data, setListPath, setAllLists }) {
 	const [listName, setListName] = useState('');
@@ -57,9 +59,6 @@ export function Home({ data, setListPath, setAllLists }) {
 
 	return (
 		<div className="Home">
-			<p>
-				Hello from the home (<code>/</code>) page!
-			</p>
 			<ul className="font-archivo">
 				{data &&
 					data.map((list) => {
@@ -71,7 +70,16 @@ export function Home({ data, setListPath, setAllLists }) {
 									setListPath={setListPath}
 									path={list.path}
 								/>
-								<button onClick={() => handleDelete(list)}>Delete</button>
+								<button onClick={() => handleDelete(list)}>
+									<DeleteIcon />
+								</button>
+
+								<ShareListComponent
+									name={list.name}
+									setListPath={setListPath}
+									path={list.path}
+								/>
+
 								<br></br>
 								<br></br>
 							</Fragment>
@@ -79,7 +87,7 @@ export function Home({ data, setListPath, setAllLists }) {
 					})}
 			</ul>
 			<form action="" onSubmit={handleSubmit}>
-				<label htmlFor="listName">Enter List Name:</label>
+				<label htmlFor="listName">Add a New List:</label>
 				<input
 					type="text"
 					id="listName"
@@ -87,7 +95,7 @@ export function Home({ data, setListPath, setAllLists }) {
 					onChange={(e) => setListName(e.target.value)}
 				/>
 				<button type="button" onClick={startListening}>
-					{isListening ? 'Listening...' : 'Start Voice Input'}
+					{isListening ? 'Listening...' : <KeyboardVoiceIcon />}
 				</button>
 				<button>Submit</button>
 				<p>{error}</p>
