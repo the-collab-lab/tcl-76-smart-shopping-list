@@ -3,14 +3,6 @@ import { Outlet, NavLink } from 'react-router-dom';
 import './Layout.css';
 import { useAuth, SignInButton, SignOutButton } from '../api';
 
-/**
- * TODO: The links defined in this file don't work!
- *
- * Instead of anchor element, they should use a component
- * from `react-router-dom` to navigate to the routes
- * defined in `App.jsx`.
- */
-
 const handleActive = ({ isActive }) => {
 	return {
 		fontWeight: isActive ? '900' : '',
