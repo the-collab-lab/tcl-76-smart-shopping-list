@@ -60,12 +60,7 @@ export function List({ data, userId, path }) {
 
 	return (
 		<>
-			<h2 className="py-8">
-				{console.log(path)}
-				{console.log(path.slice(path.indexOf('/') + 1))}
-				{/* {data.name} */}
-				{`${path.slice(path.indexOf('/') + 1)} List`}
-			</h2>
+			<h2 className="py-8">{`${path.slice(path.indexOf('/') + 1)} List`}</h2>
 			{showModal && dataEmpty && (
 				<BasicModal dataEmpty={dataEmpty} message={message} />
 			)}
@@ -76,7 +71,9 @@ export function List({ data, userId, path }) {
 			</button>
 
 			<form onSubmit={clearInput} className="py-4">
-				<label htmlFor="item-name">Find Item </label>
+				<label htmlFor="item-name" aria-label="Search for an item">
+					Find Item{' '}
+				</label>
 				<input
 					id="item-name"
 					name="item-name"

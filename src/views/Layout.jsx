@@ -11,12 +11,10 @@ import { useAuth, SignInButton, SignOutButton } from '../api';
  * defined in `App.jsx`.
  */
 
-const handleActive = ({ isActive, isPending }) => {
+const handleActive = ({ isActive }) => {
 	return {
 		fontWeight: isActive ? '900' : '',
 		color: isActive ? '#E8C900' : 'rgb(247 253 235 / 68%)',
-		// color: isPending ? 'red' : 'black',
-		// isActive ? 'yellow' : 'white',
 	};
 };
 
@@ -34,6 +32,7 @@ export function Layout() {
 						<div className=" navbar-start pl-2.5">
 							<h1 className="font-extrabold text-accent">SnapShop</h1>
 						</div>
+
 						{/* Navbar on Desktop */}
 						<div className="space-x-8 navbar-end hidden sm:block">
 							<NavLink to="/" style={handleActive}>
@@ -43,10 +42,6 @@ export function Layout() {
 							<NavLink to="/list" style={handleActive}>
 								List
 							</NavLink>
-
-							{/* <NavLink to="/manage-list" style={handleActive}>
-								Manage List
-							</NavLink> */}
 
 							{user ? <SignOutButton /> : <SignInButton />}
 						</div>
@@ -76,10 +71,6 @@ export function Layout() {
 								<NavLink to="/list" style={handleActive} className="text-3xl">
 									List
 								</NavLink>
-
-								{/* <NavLink to="/manage-list" style={handleActive}>
-									Manage List
-								</NavLink> */}
 
 								{user ? <SignOutButton /> : <SignInButton />}
 							</div>
