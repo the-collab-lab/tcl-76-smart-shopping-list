@@ -22,7 +22,7 @@
 		@apply text-5xl font-bowlby;
 	}
 	h2 {
-		@apply text-4xl font-bold;
+		@apply text-5xl font-archivo font-bold;
 	}
 	h3 {
 		@apply text-4xl font-archivo font-bold;

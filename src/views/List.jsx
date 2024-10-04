@@ -60,7 +60,7 @@ export function List({ data, userId, path }) {
 
 	return (
 		<>
-			<h2>
+			<h2 className="py-8">
 				{console.log(path)}
 				{console.log(path.slice(path.indexOf('/') + 1))}
 				{/* {data.name} */}

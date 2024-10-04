@@ -13,8 +13,10 @@ import { useAuth, SignInButton, SignOutButton } from '../api';
 
 const handleActive = ({ isActive, isPending }) => {
 	return {
-		fontWeight: isActive ? 'bold' : '',
-		color: isPending ? 'red' : 'black',
+		fontWeight: isActive ? '900' : '',
+		color: isActive ? '#E8C900' : 'rgb(247 253 235 / 68%)',
+		// color: isPending ? 'red' : 'black',
+		// isActive ? 'yellow' : 'white',
 	};
 };
 
@@ -23,12 +25,12 @@ export function Layout() {
 
 	return (
 		<>
-			<div className="Layout">
+			<div className="Layout ">
 				{/* <header className="Layout-header">
 				
 				</header> */}
-				<nav className="Nav navbar">
-					<div className="Nav-container">
+				<nav className="Nav navbar  bg-neutral">
+					<div className="Nav-container  bg-neutral">
 						<div className=" navbar-start">
 							<h1 className="font-extrabold text-accent">SnapShop</h1>
 						</div>
@@ -50,7 +52,7 @@ export function Layout() {
 						</div>
 
 						{/* Mobile Screen Icon Dropdown */}
-						<div className="space-x-8 dropdown dropdown-bottom dropdown-end sm:hidden  text-accent  ">
+						<div className="space-x-8 dropdown dropdown-bottom dropdown-end sm:hidden  text-accent">
 							<button className="btn btn-square btn-ghost ">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +68,7 @@ export function Layout() {
 									></path>
 								</svg>
 							</button>
-							<div className="menu menu-md dropdown-content bg-base-100 rounded-box z-[1]  w-52 p-2 shadow space-y-2">
+							<div className="menu menu-md dropdown-content  bg-neutral  rounded-box z-[1]  w-52 p-2 shadow space-y-2">
 								<NavLink to="/" style={handleActive} className="text-3xl">
 									Home
 								</NavLink>
