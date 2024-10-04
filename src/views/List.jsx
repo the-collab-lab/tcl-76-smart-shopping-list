@@ -75,8 +75,8 @@ export function List({ data, userId, path }) {
 				Add item <AddBoxRoundedIcon fontSize="large" className="text-black" />
 			</button>
 
-			<form onSubmit={clearInput}>
-				<label htmlFor="item-name">Search item: </label>
+			<form onSubmit={clearInput} className="py-4">
+				<label htmlFor="item-name">Find Item </label>
 				<input
 					id="item-name"
 					name="item-name"

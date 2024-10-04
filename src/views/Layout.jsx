@@ -25,13 +25,13 @@ export function Layout() {
 
 	return (
 		<>
-			<div className="Layout ">
-				{/* <header className="Layout-header">
-				
-				</header> */}
-				<nav className="Nav navbar  bg-neutral">
-					<div className="Nav-container  bg-neutral">
-						<div className=" navbar-start">
+			<div className="Layout">
+				<nav className="Nav navbar bg-neutral">
+					<div
+						style={{ paddingInline: 'min(5dvw, 3.2rem)' }}
+						className="Nav-container bg-neutral"
+					>
+						<div className=" navbar-start pl-2.5">
 							<h1 className="font-extrabold text-accent">SnapShop</h1>
 						</div>
 						{/* Navbar on Desktop */}
