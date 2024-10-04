@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import './ListItem.css';
 import { updateItem, deleteItem } from '../api';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
 export function ListItem({ item }) {
 	const { name, dateLastPurchased, dateNextPurchased, totalPurchases, id } =
@@ -60,6 +59,7 @@ export function ListItem({ item }) {
 				checked={checked}
 				onChange={handleChange}
 				disabled={checked}
+				className="checkbox checkbox-primary"
 			/>
 			<h2 style={{ fontSize: '20px' }}>{name}</h2>
 

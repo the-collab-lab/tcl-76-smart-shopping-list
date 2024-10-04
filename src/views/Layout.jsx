@@ -30,10 +30,10 @@ export function Layout() {
 				<nav className="Nav navbar">
 					<div className="Nav-container">
 						<div className=" navbar-start">
-							<h1 className="font-extrabold">SnapShop</h1>
+							<h1 className="font-extrabold text-accent">SnapShop</h1>
 						</div>
 						{/* Navbar on Desktop */}
-						<div className="space-x-8 navbar-end hidden sm:block ">
+						<div className="space-x-8 navbar-end hidden sm:block">
 							<NavLink to="/" style={handleActive}>
 								Home
 							</NavLink>
@@ -50,8 +50,8 @@ export function Layout() {
 						</div>
 
 						{/* Mobile Screen Icon Dropdown */}
-						<div className="space-x-8 dropdown dropdown-bottom dropdown-end sm:hidden ">
-							<button className="btn btn-square btn-ghost">
+						<div className="space-x-8 dropdown dropdown-bottom dropdown-end sm:hidden  text-accent  ">
+							<button className="btn btn-square btn-ghost ">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									fill="none"

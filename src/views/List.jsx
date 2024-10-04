@@ -82,7 +82,7 @@ export function List({ data, userId, path }) {
 				{filterVal && <button>Clear</button>}
 			</form>
 
-			<ul>
+			<ul className="space-y-2">
 				{filteredObject &&
 					Object.entries(filteredObject).map(([timeBucket, list]) => (
 						<Fragment key={crypto.randomUUID()}>
