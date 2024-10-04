@@ -2,6 +2,8 @@ import { ListItem } from '../components';
 import { useState, useEffect, Fragment } from 'react';
 import BasicModal from './Modal';
 import { comparePurchaseUrgency } from '../api';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import AddBoxRoundedIcon from '@mui/icons-material/AddBoxRounded';
 
 export function List({ data, userId, path }) {
 	const [filterVal, setFilterVal] = useState('');
@@ -68,7 +70,10 @@ export function List({ data, userId, path }) {
 				<BasicModal dataEmpty={dataEmpty} message={message} />
 			)}
 
-			<button onClick={addItemNavigate}> Add item</button>
+			<button onClick={addItemNavigate}>
+				{' '}
+				Add item <AddBoxRoundedIcon fontSize="large" className="text-black" />
+			</button>
 
 			<form onSubmit={clearInput}>
 				<label htmlFor="item-name">Search item: </label>
@@ -78,7 +83,9 @@ export function List({ data, userId, path }) {
 					type="text"
 					value={filterVal}
 					onChange={(e) => setFilterVal(e.target.value)}
+					placeholder="e.g. Apple"
 				/>
+				<SearchRoundedIcon />
 				{filterVal && <button>Clear</button>}
 			</form>
 

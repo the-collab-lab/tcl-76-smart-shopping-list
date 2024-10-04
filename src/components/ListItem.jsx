@@ -3,6 +3,7 @@ import './ListItem.css';
 import { updateItem, deleteItem } from '../api';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
+
 export function ListItem({ item }) {
 	const { name, dateLastPurchased, dateNextPurchased, totalPurchases, id } =
 		item;
@@ -61,15 +62,16 @@ export function ListItem({ item }) {
 				disabled={checked}
 				className="checkbox checkbox-primary"
 			/>
-			<h2 style={{ fontSize: '20px' }}>{name}</h2>
+			<h4 style={{ fontSize: '20px' }}>{name}</h4>
 
-			<button onClick={handleDelete}>
+			<button onClick={handleDelete} aria-label="Delete this Item">
 				<DeleteIcon />
 			</button>
 			<div className="dropdown">
 				<button
 					onClick={() => setIsActive(!isActive)}
 					className="focus:bg-secondary"
+					aria-label="Get purchase details of this item"
 				>
 					<ExpandMoreIcon />
 				</button>
