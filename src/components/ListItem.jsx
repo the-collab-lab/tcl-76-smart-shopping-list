@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import './ListItem.css';
 import { updateItem, deleteItem } from '../api';
-import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
-
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
 export function ListItem({ item }) {
 	const { name, dateLastPurchased, dateNextPurchased, totalPurchases, id } =
 		item;
@@ -62,20 +63,20 @@ export function ListItem({ item }) {
 			/>
 			<h2 style={{ fontSize: '20px' }}>{name}</h2>
 
-			<button onClick={handleDelete}>Delete</button>
+			<button onClick={handleDelete}>
+				<DeleteIcon />
+			</button>
 			<div className="dropdown">
-				<button className="" onClick={() => setIsActive(!isActive)}>
-					<ExpandMoreOutlinedIcon />
-				</button>
-
-				<div
-					style={{ display: isActive ? 'block' : 'none' }}
-					className="bg-base-100 bg-secondary rounded-box z-[1] w-52 p-2 shadow"
+				<button
+					onClick={() => setIsActive(!isActive)}
+					className="focus:bg-secondary"
 				>
+					<ExpandMoreIcon />
+				</button>
+				<div className="dropdown-content bg-base-200 rounded-box z-[1] w-60 p-4 shadow">
 					<ul style={{ fontSize: '15px' }}>
 						<li>
 							<h4 className="font-bold">Last Purchase:</h4>
-
 							<span>
 								{' '}
 								{dateLastPurchased
