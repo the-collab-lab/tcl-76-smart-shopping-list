@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import './ListItem.css';
 import { updateItem, deleteItem } from '../api';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export function ListItem({ item }) {
 	const { name, dateLastPurchased, dateNextPurchased, totalPurchases, id } =
@@ -52,37 +54,49 @@ export function ListItem({ item }) {
 	};
 
 	return (
-		<li className="ListItem">
+		<li className="ListItem space-x-3">
 			<input
 				type="checkbox"
 				checked={checked}
 				onChange={handleChange}
 				disabled={checked}
+				className="checkbox checkbox-primary"
 			/>
-			<h2 style={{ fontSize: '20px' }}>{name}</h2>
+			<h4 style={{ fontSize: '20px' }}>{name}</h4>
 
-			<button onClick={handleDelete}>Delete</button>
-			<button onClick={() => setIsActive(!isActive)}>
-				View Purchase Details
+			<button onClick={handleDelete} aria-label="Delete this Item">
+				<DeleteIcon />
 			</button>
+			<div className="dropdown">
+				<button
+					onClick={() => setIsActive(!isActive)}
+					className="focus:bg-secondary"
+					aria-label="Get purchase details of this item"
+				>
+					<ExpandMoreIcon />
+				</button>
+				<div className="dropdown-content bg-base-200 rounded-box z-[1] w-60 p-4 shadow">
+					<ul style={{ fontSize: '15px' }}>
+						<li>
+							<h4 className="font-bold">Last Purchase:</h4>
+							<span>
+								{' '}
+								{dateLastPurchased
+									? dateLastPurchased.toDate().toDateString()
+									: 'N/A'}
+							</span>
+						</li>
+						<li>
+							<h4 className="font-bold">Next Purchase:</h4>
 
-			<div style={{ display: isActive ? 'block' : 'none' }}>
-				<ul style={{ fontSize: '15px' }}>
-					<li>
-						Last Purchase:
-						<span>
-							{' '}
-							{dateLastPurchased
-								? dateLastPurchased.toDate().toDateString()
-								: 'N/A'}
-						</span>
-					</li>
-					<li>
-						Next Purchase:
-						<span> {dateNextPurchased?.toDate().toDateString()}</span>
-					</li>
-					<li>Total Purchases: {totalPurchases}</li>
-				</ul>
+							<span> {dateNextPurchased?.toDate().toDateString()}</span>
+						</li>
+						<li>
+							<h4 className="font-bold">Total Purchases: </h4>
+							<span>{totalPurchases}</span>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</li>
 	);
