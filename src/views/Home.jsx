@@ -91,7 +91,7 @@ export function Home({ data, setListPath, setAllLists }) {
 				onSubmit={handleSubmit}
 				className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-4"
 			>
-				<label htmlFor="listName">Add a New List:</label>
+				<label htmlFor="listName">Create a new list:</label>
 				<input
 					type="text"
 					id="listName"
