@@ -58,35 +58,39 @@ export function Home({ data, setListPath, setAllLists }) {
 	};
 
 	return (
-		<div className="Home">
-			<ul className="font-archivo">
+		<div className="flex flex-col h-[80vh]  my-8 p-8 bg-white rounded-3xl shadow-xl overflow-hidden mx-auto">
+			<ul className="font-archivo flex-grow overflow-y-auto space-y-4">
 				{data &&
 					data.map((list) => {
 						const uniqueId = crypto.randomUUID();
 						return (
 							<Fragment key={uniqueId}>
-								<SingleList
-									name={list.name}
-									setListPath={setListPath}
-									path={list.path}
-								/>
-								<button onClick={() => handleDelete(list)}>
-									<DeleteIcon />
-								</button>
-
-								<ShareListComponent
-									name={list.name}
-									setListPath={setListPath}
-									path={list.path}
-								/>
-
-								<br></br>
-								<br></br>
+								<div className="flex items-center justify-between p-4 rounded-3xl shadow-md border">
+									<SingleList
+										name={list.name}
+										setListPath={setListPath}
+										path={list.path}
+									/>
+									<div className="flex items-center space-x-4">
+										<button onClick={() => handleDelete(list)} className="p-2">
+											<DeleteIcon />
+										</button>
+										<ShareListComponent
+											name={list.name}
+											setListPath={setListPath}
+											path={list.path}
+										/>
+									</div>
+								</div>
 							</Fragment>
 						);
 					})}
 			</ul>
-			<form action="" onSubmit={handleSubmit}>
+			<form
+				action=""
+				onSubmit={handleSubmit}
+				className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-4"
+			>
 				<label htmlFor="listName">Add a New List:</label>
 				<input
 					type="text"
