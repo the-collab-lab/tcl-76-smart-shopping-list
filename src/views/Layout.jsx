@@ -1,7 +1,7 @@
 import { Outlet, NavLink } from 'react-router-dom';
-
 import './Layout.css';
 import { useAuth, SignInButton, SignOutButton } from '../api';
+import { StatsComponent } from '../components/StatsComponent';
 
 const handleActive = ({ isActive }) => {
 	return {
@@ -71,6 +71,7 @@ export function Layout() {
 				</nav>
 
 				<main className="Layout-main">
+					<StatsComponent />
 					<Outlet />
 				</main>
 			</div>

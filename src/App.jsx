@@ -7,6 +7,7 @@ import { useAuth, useShoppingListData, useShoppingLists } from './api';
 import { useStateWithStorage } from './utils';
 
 import { useState, useEffect } from 'react';
+
 export function App() {
 	/**
 	 * This custom hook takes the path of a shopping list
