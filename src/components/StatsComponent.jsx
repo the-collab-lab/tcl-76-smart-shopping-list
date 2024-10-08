@@ -1,4 +1,3 @@
-import { db } from '../api/config';
 import { useState, useEffect } from 'react';
 
 export function StatsComponent() {
@@ -6,11 +5,11 @@ export function StatsComponent() {
 	const [listCount, setListCount] = useState(0);
 	const [itemsCount, setItemsCount] = useState(0);
 
-	// Get # of Users
-
-	// Get # of Lists
-
-	// Get # of Items
+	useEffect(() => {
+		// Get # of Users
+		// Get # of Lists
+		// Get # of Items
+	});
 
 	return (
 		<>
