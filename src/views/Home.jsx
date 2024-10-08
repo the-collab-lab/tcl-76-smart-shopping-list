@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { useVoiceToText } from '../utils';
 import DeleteIcon from '@mui/icons-material/Delete';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
-import { StatsComponent } from '../components/StatsComponent';
 
 export function Home({ data, setListPath, setAllLists }) {
 	const [listName, setListName] = useState('');
@@ -65,30 +64,25 @@ export function Home({ data, setListPath, setAllLists }) {
 					data.map((list) => {
 						const uniqueId = crypto.randomUUID();
 						return (
-							<>
-								<Fragment key={uniqueId}>
-									<div className="flex items-center justify-between p-4 rounded-3xl shadow-md border">
-										<SingleList
+							<Fragment key={uniqueId}>
+								<div className="flex items-center justify-between p-4 rounded-3xl shadow-md border">
+									<SingleList
+										name={list.name}
+										setListPath={setListPath}
+										path={list.path}
+									/>
+									<div className="flex items-center space-x-4">
+										<button onClick={() => handleDelete(list)} className="p-2">
+											<DeleteIcon />
+										</button>
+										<ShareListComponent
 											name={list.name}
 											setListPath={setListPath}
 											path={list.path}
 										/>
-										<div className="flex items-center space-x-4">
-											<button
-												onClick={() => handleDelete(list)}
-												className="p-2"
-											>
-												<DeleteIcon />
-											</button>
-											<ShareListComponent
-												name={list.name}
-												setListPath={setListPath}
-												path={list.path}
-											/>
-										</div>
 									</div>
-								</Fragment>
-							</>
+								</div>
+							</Fragment>
 						);
 					})}
 			</ul>
