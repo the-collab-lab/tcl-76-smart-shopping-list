@@ -22,7 +22,9 @@ export function Layout() {
 						className="Nav-container bg-neutral"
 					>
 						<div className=" navbar-start pl-2.5">
-							<h1 className="font-extrabold text-accent">SnapShop</h1>
+							<NavLink to="/" style={handleActive}>
+								<h1 className="font-extrabold text-accent">SnapShop</h1>
+							</NavLink>
 						</div>
 
 						{/* Navbar on Desktop */}
