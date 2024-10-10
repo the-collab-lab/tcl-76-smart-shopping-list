@@ -71,10 +71,6 @@ export function Layout() {
 				</nav>
 
 				<main className="Layout-main">
-					<div>
-						<StatsComponent />
-					</div>
-
 					<Outlet />
 				</main>
 			</div>
