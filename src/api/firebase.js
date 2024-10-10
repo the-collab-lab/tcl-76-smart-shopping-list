@@ -143,6 +143,20 @@ export async function createList(userId, userEmail, listName) {
 	return listDocRef.path;
 }
 
+export async function getTotalListCount() {
+	const usersCollectionRef = collection(db, 'users');
+	const userInfo = await getDocs(usersCollectionRef);
+
+	let getTotalListCount = 0;
+	for (const userDoc of userInfo.docs) {
+		const user = userDoc.data();
+		if (user.sharedLists) {
+			getTotalListCount += user.sharedLists.length;
+		}
+	}
+	return getTotalListCount;
+}
+
 /**
  * Shares a list with another user.
  * @param {string} listPath The path to the list to share.

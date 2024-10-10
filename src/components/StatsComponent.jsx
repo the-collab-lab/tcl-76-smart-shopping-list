@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getAllUsersFromDatabase } from '../api';
+import { getAllUsersFromDatabase, getTotalListCount } from '../api';
 
 export function StatsComponent() {
 	const [userCount, setUserCount] = useState(0);
@@ -14,12 +14,19 @@ export function StatsComponent() {
 		fetchUserCount();
 	}, []);
 
+	useEffect(() => {
+		const fetchListCount = async () => {
+			const totalLists = await getTotalListCount();
+			setListCount(totalLists);
+		};
+		fetchListCount();
+	}, []);
+
 	return (
 		<>
 			<div>
 				<h3>{userCount} SnapShop users </h3>
-				<h3>{listCount} of Lists </h3>
-				<h3>{itemsCount} of Items on a List</h3>
+				<h3>{listCount} SnapShop lists </h3>
 			</div>
 		</>
 	);
