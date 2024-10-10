@@ -1,6 +1,7 @@
 import {
 	arrayUnion,
 	getDoc,
+	getDocs,
 	setDoc,
 	collection,
 	doc,
@@ -111,6 +112,13 @@ export async function addUserToDatabase(user) {
 			uid: user.uid,
 		});
 	}
+}
+
+export async function getAllUsersFromDatabase() {
+	const usersCollectionRef = collection(db, 'users');
+	const usersList = await getDocs(usersCollectionRef);
+	const users = usersList.docs.map((doc) => doc.data());
+	return users.length;
 }
 
 /**
