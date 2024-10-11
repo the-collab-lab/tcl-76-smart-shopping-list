@@ -2,11 +2,6 @@ import { useState } from 'react';
 import { shareList } from '../api';
 
 export function ShareList({ userId }) {
-	// const [formData, setFormData] = useState({
-	// 	name: '',
-	// 	frequency: '',
-	// });
-
 	const [email, setEmail] = useState('');
 
 	function handleEmailChange(e) {

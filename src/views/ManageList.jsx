@@ -86,16 +86,6 @@ export function ManageList({ list }) {
 			});
 	}
 
-	// async function handleEmailSubmit(e) {
-	// 	e.preventDefault();
-	// 	const listPath = localStorage.getItem('tcl-shopping-list-path');
-	// 	try {
-	// 		const result = await shareList(listPath, userId, email);
-	// 		window.alert(result.response);
-	// 		setEmail('');
-	// 	} catch (error) {}
-	// }
-
 	function handleVoiceTransform() {
 		if (!isListening) {
 			startListening();
