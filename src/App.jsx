@@ -7,6 +7,7 @@ import { useAuth, useShoppingListData, useShoppingLists } from './api';
 import { useStateWithStorage } from './utils';
 
 import { useState, useEffect } from 'react';
+import CreateAccount from './components/CreateAccount';
 export function App() {
 	/**
 	 * This custom hook takes the path of a shopping list
@@ -75,6 +76,7 @@ export function App() {
 						path="/share-list"
 						element={<ShareList userId={userId} list={data} />}
 					/>
+					<Route path="create-account" element={<CreateAccount />} />
 				</Route>
 			</Routes>
 		</Router>
