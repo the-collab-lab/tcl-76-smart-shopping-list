@@ -1,6 +1,6 @@
 import './Home.css';
 import { SingleList, ShareListComponent } from '../components';
-import { createList, useAuth, deleteList } from '../api';
+import { createList, useAuth, deleteList, unfollowList } from '../api';
 import { Fragment, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useVoiceToText } from '../utils';
@@ -58,8 +58,23 @@ export function Home({ data, setListPath, setAllLists }) {
 		}
 	};
 
-	const handleRemoveSharedList = async (list) => {
-		return;
+	const handleUnfollowSharedList = async (list) => {
+		try {
+			if (
+				window.confirm(
+					`Are you sure you want to remove ${list.name} from your shopping lists?`,
+				)
+			) {
+				await unfollowList(userEmail, list.path);
+				const updatedData = data.filter(
+					(eachList) => eachList.path !== list.path,
+				);
+
+				setAllLists(updatedData);
+			}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -89,7 +104,7 @@ export function Home({ data, setListPath, setAllLists }) {
 										{/* Remove button for shared lists */}
 										{list.isShared && (
 											<button
-												onClick={() => handleRemoveSharedList(list)}
+												onClick={() => handleUnfollowSharedList(list)}
 												className="p-2"
 											>
 												<RemoveCircleIcon />

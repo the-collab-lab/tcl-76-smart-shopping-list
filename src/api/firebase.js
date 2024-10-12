@@ -272,6 +272,20 @@ export async function deleteList(userEmail, listPath) {
 	}
 }
 
+export async function unfollowList(userEmail, listPath) {
+	try {
+		const listDocRef = doc(db, listPath);
+
+		// Remove the list reference from the user's sharedWithMe array
+		const userDocumentRef = doc(db, 'users', userEmail);
+		await updateDoc(userDocumentRef, {
+			sharedWithMe: arrayRemove(listDocRef),
+		});
+	} catch (error) {
+		console.error('Error unfollowing the list:', error);
+	}
+}
+
 export function comparePurchaseUrgency(list) {
 	const currentDate = new Date();
 	const soon = [];
