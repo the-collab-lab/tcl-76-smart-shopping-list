@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useVoiceToText } from '../utils';
 import DeleteIcon from '@mui/icons-material/Delete';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'; //remove shopping list that are being shared with
 
 export function Home({ data, setListPath, setAllLists }) {
 	const [listName, setListName] = useState('');
@@ -57,6 +58,10 @@ export function Home({ data, setListPath, setAllLists }) {
 		}
 	};
 
+	const handleRemoveSharedList = async (list) => {
+		return;
+	};
+
 	return (
 		<div className="flex flex-col h-[80vh]  my-8 p-8 bg-white rounded-3xl shadow-xl overflow-hidden mx-auto">
 			<ul className="font-archivo flex-grow overflow-y-auto space-y-4">
@@ -72,9 +77,24 @@ export function Home({ data, setListPath, setAllLists }) {
 										path={list.path}
 									/>
 									<div className="flex items-center space-x-4">
-										<button onClick={() => handleDelete(list)} className="p-2">
-											<DeleteIcon />
-										</button>
+										{!list.isShared && (
+											<button
+												onClick={() => handleDelete(list)}
+												className="p-2"
+											>
+												<DeleteIcon />
+											</button>
+										)}
+
+										{/* Remove button for shared lists */}
+										{list.isShared && (
+											<button
+												onClick={() => handleRemoveSharedList(list)}
+												className="p-2"
+											>
+												<RemoveCircleIcon />
+											</button>
+										)}
 										<ShareListComponent
 											name={list.name}
 											setListPath={setListPath}

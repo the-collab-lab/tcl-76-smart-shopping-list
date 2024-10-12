@@ -37,11 +37,23 @@ export function useShoppingLists(userId, userEmail) {
 
 		onSnapshot(userDocRef, (docSnap) => {
 			if (docSnap.exists()) {
-				const listRefs = docSnap.data().sharedLists;
-				const newData = listRefs.map((listRef) => {
-					// We keep the list's id and path so we can use them later.
-					return { name: listRef.id, path: listRef.path };
-				});
+				const userData = docSnap.data();
+				const sharedLists = userData.sharedLists || []; // Lists created by the user
+				const sharedWithMeLists = userData.sharedWithMe || []; // Lists shared with the user
+
+				const sharedListsData = sharedLists.map((listRef) => ({
+					name: listRef.id,
+					path: listRef.path,
+					isShared: false, // These lists are created by the user
+				}));
+
+				const sharedWithMeData = sharedWithMeLists.map((listRef) => ({
+					name: listRef.id,
+					path: listRef.path,
+					isShared: true, // These lists are shared with the user
+				}));
+
+				const newData = [...sharedListsData, ...sharedWithMeData];
 				setData(newData);
 			}
 		});
@@ -140,6 +152,10 @@ export async function createList(userId, userEmail, listName) {
  * @param {string} listPath The path to the list to share.
  * @param {string} recipientEmail The email of the user to share the list with.
  */
+
+//for a user, is there a way to know which shopping list are the ones being shared with, not owning this list
+// if shared list, only unfollow when deleted
+// if owning this list, cascading deletion
 export async function shareList(listPath, currentUserId, recipientEmail) {
 	// Check if current user is owner.
 	if (!listPath.includes(currentUserId)) {
@@ -159,8 +175,12 @@ export async function shareList(listPath, currentUserId, recipientEmail) {
 	const listDocumentRef = doc(db, listPath);
 	const userDocumentRef = doc(db, 'users', recipientEmail);
 	await updateDoc(userDocumentRef, {
-		sharedLists: arrayUnion(listDocumentRef),
+		sharedWithMe: arrayUnion(listDocumentRef),
 	});
+
+	const updatedRecipientDoc = await getDoc(userDocumentRef);
+	const updatedSharedLists = updatedRecipientDoc.data().sharedWithMe || [];
+	console.log('After update:', updatedSharedLists);
 
 	return {
 		response: `The shopping list "${listPath.split('/').pop()}" has been shared!`,
