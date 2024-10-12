@@ -9,6 +9,9 @@ import {
 	increment,
 	deleteDoc,
 	arrayRemove,
+	query,
+	where,
+	getDocs,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
@@ -266,6 +269,21 @@ export async function deleteList(userEmail, listPath) {
 		const userDocumentRef = doc(db, 'users', userEmail);
 		await updateDoc(userDocumentRef, {
 			sharedLists: arrayRemove(listDocRef),
+		});
+
+		const usersCollectionRef = collection(db, 'users');
+		const q = query(
+			usersCollectionRef,
+			where('sharedWithMe', 'array-contains', listDocRef),
+		);
+
+		const usersWhoHasList = await getDocs(q);
+
+		usersWhoHasList.forEach(async (docSnapshot) => {
+			const userDocRef = doc(db, 'users', docSnapshot.id);
+			await updateDoc(userDocRef, {
+				sharedWithMe: arrayRemove(listDocRef),
+			});
 		});
 	} catch (error) {
 		console.error('Error deleting the list:', error);
