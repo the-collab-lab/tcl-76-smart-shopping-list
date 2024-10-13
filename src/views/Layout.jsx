@@ -73,6 +73,80 @@ export function Layout() {
 				<main className="Layout-main">
 					<Outlet />
 				</main>
+
+				<footer className="footer">
+					<div className="container">
+						<p className="text-lg font-bold">Developed by:</p>
+						<ul>
+							<li>
+								<a
+									href="https://www.linkedin.com/in/allison-randel/"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Allison Randel
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://www.linkedin.com/in/binmaemma/"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Emma Ma
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://www.linkedin.com/in/sarah-mko/"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Sarah Mekonnen
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://www.linkedin.com/in/codemarcos/"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Marcos Perez
+								</a>
+							</li>
+						</ul>
+						<p>Special thanks to our mentors:</p>
+						<ul>
+							<li>
+								<a
+									href="https://www.linkedin.com/in/devin-jaggernauth/"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Devin Jaggernauth
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://www.linkedin.com/in/mindyzwan/"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Mindy Zwanziger
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://www.linkedin.com/in/nathanejbrown/"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Nathan Brown
+								</a>
+							</li>
+						</ul>
+					</div>
+				</footer>
 			</div>
 		</>
 	);

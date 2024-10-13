@@ -33,6 +33,7 @@
 	padding-block: 0;
 	padding-block-end: 6.26rem;
 	width: min(72ch, 100%);
+	flex-grow: 1;
 }
 
 .Nav {
@@ -44,7 +45,6 @@
 	padding-bottom: max(env(safe-area-inset-bottom), 1rem);
 	padding-top: 1rem;
 	place-content: center;
-	/* position: fixed; */
 	width: 100%;
 }
 
@@ -72,4 +72,49 @@
 .Nav-link.active {
 	text-decoration-thickness: 0.22em;
 	text-underline-offset: 0.1em;
+}
+
+.footer {
+	background-color: #333;
+	color: #e8c900;
+	padding: 1.5rem 0;
+	text-align: center;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.footer p {
+	font-size: 1.5rem;
+	margin: 0;
+	font-weight: normal;
+}
+
+.footer ul {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+	padding: 0;
+	list-style-type: none;
+}
+
+.footer a {
+	color: #e8c900;
+	text-decoration: none;
+}
+
+.footer a:hover {
+	text-decoration: underline;
+}
+
+.footer p {
+	margin-top: 1rem;
+}
+
+.footer ul li a {
+	font-size: 1.5rem;
+	font-weight: bold;
 }
