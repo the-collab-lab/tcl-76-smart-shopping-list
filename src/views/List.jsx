@@ -14,8 +14,8 @@ export function List({ data, userId, path }) {
 	const dataEmpty = userId && !data.length;
 	const message = {
 		header: 'Tip:',
-		promptMSG: 'Your shopping list is empty. Go to Manage List to start!',
-		btnText: 'Go to Manage List',
+		promptMSG: 'Your shopping list is empty. Start adding items!',
+		btnText: 'Add Items',
 	};
 
 	useEffect(() => {

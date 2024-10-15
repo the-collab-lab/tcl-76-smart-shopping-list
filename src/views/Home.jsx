@@ -34,7 +34,7 @@ export function Home({ data, setListPath, setAllLists }) {
 			navigate('/list');
 
 			setTimeout(() => {
-				alert('List saved to database');
+				alert('Your list has been added!');
 			}, 100);
 		} catch (err) {
 			setError(err.message);
