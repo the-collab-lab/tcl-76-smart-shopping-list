@@ -1,11 +1,12 @@
 import './Home.css';
 import { SingleList, ShareListComponent } from '../components';
-import { createList, useAuth, deleteList } from '../api';
+import { createList, useAuth, deleteList, unfollowList } from '../api';
 import { Fragment, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useVoiceToText } from '../utils';
 import DeleteIcon from '@mui/icons-material/Delete';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'; //remove shopping list that are being shared with
 
 export function Home({ data, setListPath, setAllLists }) {
 	const [listName, setListName] = useState('');
@@ -57,6 +58,25 @@ export function Home({ data, setListPath, setAllLists }) {
 		}
 	};
 
+	const handleUnfollowSharedList = async (list) => {
+		try {
+			if (
+				window.confirm(
+					`Are you sure you want to remove ${list.name} from your shopping lists?`,
+				)
+			) {
+				await unfollowList(userEmail, list.path);
+				const updatedData = data.filter(
+					(eachList) => eachList.path !== list.path,
+				);
+
+				setAllLists(updatedData);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<div className="flex flex-col h-[80vh]  my-8 p-8 bg-white rounded-3xl shadow-xl overflow-hidden mx-auto">
 			<ul className="font-archivo flex-grow overflow-y-auto space-y-4">
@@ -72,9 +92,24 @@ export function Home({ data, setListPath, setAllLists }) {
 										path={list.path}
 									/>
 									<div className="flex items-center space-x-4">
-										<button onClick={() => handleDelete(list)} className="p-2">
-											<DeleteIcon />
-										</button>
+										{!list.isShared && (
+											<button
+												onClick={() => handleDelete(list)}
+												className="p-2"
+											>
+												<DeleteIcon />
+											</button>
+										)}
+
+										{/* Remove button for shared lists */}
+										{list.isShared && (
+											<button
+												onClick={() => handleUnfollowSharedList(list)}
+												className="p-2"
+											>
+												<RemoveCircleIcon />
+											</button>
+										)}
 										<ShareListComponent
 											name={list.name}
 											setListPath={setListPath}
