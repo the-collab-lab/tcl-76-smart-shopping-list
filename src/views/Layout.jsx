@@ -74,77 +74,78 @@ export function Layout() {
 					<Outlet />
 				</main>
 
-				<footer className="footer">
-					<div className="container">
-						<p className="text-lg font-bold">Developed by:</p>
-						<ul>
-							<li>
-								<a
-									href="https://www.linkedin.com/in/allison-randel/"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									Allison Randel
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://www.linkedin.com/in/binmaemma/"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									Emma Ma
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://www.linkedin.com/in/sarah-mko/"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									Sarah Mekonnen
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://www.linkedin.com/in/codemarcos/"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									Marcos Perez
-								</a>
-							</li>
-						</ul>
-						<p>Special thanks to our mentors:</p>
-						<ul>
-							<li>
-								<a
-									href="https://www.linkedin.com/in/devin-jaggernauth/"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									Devin Jaggernauth
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://www.linkedin.com/in/mindyzwan/"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									Mindy Zwanziger
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://www.linkedin.com/in/nathanejbrown/"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									Nathan Brown
-								</a>
-							</li>
-						</ul>
+				<footer className="footer bg-neutral text-center flex items-center justify-center py-10">
+					<div className="text-center">
+						<p className="text-xl font-extrabold  text-[#e8c900]">
+							<span>Developed by: </span>
+							<a
+								href="https://www.linkedin.com/in/binmaemma/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-[#e8c900] no-underline hover:underline"
+							>
+								Emma Ma
+							</a>
+							,
+							<a
+								href="https://www.linkedin.com/in/sarah-mko/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-[#e8c900] no-underline hover:underline"
+							>
+								{' '}
+								Sarah Mekonnen
+							</a>
+							,
+							<a
+								href="https://www.linkedin.com/in/codemarcos/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-[#e8c900] no-underline hover:underline"
+							>
+								{' '}
+								Marcos Perez
+							</a>
+							,
+							<a
+								href="https://www.linkedin.com/in/allison-randel/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-[#e8c900] no-underline hover:underline"
+							>
+								{' '}
+								Allison Randel{' '}
+							</a>
+							<span className="ml-8">Special thanks to our mentors: </span>
+							<a
+								href="https://www.linkedin.com/in/nathanejbrown/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-[#e8c900] no-underline hover:underline"
+							>
+								Nathan Brown
+							</a>
+							,
+							<a
+								href="https://www.linkedin.com/in/devin-jaggernauth/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-[#e8c900] no-underline hover:underline"
+							>
+								{' '}
+								Devin Jaggernauth
+							</a>
+							,
+							<a
+								href="https://www.linkedin.com/in/mindyzwan/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-[#e8c900] no-underline hover:underline"
+							>
+								{' '}
+								Mindy Zwanziger
+							</a>
+						</p>
 					</div>
 				</footer>
 			</div>

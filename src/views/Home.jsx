@@ -58,7 +58,7 @@ export function Home({ data, setListPath, setAllLists }) {
 	};
 
 	return (
-		<div className="flex flex-col h-[60vh]  my-8 p-8 bg-white rounded-3xl shadow-xl overflow-hidden mx-auto">
+		<div className="flex flex-col h-[70vh]  my-8 p-8 bg-white rounded-3xl shadow-xl overflow-hidden mx-auto">
 			<ul className="font-archivo flex-grow overflow-y-auto space-y-4">
 				{data &&
 					data.map((list) => {

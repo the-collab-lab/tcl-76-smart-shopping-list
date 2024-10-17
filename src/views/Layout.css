@@ -74,8 +74,8 @@
 	text-underline-offset: 0.1em;
 }
 
-.footer {
-	background-color: #333;
+/* .footer {
+	background-color: bg-neutral;
 	color: #e8c900;
 	padding: 1.5rem 0;
 	text-align: center;
@@ -117,4 +117,4 @@
 .footer ul li a {
 	font-size: 1.5rem;
 	font-weight: bold;
-}
+} */
