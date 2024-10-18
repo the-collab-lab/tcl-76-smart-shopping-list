@@ -34,13 +34,15 @@ export function Layout() {
 							<NavLink to="/list" style={handleActive}>
 								List
 							</NavLink>
-							<NavLink
-								to="/create-account"
-								style={handleActive}
-								className="whitespace-nowrap"
-							>
-								Create Account
-							</NavLink>
+							{!user && (
+								<NavLink
+									to="/create-account"
+									style={handleActive}
+									className="whitespace-nowrap"
+								>
+									Create Account
+								</NavLink>
+							)}
 
 							{user ? <SignOutButton /> : <SignInButton />}
 						</div>
@@ -70,13 +72,15 @@ export function Layout() {
 								<NavLink to="/list" style={handleActive} className="text-3xl">
 									List
 								</NavLink>
-								<NavLink
-									to="/create-account"
-									style={handleActive}
-									className="text-3xl"
-								>
-									Create Account
-								</NavLink>
+								{!user && (
+									<NavLink
+										to="/create-account"
+										style={handleActive}
+										className="text-3xl"
+									>
+										Create Account
+									</NavLink>
+								)}
 
 								{user ? <SignOutButton /> : <SignInButton />}
 							</div>
