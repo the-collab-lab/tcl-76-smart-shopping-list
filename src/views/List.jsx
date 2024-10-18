@@ -1,5 +1,5 @@
 import { ListItem } from '../components';
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import BasicModal from './Modal';
 import { comparePurchaseUrgency } from '../api';
 import { useVoiceToText } from '../utils';
@@ -32,16 +32,13 @@ export function List({ data, userId, path }) {
 
 	useEffect(() => {
 		if (text) {
-			setFilterVal((prev) => ({ ...prev, name: text }));
+			setFilterVal((prev) => prev + ' ' + text);
 		}
 	}, [text]);
 
 	function handleChange(e) {
 		e.preventDefault();
-		setFilterVal((prev) => ({
-			...prev,
-			[e.target.name]: e.target.value,
-		}));
+		setFilterVal(e.target.value);
 	}
 
 	const clearInput = (e) => {
@@ -114,14 +111,17 @@ export function List({ data, userId, path }) {
 				<ul className="space-y-2 font-archivo flex-grow overflow-y-auto space-y-4 ">
 					{filteredObject &&
 						Object.entries(filteredObject).map(([timeBucket, list]) => (
-							<li key={crypto.randomUUID()} className="flex flex-col space-y-2">
+							<div
+								key={crypto.randomUUID()}
+								className="flex flex-col space-y-2"
+							>
 								<div>
 									<h3 className="text-white">{labels[timeBucket]}</h3>
 								</div>
 								{list.map((item) => (
 									<ListItem item={item} key={crypto.randomUUID()} />
 								))}
-							</li>
+							</div>
 							// <Fragment >
 
 							// </Fragment>
