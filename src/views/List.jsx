@@ -19,6 +19,7 @@ export function List({ data, userId, path }) {
 		header: 'Tip:',
 		promptMSG: 'Your shopping list is empty. Start adding items!',
 		btnText: 'Add Items',
+		route: '/manage-list',
 	};
 
 	useEffect(() => {

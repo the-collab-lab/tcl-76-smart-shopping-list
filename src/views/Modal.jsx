@@ -46,7 +46,7 @@ export default function BasicModal({ dataEmpty, message }) {
 						color: theme.palette.primary.main,
 					}}
 					size="large"
-					onClick={() => navigate('/manage-list')}
+					onClick={() => navigate(message.route)}
 				>
 					{message.btnText}
 				</Button>

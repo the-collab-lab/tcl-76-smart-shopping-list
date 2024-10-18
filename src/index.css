@@ -37,10 +37,7 @@
 	}
 	input[type='text'],
 	select {
-		@apply input input-bordered mx-3;
-	}
-	input[type='text'] {
-		@apply text-2xl;
+		@apply input input-bordered mx-3 text-2xl;
 	}
 	/* header {
 		@apply navbar drop-shadow-lg

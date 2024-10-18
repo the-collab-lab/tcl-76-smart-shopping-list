@@ -7,6 +7,7 @@ import { useVoiceToText } from '../utils';
 import DeleteIcon from '@mui/icons-material/Delete';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'; //remove shopping list that are being shared with
+import BasicModal from './Modal';
 
 export function Home({ data, setListPath, setAllLists }) {
 	const [listName, setListName] = useState('');
@@ -16,6 +17,12 @@ export function Home({ data, setListPath, setAllLists }) {
 	const userEmail = user?.email;
 	const navigate = useNavigate();
 	const { text, isListening, startListening } = useVoiceToText();
+	// const messageSignIn = {
+	// 	header: 'Warning:',
+	// 	promptMSG: 'You are not logged in. Please sign into your account',
+	// 	btnText: 'Go Back',
+	// 	route: '/',
+	// };
 
 	useEffect(() => {
 		if (text) {
@@ -78,80 +85,88 @@ export function Home({ data, setListPath, setAllLists }) {
 	};
 	// style={{background:'#676D16'}
 	return (
-		<div className="flex flex-col h-[80vh]  my-8 p-8 rounded-3xl shadow-xl overflow-hidden mx-auto  bg-neutral">
-			<ul className="font-archivo flex-grow overflow-y-auto space-y-4 ">
-				{data &&
-					data.map((list) => {
-						const uniqueId = crypto.randomUUID();
-						return (
-							<Fragment key={uniqueId}>
-								<div
-									className="flex items-center justify-between p-4 rounded-3xl shadow-md border border-primary"
-									style={{ background: '#f8fdef' }}
-								>
-									{/* style={{background:'black'}} */}
-									<SingleList
-										name={list.name}
-										setListPath={setListPath}
-										path={list.path}
-									/>
-									<div className="flex items-center space-x-4">
-										{!list.isShared && (
-											<button
-												onClick={() => handleDelete(list)}
-												aria-label="Delete this shopping list"
-											>
-												<DeleteIcon />
-											</button>
-										)}
+		<>
+			{data.length ? (
+				<div className="flex flex-col h-[80vh]  my-8 p-8 rounded-3xl shadow-xl overflow-hidden mx-auto  bg-neutral">
+					<ul className="font-archivo flex-grow overflow-y-auto space-y-4 ">
+						{data &&
+							data.map((list) => {
+								const uniqueId = crypto.randomUUID();
+								return (
+									<Fragment key={uniqueId}>
+										<div
+											className="flex items-center justify-between p-4 rounded-3xl shadow-md border border-primary"
+											style={{ background: '#f8fdef' }}
+										>
+											{/* style={{background:'black'}} */}
+											<SingleList
+												name={list.name}
+												setListPath={setListPath}
+												path={list.path}
+											/>
+											<div className="flex items-center space-x-4">
+												{!list.isShared && (
+													<button
+														onClick={() => handleDelete(list)}
+														aria-label="Delete this shopping list"
+													>
+														<DeleteIcon />
+													</button>
+												)}
 
-										{/* Remove button for shared lists */}
-										{list.isShared && (
-											<button
-												onClick={() => handleUnfollowSharedList(list)}
-												aria-label="Remove this shared list"
-											>
-												<RemoveCircleIcon />
-											</button>
-										)}
-										<ShareListComponent
-											name={list.name}
-											setListPath={setListPath}
-											path={list.path}
-										/>
-									</div>
-								</div>
-							</Fragment>
-						);
-					})}
-			</ul>
-			<form
-				action=""
-				onSubmit={handleSubmit}
-				className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-4 "
-			>
-				<label htmlFor="listName" className="text-white">
-					Create a new list:
-				</label>
-				<input
-					type="text"
-					id="listName"
-					value={listName}
-					onChange={(e) => setListName(e.target.value)}
-				/>
-				<button
-					type="button"
-					onClick={startListening}
-					aria-label="Use microphone to add a new list"
-					className="bg-accent text-black hover:text-white"
-				>
-					{isListening ? 'Listening...' : <KeyboardVoiceIcon />}
-				</button>
-				<button className="bg-accent text-black hover:text-white">
-					Submit
-				</button>
-				<p>{error}</p>
-			</form>
-		</div>
+												{/* Remove button for shared lists */}
+												{list.isShared && (
+													<button
+														onClick={() => handleUnfollowSharedList(list)}
+														aria-label="Remove this shared list"
+													>
+														<RemoveCircleIcon />
+													</button>
+												)}
+												<ShareListComponent
+													name={list.name}
+													setListPath={setListPath}
+													path={list.path}
+												/>
+											</div>
+										</div>
+									</Fragment>
+								);
+							})}
+					</ul>
+					<form
+						onSubmit={handleSubmit}
+						className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-4 "
+					>
+						<label htmlFor="listName" className="text-white">
+							Create a new list:
+						</label>
+						<div className="flex flex-col">
+							<input
+								type="text"
+								id="listName"
+								value={listName}
+								onChange={(e) => setListName(e.target.value)}
+							/>
+							<span className="text-error">{error}</span>
+						</div>
+
+						<button
+							type="button"
+							onClick={startListening}
+							aria-label="Use microphone to add a new list"
+							className="bg-accent text-black hover:text-white"
+						>
+							{isListening ? 'Listening...' : <KeyboardVoiceIcon />}
+						</button>
+						<button className="bg-accent text-black hover:text-white">
+							Submit
+						</button>
+					</form>
+				</div>
+			) : (
+				<h2 className="text-center my-8">You have no lists to display</h2>
+			)}
+		</>
 	);
 }
