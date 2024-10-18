@@ -7,7 +7,6 @@ import { useVoiceToText } from '../utils';
 import DeleteIcon from '@mui/icons-material/Delete';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'; //remove shopping list that are being shared with
-import BasicModal from './Modal';
 
 export function Home({ data, setListPath, setAllLists }) {
 	const [listName, setListName] = useState('');
