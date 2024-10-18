@@ -1,6 +1,12 @@
 import './Home.css';
 import { SingleList, ShareListComponent } from '../components';
-import { createList, useAuth, deleteList, unfollowList } from '../api';
+import {
+	createList,
+	useAuth,
+	deleteList,
+	unfollowList,
+	SignInButton,
+} from '../api';
 import { Fragment, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useVoiceToText } from '../utils';
@@ -16,12 +22,6 @@ export function Home({ data, setListPath, setAllLists }) {
 	const userEmail = user?.email;
 	const navigate = useNavigate();
 	const { text, isListening, startListening } = useVoiceToText();
-	// const messageSignIn = {
-	// 	header: 'Warning:',
-	// 	promptMSG: 'You are not logged in. Please sign into your account',
-	// 	btnText: 'Go Back',
-	// 	route: '/',
-	// };
 
 	useEffect(() => {
 		if (text) {
@@ -82,7 +82,6 @@ export function Home({ data, setListPath, setAllLists }) {
 			console.log(error);
 		}
 	};
-	// style={{background:'#676D16'}
 	return (
 		<>
 			{data.length ? (
@@ -97,7 +96,6 @@ export function Home({ data, setListPath, setAllLists }) {
 											className="flex items-center justify-between p-4 rounded-3xl shadow-md border border-primary"
 											style={{ background: '#f8fdef' }}
 										>
-											{/* style={{background:'black'}} */}
 											<SingleList
 												name={list.name}
 												setListPath={setListPath}
@@ -164,7 +162,10 @@ export function Home({ data, setListPath, setAllLists }) {
 					</form>
 				</div>
 			) : (
-				<h2 className="text-center my-8">You have no lists to display</h2>
+				<div className="flex flex-col h-[80vh]  my-8 p-8 rounded-3xl shadow-xl overflow-hidden mx-auto  bg-neutral place-content-center items-center">
+					<h1 className="text-center my-8 text-accent">Welcome to SnapShop!</h1>
+					<SignInButton />
+				</div>
 			)}
 		</>
 	);

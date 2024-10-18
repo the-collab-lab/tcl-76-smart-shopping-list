@@ -122,9 +122,6 @@ export function List({ data, userId, path }) {
 									<ListItem item={item} key={crypto.randomUUID()} />
 								))}
 							</div>
-							// <Fragment >
-
-							// </Fragment>
 						))}
 				</ul>
 			</div>
