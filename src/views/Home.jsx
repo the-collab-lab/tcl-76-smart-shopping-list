@@ -135,10 +135,10 @@ export function Home({ data, setListPath, setAllLists }) {
 						onSubmit={handleSubmit}
 						className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-4 justify-center"
 					>
-						<label htmlFor="listName" className="text-white">
+						<label htmlFor="listName" className="text-white font-medium	">
 							Create a new list:
 						</label>
-						<div className="flex flex-col ">
+						<div className="flex flex-col">
 							<input
 								type="text"
 								id="listName"
@@ -162,9 +162,12 @@ export function Home({ data, setListPath, setAllLists }) {
 					</form>
 				</div>
 			) : (
-				<div className="flex flex-col h-[80vh]  my-8 p-8 rounded-3xl shadow-xl overflow-hidden mx-auto  bg-neutral place-content-center items-center">
-					<h1 className="text-center my-8 text-accent">Welcome to SnapShop!</h1>
-					<SignInButton />
+				<div className="flex flex-col h-[80vh]  my-8 p-8 rounded-3xl overflow-hidden mx-auto place-content-center items-center ">
+					<h1 className="text-center my-8 text-neutral text-6xl">
+						{' '}
+						Welcome to SnapShop!
+					</h1>
+					<SignInButton styles={'bg-neutral text-white btn-lg text-2xl'} />
 				</div>
 			)}
 		</>

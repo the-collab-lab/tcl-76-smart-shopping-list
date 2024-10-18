@@ -116,7 +116,7 @@ export function ManageList({ list }) {
 						id="name-of-item"
 						value={formData.name}
 						onChange={handleChange}
-						className="placeholder-zinc-700"
+						className="placeholder-zinc-600"
 						required
 					></input>
 
@@ -139,7 +139,7 @@ export function ManageList({ list }) {
 						value={formData.frequency}
 						name="frequency"
 						onChange={handleChange}
-						className="placeholder-zinc-700"
+						className="placeholder-zinc-600"
 						required
 					>
 						<option value="" disabled>

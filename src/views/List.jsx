@@ -80,7 +80,11 @@ export function List({ data, userId, path }) {
 				<BasicModal dataEmpty={dataEmpty} message={message} />
 			)}
 
-			<button onClick={addItemNavigate} aria-label="Add a new item">
+			<button
+				onClick={addItemNavigate}
+				aria-label="Add a new item"
+				className="ml-0"
+			>
 				{' '}
 				Add item <AddBoxRoundedIcon fontSize="large" />
 			</button>
@@ -96,6 +100,7 @@ export function List({ data, userId, path }) {
 					value={filterVal}
 					onChange={handleChange}
 					placeholder="e.g. Apple"
+					className="placeholder-zinc-600"
 				/>
 				<SearchRoundedIcon />
 				<button
