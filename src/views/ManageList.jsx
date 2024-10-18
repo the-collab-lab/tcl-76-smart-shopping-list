@@ -106,7 +106,7 @@ export function ManageList({ list }) {
 		<>
 			<div className="manage-list-form flex flex-col h-[20vh]  my-8 p-8 rounded-3xl shadow-xl overflow-hidden mx-auto bg-neutral ">
 				<form onSubmit={handleSubmit}>
-					<label htmlFor="name" className="text-white">
+					<label htmlFor="name" className="text-white font-medium">
 						Name of item:
 					</label>
 					<input
@@ -130,7 +130,7 @@ export function ManageList({ list }) {
 
 					<br></br>
 
-					<label htmlFor="frequency" className="text-white">
+					<label htmlFor="frequency" className="text-white font-medium">
 						When will you need this item again?:
 					</label>
 
@@ -139,7 +139,7 @@ export function ManageList({ list }) {
 						value={formData.frequency}
 						name="frequency"
 						onChange={handleChange}
-						className="placeholder-zinc-600"
+						className="text-zinc-600"
 						required
 					>
 						<option value="" disabled>
