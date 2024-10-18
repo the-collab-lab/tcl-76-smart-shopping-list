@@ -6,7 +6,7 @@ import { useAuth, SignInButton, SignOutButton } from '../api';
 const handleActive = ({ isActive }) => {
 	return {
 		fontWeight: isActive ? '900' : '',
-		color: isActive ? '#E8C900' : 'rgb(247 253 235 / 68%)',
+		color: isActive ? 'rgb(237 208 0)' : 'white',
 	};
 };
 
@@ -28,7 +28,7 @@ export function Layout() {
 						</div>
 
 						{/* Navbar on Desktop */}
-						<div className="space-x-8 navbar-end hidden sm:block">
+						<div className="space-x-8 hidden sm:block">
 							<NavLink to="/" style={handleActive}>
 								Home
 							</NavLink>
@@ -79,3 +79,4 @@ export function Layout() {
 		</>
 	);
 }
+// style={{background:'#969877'}}

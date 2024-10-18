@@ -11,7 +11,13 @@ export function SingleList({ name, path, setListPath }) {
 
 	return (
 		<li className="SingleList">
-			<button onClick={handleClick}>{name}</button>
+			<button
+				onClick={handleClick}
+				className="font-bold text-white"
+				style={{ background: '#676D16' }}
+			>
+				{name}
+			</button>
 		</li>
 	);
 }

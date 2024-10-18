@@ -76,26 +76,31 @@ export function Home({ data, setListPath, setAllLists }) {
 			console.log(error);
 		}
 	};
-
+	// style={{background:'#676D16'}
 	return (
-		<div className="flex flex-col h-[80vh]  my-8 p-8 bg-white rounded-3xl shadow-xl overflow-hidden mx-auto">
-			<ul className="font-archivo flex-grow overflow-y-auto space-y-4">
+		<div className="flex flex-col h-[80vh]  my-8 p-8 rounded-3xl shadow-xl overflow-hidden mx-auto  bg-neutral">
+			<ul className="font-archivo flex-grow overflow-y-auto space-y-4 ">
 				{data &&
 					data.map((list) => {
 						const uniqueId = crypto.randomUUID();
 						return (
 							<Fragment key={uniqueId}>
-								<div className="flex items-center justify-between p-4 rounded-3xl shadow-md border">
+								<div
+									className="flex items-center justify-between p-4 rounded-3xl shadow-md border border-primary"
+									style={{ background: '#f8fdef' }}
+								>
+									{/* style={{background:'black'}} */}
 									<SingleList
 										name={list.name}
 										setListPath={setListPath}
 										path={list.path}
 									/>
-									<div className="flex items-center space-x-4">
+									<div className="flex items-center space-x-4 ">
 										{!list.isShared && (
 											<button
 												onClick={() => handleDelete(list)}
-												className="p-2"
+												className="p-2 "
+												aria-label="Delete this shopping list"
 											>
 												<DeleteIcon />
 											</button>
@@ -106,6 +111,7 @@ export function Home({ data, setListPath, setAllLists }) {
 											<button
 												onClick={() => handleUnfollowSharedList(list)}
 												className="p-2"
+												aria-label="Remove this shared list"
 											>
 												<RemoveCircleIcon />
 											</button>
@@ -126,17 +132,24 @@ export function Home({ data, setListPath, setAllLists }) {
 				onSubmit={handleSubmit}
 				className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-4"
 			>
-				<label htmlFor="listName">Create a new list:</label>
+				<label htmlFor="listName" className="text-white">
+					Create a new list:
+				</label>
 				<input
 					type="text"
 					id="listName"
 					value={listName}
 					onChange={(e) => setListName(e.target.value)}
 				/>
-				<button type="button" onClick={startListening}>
+				<button
+					type="button"
+					onClick={startListening}
+					aria-label="Use microphone to add a new list"
+					className="bg-accent text-black"
+				>
 					{isListening ? 'Listening...' : <KeyboardVoiceIcon />}
 				</button>
-				<button>Submit</button>
+				<button className="bg-accent text-black">Submit</button>
 				<p>{error}</p>
 			</form>
 		</div>

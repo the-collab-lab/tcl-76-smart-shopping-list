@@ -13,7 +13,19 @@ export default {
 	},
 	plugins: [require('daisyui')],
 	daisyui: {
-		themes: ['lemonade', 'coffee'],
+		themes: [
+			{
+				lemonade: {
+					...require('daisyui/src/theming/themes')['lemonade'],
+					primary: '#004F2D',
+
+					secondary: '#676D16',
+					// accent:"#bec000",
+				},
+			},
+			,
+			'coffee',
+		],
 		base: true,
 	},
 };

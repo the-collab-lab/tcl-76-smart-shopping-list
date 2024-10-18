@@ -2,14 +2,17 @@ import { ListItem } from '../components';
 import { useState, useEffect, Fragment } from 'react';
 import BasicModal from './Modal';
 import { comparePurchaseUrgency } from '../api';
+import { useVoiceToText } from '../utils';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import AddBoxRoundedIcon from '@mui/icons-material/AddBoxRounded';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 export function List({ data, userId, path }) {
 	const [filterVal, setFilterVal] = useState('');
 	const [filteredObject, setFilteredObject] = useState({});
 	const [sortedList, setSortedList] = useState([]);
 	const [showModal, setShowModal] = useState(false);
+	const { text, isListening, startListening } = useVoiceToText();
 
 	const dataEmpty = userId && !data.length;
 	const message = {
@@ -25,6 +28,20 @@ export function List({ data, userId, path }) {
 			}, 2000);
 		}
 	}, []);
+
+	useEffect(() => {
+		if (text) {
+			setFilterVal((prev) => ({ ...prev, name: text }));
+		}
+	}, [text]);
+
+	function handleChange(e) {
+		e.preventDefault();
+		setFilterVal((prev) => ({
+			...prev,
+			[e.target.name]: e.target.value,
+		}));
+	}
 
 	const clearInput = (e) => {
 		e.preventDefault();
@@ -65,7 +82,7 @@ export function List({ data, userId, path }) {
 				<BasicModal dataEmpty={dataEmpty} message={message} />
 			)}
 
-			<button onClick={addItemNavigate}>
+			<button onClick={addItemNavigate} aria-label="Add a new item">
 				{' '}
 				Add item <AddBoxRoundedIcon fontSize="large" className="text-black" />
 			</button>
@@ -79,10 +96,17 @@ export function List({ data, userId, path }) {
 					name="item-name"
 					type="text"
 					value={filterVal}
-					onChange={(e) => setFilterVal(e.target.value)}
+					onChange={handleChange}
 					placeholder="e.g. Apple"
 				/>
 				<SearchRoundedIcon />
+				<button
+					type="button"
+					onClick={startListening}
+					aria-label="Use microphone to find an item on your list"
+				>
+					{isListening ? 'Listening...' : <KeyboardVoiceIcon />}
+				</button>
 				{filterVal && <button>Clear</button>}
 			</form>
 

@@ -12,7 +12,7 @@ export function ShareListComponent({ path, setListPath }) {
 
 	return (
 		<>
-			<button>
+			<button aria-label="Share this item">
 				<ShareIcon onClick={handleClick} />
 			</button>
 		</>

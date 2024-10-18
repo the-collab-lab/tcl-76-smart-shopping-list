@@ -118,7 +118,11 @@ export function ManageList({ list }) {
 					></input>
 
 					<button type="button" onClick={handleVoiceTransform}>
-						{isListening ? 'Listening...' : <KeyboardVoiceIcon />}
+						{isListening ? (
+							'Listening...'
+						) : (
+							<KeyboardVoiceIcon aria-label="Use microphone to add a new item" />
+						)}
 					</button>
 
 					<br></br>
