@@ -26,7 +26,7 @@ export function Layout() {
 						</div>
 
 						{/* Navbar on Desktop */}
-						<div className="space-x-8 navbar-end hidden sm:block">
+						<div className="space-x-8 navbar-end hidden sm:flex items-center">
 							<NavLink to="/" style={handleActive}>
 								Home
 							</NavLink>
@@ -34,7 +34,11 @@ export function Layout() {
 							<NavLink to="/list" style={handleActive}>
 								List
 							</NavLink>
-							<NavLink to="/create-account" style={handleActive}>
+							<NavLink
+								to="/create-account"
+								style={handleActive}
+								className="whitespace-nowrap"
+							>
 								Create Account
 							</NavLink>
 
@@ -43,7 +47,7 @@ export function Layout() {
 
 						{/* Mobile Screen Icon Dropdown */}
 						<div className="space-x-8 dropdown dropdown-bottom dropdown-end sm:hidden  text-accent">
-							<button className="btn btn-square btn-ghost ">
+							<button className="btn btn-square btn-ghost">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									fill="none"
