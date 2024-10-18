@@ -122,7 +122,7 @@ export async function addUserToDatabase(user) {
 		// than their uid.
 		await setDoc(doc(db, 'users', user.email), {
 			email: user.email,
-			name: user.displayName,
+			name: user.displayName || 'New User', //default name if displayName is not set
 			uid: user.uid,
 		});
 	}

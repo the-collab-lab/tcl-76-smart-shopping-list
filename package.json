@@ -12,7 +12,8 @@
 		"@mui/icons-material": "^6.1.2",
 		"@mui/material": "^6.1.2",
 		"@the-collab-lab/shopping-list-utils": "^2.2.0",
-		"firebase": "^10.12.5",
+		"firebase": "^10.14.1",
+		"firebase-auth": "^0.1.2",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"react-router-dom": "^6.26.0"
@@ -35,7 +36,7 @@
 		"lint-staged": "^15.2.8",
 		"postcss": "^8.4.47",
 		"prettier": "^3.3.3",
-		"tailwindcss": "^3.4.13",
+		"tailwindcss": "^3.4.14",
 		"vite": "^5.3.5",
 		"vite-plugin-pwa": "^0.20.1",
 		"vite-plugin-svgr": "^4.2.0",
