@@ -54,49 +54,56 @@ export function ListItem({ item }) {
 	};
 
 	return (
-		<li className="ListItem space-x-3 ">
-			<input
-				type="checkbox"
-				checked={checked}
-				onChange={handleChange}
-				disabled={checked}
-				className="checkbox checkbox-primary"
-			/>
-			<h4 style={{ fontSize: '20px' }}>{name}</h4>
+		<li
+			className="ListItem space-x-3 flex items-center p-4 px-8 rounded-3xl shadow-md border border-primary space-x-10 justify-between"
+			style={{ background: '#f8fdef' }}
+		>
+			<div className="flex items-center justify-between space-x-4">
+				<input
+					type="checkbox"
+					checked={checked}
+					onChange={handleChange}
+					disabled={checked}
+					className="checkbox checkbox-primary"
+				/>
+				<h4 style={{ fontSize: '20px' }}>{name}</h4>
+			</div>
 
-			<button onClick={handleDelete} aria-label="Delete this Item">
-				<DeleteIcon />
-			</button>
-			<div className="dropdown">
-				<button
-					onClick={() => setIsActive(!isActive)}
-					className="focus:bg-secondary"
-					aria-label="Get purchase details of this item"
-				>
-					<ExpandMoreIcon />
-				</button>
-				<div className="dropdown-content bg-base-300 rounded-box z-[1] w-60 p-4 shadow">
-					<ul style={{ fontSize: '15px' }}>
-						<li>
-							<h4 className="font-bold">Last Purchase:</h4>
-							<span>
-								{' '}
-								{dateLastPurchased
-									? dateLastPurchased.toDate().toDateString()
-									: 'N/A'}
-							</span>
-						</li>
-						<li>
-							<h4 className="font-bold">Next Purchase:</h4>
+			<div className="flex space-x-6">
+				<div className="dropdown">
+					<button
+						onClick={() => setIsActive(!isActive)}
+						className="focus:bg-secondary"
+						aria-label="Get purchase details of this item"
+					>
+						<ExpandMoreIcon />
+					</button>
+					<div className="dropdown-content bg-base-300 rounded-box z-[1] w-60 p-4 shadow">
+						<ul style={{ fontSize: '15px' }}>
+							<li>
+								<h4 className="font-bold">Last Purchase:</h4>
+								<span>
+									{' '}
+									{dateLastPurchased
+										? dateLastPurchased.toDate().toDateString()
+										: 'N/A'}
+								</span>
+							</li>
+							<li>
+								<h4 className="font-bold">Next Purchase:</h4>
 
-							<span> {dateNextPurchased?.toDate().toDateString()}</span>
-						</li>
-						<li>
-							<h4 className="font-bold">Total Purchases: </h4>
-							<span>{totalPurchases}</span>
-						</li>
-					</ul>
+								<span> {dateNextPurchased?.toDate().toDateString()}</span>
+							</li>
+							<li>
+								<h4 className="font-bold">Total Purchases: </h4>
+								<span>{totalPurchases}</span>
+							</li>
+						</ul>
+					</div>
 				</div>
+				<button onClick={handleDelete} aria-label="Delete this Item">
+					<DeleteIcon />
+				</button>
 			</div>
 		</li>
 	);

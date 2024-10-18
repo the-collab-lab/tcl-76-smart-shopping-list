@@ -95,11 +95,10 @@ export function Home({ data, setListPath, setAllLists }) {
 										setListPath={setListPath}
 										path={list.path}
 									/>
-									<div className="flex items-center space-x-4 ">
+									<div className="flex items-center space-x-4">
 										{!list.isShared && (
 											<button
 												onClick={() => handleDelete(list)}
-												className="p-2 "
 												aria-label="Delete this shopping list"
 											>
 												<DeleteIcon />
@@ -110,7 +109,6 @@ export function Home({ data, setListPath, setAllLists }) {
 										{list.isShared && (
 											<button
 												onClick={() => handleUnfollowSharedList(list)}
-												className="p-2"
 												aria-label="Remove this shared list"
 											>
 												<RemoveCircleIcon />

@@ -109,20 +109,24 @@ export function List({ data, userId, path }) {
 				</button>
 				{filterVal && <button>Clear</button>}
 			</form>
+			<div className="flex flex-col h-[80vh] my-8 p-8 rounded-3xl shadow-xl overflow-hidden mx-auto  bg-neutral">
+				<ul className="space-y-2 font-archivo flex-grow overflow-y-auto space-y-4 ">
+					{filteredObject &&
+						Object.entries(filteredObject).map(([timeBucket, list]) => (
+							<li key={crypto.randomUUID()} className="flex flex-col space-y-2">
+								<div>
+									<h3 className="text-white">{labels[timeBucket]}</h3>
+								</div>
+								{list.map((item) => (
+									<ListItem item={item} key={crypto.randomUUID()} />
+								))}
+							</li>
+							// <Fragment >
 
-			<ul className="space-y-2">
-				{filteredObject &&
-					Object.entries(filteredObject).map(([timeBucket, list]) => (
-						<Fragment key={crypto.randomUUID()}>
-							<div>
-								<h3>{labels[timeBucket]}</h3>
-							</div>
-							{list.map((item) => (
-								<ListItem item={item} key={crypto.randomUUID()} />
-							))}
-						</Fragment>
-					))}
-			</ul>
+							// </Fragment>
+						))}
+				</ul>
+			</div>
 		</>
 	);
 }
