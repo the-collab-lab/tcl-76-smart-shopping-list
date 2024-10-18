@@ -133,12 +133,12 @@ export function Home({ data, setListPath, setAllLists }) {
 					</ul>
 					<form
 						onSubmit={handleSubmit}
-						className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-4 "
+						className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-4 justify-center"
 					>
 						<label htmlFor="listName" className="text-white">
 							Create a new list:
 						</label>
-						<div className="flex flex-col">
+						<div className="flex flex-col ">
 							<input
 								type="text"
 								id="listName"

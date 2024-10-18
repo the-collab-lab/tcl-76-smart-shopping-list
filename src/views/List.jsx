@@ -85,7 +85,7 @@ export function List({ data, userId, path }) {
 				Add item <AddBoxRoundedIcon fontSize="large" />
 			</button>
 
-			<form onSubmit={clearInput} className="py-4">
+			<form onSubmit={clearInput} className="py-4 flex items-center">
 				<label htmlFor="item-name" aria-label="Search for an item">
 					Find Item{' '}
 				</label>
