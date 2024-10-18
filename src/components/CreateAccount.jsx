@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { auth } from '../api/config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { addUserToDatabase } from '../api';
+import { useNavigate } from 'react-router-dom';
 
 export function CreateAccount() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [name, setName] = useState('');
 	const [error, setError] = useState('');
+	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -24,11 +26,16 @@ export function CreateAccount() {
 			//Add the user to firestore
 			await addUserToDatabase({ ...user, displayName: name });
 
+			//show success message
+			window.alert('Account created successfully!');
+
 			//Reset input fields or redirect as needed
 			setEmail('');
 			setPassword('');
 			setName('');
-			console.log('User registered successfully');
+
+			//redirect to the home page
+			navigate('/');
 		} catch (error) {
 			//Handle errors
 			console.error('Error signing up', error);
