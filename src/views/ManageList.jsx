@@ -120,7 +120,11 @@ export function ManageList({ list }) {
 						required
 					></input>
 
-					<button type="button" onClick={handleVoiceTransform}>
+					<button
+						type="button"
+						onClick={handleVoiceTransform}
+						className="bg-accent text-black hover:text-white"
+					>
 						{isListening ? (
 							'Listening...'
 						) : (
@@ -149,8 +153,12 @@ export function ManageList({ list }) {
 						<option value="14">Kind of Soon (14 Days)</option>
 						<option value="30">Not Soon (30 Days)</option>
 					</select>
-
-					<button type="submit">Submit</button>
+					<button
+						type="submit"
+						className="bg-accent text-black hover:text-white"
+					>
+						Submit
+					</button>
 				</form>
 			</div>
 		</>

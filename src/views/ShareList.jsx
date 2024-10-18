@@ -42,7 +42,12 @@ export function ShareList({ userId }) {
 						className="text-black placeholder-zinc-600"
 					></input>
 
-					<button type="submit">Share List</button>
+					<button
+						type="submit"
+						className="bg-accent text-black hover:text-white"
+					>
+						Share List
+					</button>
 				</form>
 			</div>
 		</>
