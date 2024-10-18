@@ -84,7 +84,7 @@ export function List({ data, userId, path }) {
 
 			<button onClick={addItemNavigate} aria-label="Add a new item">
 				{' '}
-				Add item <AddBoxRoundedIcon fontSize="large" className="text-black" />
+				Add item <AddBoxRoundedIcon fontSize="large" />
 			</button>
 
 			<form onSubmit={clearInput} className="py-4">

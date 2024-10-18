@@ -29,7 +29,7 @@
 	}
 	button {
 		@apply btn 
-		text-2xl font-sans font-normal btn-secondary m-2;
+		text-2xl font-sans font-bold btn-secondary m-2 text-white;
 	}
 	/*temporary for the 'Hello from the [/list] Page' titles */
 	p {
@@ -38,6 +38,9 @@
 	input[type='text'],
 	select {
 		@apply input input-bordered mx-3;
+	}
+	input[type='text'] {
+		@apply text-2xl;
 	}
 	/* header {
 		@apply navbar drop-shadow-lg

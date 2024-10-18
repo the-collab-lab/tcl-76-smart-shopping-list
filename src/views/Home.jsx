@@ -130,7 +130,7 @@ export function Home({ data, setListPath, setAllLists }) {
 			<form
 				action=""
 				onSubmit={handleSubmit}
-				className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-4"
+				className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-4 "
 			>
 				<label htmlFor="listName" className="text-white">
 					Create a new list:
@@ -145,11 +145,13 @@ export function Home({ data, setListPath, setAllLists }) {
 					type="button"
 					onClick={startListening}
 					aria-label="Use microphone to add a new list"
-					className="bg-accent text-black"
+					className="bg-accent text-black hover:text-white"
 				>
 					{isListening ? 'Listening...' : <KeyboardVoiceIcon />}
 				</button>
-				<button className="bg-accent text-black">Submit</button>
+				<button className="bg-accent text-black hover:text-white">
+					Submit
+				</button>
 				<p>{error}</p>
 			</form>
 		</div>
