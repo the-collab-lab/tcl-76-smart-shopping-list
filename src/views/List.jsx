@@ -1,5 +1,5 @@
 import { ListItem } from '../components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import BasicModal from './Modal';
 import { comparePurchaseUrgency } from '../api';
 import { useVoiceToText } from '../utils';
@@ -75,61 +75,71 @@ export function List({ data, userId, path }) {
 
 	return (
 		<>
-			<h2 className="py-8">{`${path.slice(path.indexOf('/') + 1)} List`}</h2>
-			{showModal && dataEmpty && (
-				<BasicModal dataEmpty={dataEmpty} message={message} />
-			)}
+			{userId ? (
+				<Fragment>
+					<h2 className="py-8">{`${path.slice(path.indexOf('/') + 1)} List`}</h2>
+					{showModal && dataEmpty && (
+						<BasicModal dataEmpty={dataEmpty} message={message} />
+					)}
 
-			<button
-				onClick={addItemNavigate}
-				aria-label="Add a new item"
-				className="ml-0"
-			>
-				{' '}
-				Add item <AddBoxRoundedIcon fontSize="large" />
-			</button>
+					<button
+						onClick={addItemNavigate}
+						aria-label="Add a new item"
+						className="ml-0"
+					>
+						{' '}
+						Add item <AddBoxRoundedIcon fontSize="large" />
+					</button>
 
-			<form onSubmit={clearInput} className="py-4 flex items-center">
-				<label htmlFor="item-name" aria-label="Search for an item">
-					Find Item{' '}
-				</label>
-				<input
-					id="item-name"
-					name="item-name"
-					type="text"
-					value={filterVal}
-					onChange={handleChange}
-					placeholder="e.g. Apple"
-					className="placeholder-zinc-600"
-				/>
-				<SearchRoundedIcon />
-				<button
-					type="button"
-					onClick={startListening}
-					aria-label="Use microphone to find an item on your list"
-				>
-					{isListening ? 'Listening...' : <KeyboardVoiceIcon />}
-				</button>
-				{filterVal && <button>Clear</button>}
-			</form>
-			<div className="flex flex-col h-[60vh] my-8 p-8 rounded-3xl shadow-xl overflow-hidden mx-auto  bg-neutral">
-				<ul className="space-y-2 font-archivo flex-grow overflow-y-auto space-y-4 ">
-					{filteredObject &&
-						Object.entries(filteredObject).map(([timeBucket, list]) => (
-							<div
-								key={crypto.randomUUID()}
-								className="flex flex-col space-y-2"
-							>
-								<div>
-									<h3 className="text-white">{labels[timeBucket]}</h3>
-								</div>
-								{list.map((item) => (
-									<ListItem item={item} key={crypto.randomUUID()} />
+					<form onSubmit={clearInput} className="py-4 flex items-center">
+						<label htmlFor="item-name" aria-label="Search for an item">
+							Find Item{' '}
+						</label>
+						<input
+							id="item-name"
+							name="item-name"
+							type="text"
+							value={filterVal}
+							onChange={handleChange}
+							placeholder="e.g. Apple"
+							className="placeholder-zinc-600"
+						/>
+						<SearchRoundedIcon />
+						<button
+							type="button"
+							onClick={startListening}
+							aria-label="Use microphone to find an item on your list"
+						>
+							{isListening ? 'Listening...' : <KeyboardVoiceIcon />}
+						</button>
+						{filterVal && <button>Clear</button>}
+					</form>
+					<div className="flex flex-col h-[60vh] my-8 p-8 rounded-3xl shadow-xl overflow-hidden mx-auto  bg-neutral">
+						<ul className="space-y-2 font-archivo flex-grow overflow-y-auto space-y-4 ">
+							{filteredObject &&
+								Object.entries(filteredObject).map(([timeBucket, list]) => (
+									<div
+										key={crypto.randomUUID()}
+										className="flex flex-col space-y-2"
+									>
+										<div>
+											<h3 className="text-white">{labels[timeBucket]}</h3>
+										</div>
+										{list.map((item) => (
+											<ListItem item={item} key={crypto.randomUUID()} />
+										))}
+									</div>
 								))}
-							</div>
-						))}
-				</ul>
-			</div>
+						</ul>
+					</div>
+				</Fragment>
+			) : (
+				<div className="flex flex-col h-[80vh]  my-8 p-8 rounded-3xl overflow-hidden mx-auto place-content-center items-center ">
+					<h2 className="text-center my-8 text-neutral text-6xl">
+						Please login or add items to your list
+					</h2>
+				</div>
+			)}
 		</>
 	);
 }
