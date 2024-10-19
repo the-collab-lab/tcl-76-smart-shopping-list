@@ -104,9 +104,11 @@ export function ManageList({ list }) {
 
 	return (
 		<>
-			<div className="manage-list-form">
+			<div className="manage-list-form flex flex-col h-[20vh]  my-8 p-8 rounded-3xl shadow-xl overflow-hidden mx-auto bg-neutral ">
 				<form onSubmit={handleSubmit}>
-					<label htmlFor="name">Name of item:</label>
+					<label htmlFor="name" className="text-white font-medium">
+						Name of item:
+					</label>
 					<input
 						type="text"
 						placeholder="Type here"
@@ -114,16 +116,25 @@ export function ManageList({ list }) {
 						id="name-of-item"
 						value={formData.name}
 						onChange={handleChange}
+						className="placeholder-zinc-600"
 						required
 					></input>
 
-					<button type="button" onClick={handleVoiceTransform}>
-						{isListening ? 'Listening...' : <KeyboardVoiceIcon />}
+					<button
+						type="button"
+						onClick={handleVoiceTransform}
+						className="bg-accent text-black hover:text-black hover:bg-third"
+					>
+						{isListening ? (
+							'Listening...'
+						) : (
+							<KeyboardVoiceIcon aria-label="Use microphone to add a new item" />
+						)}
 					</button>
 
 					<br></br>
 
-					<label htmlFor="frequency">
+					<label htmlFor="frequency" className="text-white font-medium">
 						When will you need this item again?:
 					</label>
 
@@ -132,6 +143,7 @@ export function ManageList({ list }) {
 						value={formData.frequency}
 						name="frequency"
 						onChange={handleChange}
+						className="text-zinc-600"
 						required
 					>
 						<option value="" disabled>
@@ -141,8 +153,12 @@ export function ManageList({ list }) {
 						<option value="14">Kind of Soon (14 Days)</option>
 						<option value="30">Not Soon (30 Days)</option>
 					</select>
-
-					<button type="submit">Submit</button>
+					<button
+						type="submit"
+						className="bg-accent text-black hover:text-black hover:bg-third"
+					>
+						Submit
+					</button>
 				</form>
 			</div>
 		</>

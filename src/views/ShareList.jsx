@@ -26,9 +26,11 @@ export function ShareList({ userId }) {
 
 	return (
 		<>
-			<div className="manage-list-form">
+			<div className="manage-list-form flex flex-col h-[10vh] my-8 p-8 rounded-3xl shadow-xl overflow-hidden mx-auto  bg-neutral text-white font-medium">
 				<form onSubmit={handleEmailSubmit}>
-					<label htmlFor="invite-email">Invite user by email:</label>
+					<label htmlFor="invite-email" className="font-medium">
+						Invite user by email:
+					</label>
 					<input
 						id="invite-email"
 						type="text"
@@ -37,9 +39,15 @@ export function ShareList({ userId }) {
 						value={email}
 						onChange={handleEmailChange}
 						required
+						className="text-black placeholder-zinc-600"
 					></input>
 
-					<button type="submit">Share List</button>
+					<button
+						type="submit"
+						className="bg-accent text-black hover:text-neutral hover:bg-third"
+					>
+						Share List
+					</button>
 				</form>
 			</div>
 		</>

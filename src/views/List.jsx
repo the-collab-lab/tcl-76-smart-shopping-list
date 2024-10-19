@@ -1,21 +1,25 @@
 import { ListItem } from '../components';
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import BasicModal from './Modal';
 import { comparePurchaseUrgency } from '../api';
+import { useVoiceToText } from '../utils';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import AddBoxRoundedIcon from '@mui/icons-material/AddBoxRounded';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 export function List({ data, userId, path }) {
 	const [filterVal, setFilterVal] = useState('');
 	const [filteredObject, setFilteredObject] = useState({});
 	const [sortedList, setSortedList] = useState([]);
 	const [showModal, setShowModal] = useState(false);
+	const { text, isListening, startListening } = useVoiceToText();
 
 	const dataEmpty = userId && !data.length;
 	const message = {
 		header: 'Tip:',
 		promptMSG: 'Your shopping list is empty. Start adding items!',
 		btnText: 'Add Items',
+		route: '/manage-list',
 	};
 
 	useEffect(() => {
@@ -25,6 +29,17 @@ export function List({ data, userId, path }) {
 			}, 2000);
 		}
 	}, []);
+
+	useEffect(() => {
+		if (text) {
+			setFilterVal((prev) => prev + ' ' + text);
+		}
+	}, [text]);
+
+	function handleChange(e) {
+		e.preventDefault();
+		setFilterVal(e.target.value);
+	}
 
 	const clearInput = (e) => {
 		e.preventDefault();
@@ -65,12 +80,16 @@ export function List({ data, userId, path }) {
 				<BasicModal dataEmpty={dataEmpty} message={message} />
 			)}
 
-			<button onClick={addItemNavigate}>
+			<button
+				onClick={addItemNavigate}
+				aria-label="Add a new item"
+				className="ml-0"
+			>
 				{' '}
-				Add item <AddBoxRoundedIcon fontSize="large" className="text-black" />
+				Add item <AddBoxRoundedIcon fontSize="large" />
 			</button>
 
-			<form onSubmit={clearInput} className="py-4">
+			<form onSubmit={clearInput} className="py-4 flex items-center">
 				<label htmlFor="item-name" aria-label="Search for an item">
 					Find Item{' '}
 				</label>
@@ -79,26 +98,38 @@ export function List({ data, userId, path }) {
 					name="item-name"
 					type="text"
 					value={filterVal}
-					onChange={(e) => setFilterVal(e.target.value)}
+					onChange={handleChange}
 					placeholder="e.g. Apple"
+					className="placeholder-zinc-600"
 				/>
 				<SearchRoundedIcon />
+				<button
+					type="button"
+					onClick={startListening}
+					aria-label="Use microphone to find an item on your list"
+				>
+					{isListening ? 'Listening...' : <KeyboardVoiceIcon />}
+				</button>
 				{filterVal && <button>Clear</button>}
 			</form>
-
-			<ul className="space-y-2">
-				{filteredObject &&
-					Object.entries(filteredObject).map(([timeBucket, list]) => (
-						<Fragment key={crypto.randomUUID()}>
-							<div>
-								<h3>{labels[timeBucket]}</h3>
+			<div className="flex flex-col h-[60vh] my-8 p-8 rounded-3xl shadow-xl overflow-hidden mx-auto  bg-neutral">
+				<ul className="space-y-2 font-archivo flex-grow overflow-y-auto space-y-4 ">
+					{filteredObject &&
+						Object.entries(filteredObject).map(([timeBucket, list]) => (
+							<div
+								key={crypto.randomUUID()}
+								className="flex flex-col space-y-2"
+							>
+								<div>
+									<h3 className="text-white">{labels[timeBucket]}</h3>
+								</div>
+								{list.map((item) => (
+									<ListItem item={item} key={crypto.randomUUID()} />
+								))}
 							</div>
-							{list.map((item) => (
-								<ListItem item={item} key={crypto.randomUUID()} />
-							))}
-						</Fragment>
-					))}
-			</ul>
+						))}
+				</ul>
+			</div>
 		</>
 	);
 }
