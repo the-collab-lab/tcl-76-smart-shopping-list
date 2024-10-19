@@ -6,6 +6,7 @@ import { useVoiceToText } from '../utils';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import AddBoxRoundedIcon from '@mui/icons-material/AddBoxRounded';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import { SignInButton } from '../api';
 
 export function List({ data, userId, path }) {
 	const [filterVal, setFilterVal] = useState('');
@@ -136,8 +137,9 @@ export function List({ data, userId, path }) {
 			) : (
 				<div className="flex flex-col h-[80vh]  my-8 p-8 rounded-3xl overflow-hidden mx-auto place-content-center items-center ">
 					<h2 className="text-center my-8 text-neutral text-6xl">
-						Please login or add items to your list
+						Please login to view items
 					</h2>
+					<SignInButton styles={'bg-neutral text-white btn-lg text-2xl'} />
 				</div>
 			)}
 		</>

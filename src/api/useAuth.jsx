@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { auth } from './config.js';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { addUserToDatabase } from './firebase.js';
+import { useStateWithStorage } from '../utils/hooks.js';
 
 /**
  * A button that signs the user in using Google OAuth. When clicked,
@@ -24,7 +25,11 @@ export const SignInButton = ({ styles }) => (
 export const SignOutButton = () => (
 	<button
 		type="button"
-		onClick={() => auth.signOut() && window.location.reload()}
+		onClick={() =>
+			auth.signOut() &&
+			window.location.reload() &&
+			useStateWithStorage('tcl-shopping-list-path', null)
+		}
 		className="m-0 bg-accent text-black font-bold hover:text-black hover:bg-third  "
 	>
 		Sign Out
