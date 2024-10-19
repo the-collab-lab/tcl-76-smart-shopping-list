@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import './ListItem.css';
 import { updateItem, deleteItem } from '../api';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
