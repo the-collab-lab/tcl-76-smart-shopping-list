@@ -29,7 +29,7 @@
 	}
 	button {
 		@apply btn 
-		text-2xl font-sans font-bold btn-secondary m-2 text-white;
+		text-2xl font-sans font-bold btn-secondary m-2 text-white border-none hover:bg-neutral;
 	}
 	/*temporary for the 'Hello from the [/list] Page' titles */
 	p {

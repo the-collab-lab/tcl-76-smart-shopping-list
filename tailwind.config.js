@@ -9,6 +9,9 @@ export default {
 				archivo: ['Archivo Narrow', 'sans-serif'],
 				bowlby: ['BowlbyOne Regular', 'Archivo Narrow', 'sans-serif'],
 			},
+			colors: {
+				third: '#bdc100', // This adds it to the Tailwind color palette as wel
+			},
 		},
 	},
 	plugins: [require('daisyui')],
@@ -21,6 +24,7 @@ export default {
 
 					secondary: '#676D16',
 					// accent:"#bec000",
+					third: '#bdc100',
 				},
 			},
 			,

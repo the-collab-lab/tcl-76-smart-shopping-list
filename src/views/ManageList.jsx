@@ -123,7 +123,7 @@ export function ManageList({ list }) {
 					<button
 						type="button"
 						onClick={handleVoiceTransform}
-						className="bg-accent text-black hover:text-white"
+						className="bg-accent text-black hover:text-black hover:bg-third"
 					>
 						{isListening ? (
 							'Listening...'
@@ -155,7 +155,7 @@ export function ManageList({ list }) {
 					</select>
 					<button
 						type="submit"
-						className="bg-accent text-black hover:text-white"
+						className="bg-accent text-black hover:text-black hover:bg-third"
 					>
 						Submit
 					</button>

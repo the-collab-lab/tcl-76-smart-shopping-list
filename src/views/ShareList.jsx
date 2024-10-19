@@ -44,7 +44,7 @@ export function ShareList({ userId }) {
 
 					<button
 						type="submit"
-						className="bg-accent text-black hover:text-white"
+						className="bg-accent text-black hover:text-neutral hover:bg-third"
 					>
 						Share List
 					</button>

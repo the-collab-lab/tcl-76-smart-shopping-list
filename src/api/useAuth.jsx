@@ -12,7 +12,7 @@ export const SignInButton = ({ styles }) => (
 	<button
 		type="button"
 		onClick={() => signInWithPopup(auth, new GoogleAuthProvider())}
-		className={`m-0 bg-accent text-black font-bold hover:text-white ${styles}`}
+		className={`m-0 bg-accent text-black font-bold hover:text-black hover:bg-third ${styles}`}
 	>
 		Sign In
 	</button>
@@ -25,7 +25,7 @@ export const SignOutButton = () => (
 	<button
 		type="button"
 		onClick={() => auth.signOut() && window.location.reload()}
-		className="m-0 bg-accent text-black hover:text-white"
+		className="m-0 bg-accent text-black font-bold hover:text-black hover:bg-third  "
 	>
 		Sign Out
 	</button>
