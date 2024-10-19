@@ -37,6 +37,10 @@ const PWAConfig = {
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+	optimizeDeps: {
+		entries: [], // Prevent unnecessary optimization on entry points like react
+		include: ['react', 'react-dom'], // Ensure react and react-dom are pre-bundled
+	},
 	build: {
 		outDir: './build',
 		target: 'esnext',
