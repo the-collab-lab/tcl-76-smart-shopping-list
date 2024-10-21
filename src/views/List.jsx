@@ -113,7 +113,7 @@ export function List({ data, userId, path }) {
 				{filterVal && <button>Clear</button>}
 			</form>
 			<div className="flex flex-col h-[60vh] my-8 p-8 rounded-3xl shadow-xl overflow-hidden mx-auto  bg-neutral">
-				<ul className="space-y-2 font-archivo flex-grow overflow-y-auto space-y-4 ">
+				<ul className="space-y-2 font-archivo flex-grow overflow-y-auto">
 					{filteredObject &&
 						Object.entries(filteredObject).map(([timeBucket, list]) => (
 							<div
