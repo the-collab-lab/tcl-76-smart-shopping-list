@@ -1,7 +1,8 @@
 import { Outlet, NavLink } from 'react-router-dom';
-
+import { useEffect } from 'react';
 import './Layout.css';
 import { useAuth, SignInButton, SignOutButton } from '../api';
+import DarkModeToggle from '../components/DarkModeToggle';
 
 const handleActive = ({ isActive }) => {
 	return {
@@ -38,6 +39,8 @@ export function Layout() {
 							</NavLink>
 
 							{user ? <SignOutButton /> : <SignInButton />}
+
+							<DarkModeToggle />
 						</div>
 
 						{/* Mobile Screen Icon Dropdown */}
