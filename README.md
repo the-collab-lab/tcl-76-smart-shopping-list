@@ -17,17 +17,17 @@ The goal of this project is to collaborate with Collab Lab teammates to create a
 
 <hr>
 
-_Welcome_ ![welcome](src/images/welcome.png)
+**Welcome** ![welcome](src/images/welcome.png)
 
-_Home_ ![home](src/images/home.png)
+**Home** ![home](src/images/home.png)
 
-_User's Lists_ ![list](src/images/list.png)
+**User's Lists** ![list](src/images/list.png)
 
-_Adding an Item_ ![example-add-item](src/images/example-add-item.png)
+**Adding an Item** ![example-add-item](src/images/example-add-item.png)
 
-_Added Item_ ![example-added-item](src/images/example-added-item.png)
+**Added Item** ![example-added-item](src/images/example-added-item.png)
 
-_Share a List_ ![share-list](src/images/share-list.png)
+**Share a List** ![share-list](src/images/share-list.png)
 
 <hr>
 
