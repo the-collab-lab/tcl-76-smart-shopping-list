@@ -17,12 +17,33 @@ The goal of this project is to collaborate with Collab Lab teammates to create a
 
 <hr>
 
+Welcome
+
 ![welcome](src/images/welcome.png)
+<br>
+
+Home
+
 ![home](src/images/home.png)
+
+<br>
+User's Lists
+
 ![list](src/images/welcome.png)
+<br>
+Adding an Item
+
 ![example-add-item](src/images/example-add-item.png)
+<br>
+
+Added Item
 ![example-added-item](src/images/example-added-item.png)
+
+<br>
+Share a List
+
 ![share-list](src/images/share-list.png)
+<br>
 
 <hr>
 
