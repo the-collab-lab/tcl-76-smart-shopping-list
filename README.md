@@ -21,7 +21,7 @@ Welcome ![welcome](src/images/welcome.png)
 
 Home ![home](src/images/home.png)
 
-User's Lists ![list](src/images/welcome.png)
+User's Lists ![list](src/images/list.png)
 
 Adding an Item ![example-add-item](src/images/example-add-item.png)
 
